@@ -2,13 +2,16 @@ import red from '@material-ui/core/colors/red';
 
 export const styles = (theme) => ({
 	card: {
-		borderRadius: 0
+		borderRadius: 0,
+		display: 'flex',
+		flexDirection: 'column'
 	},
 
 	actions: {
 		display: 'flex',
 		background: 'linear-gradient(to bottom	, #0A0B0A00, #0A0B0A)',
-		width: 'calc(100% + 10px)'
+		width: '100%',
+		alignSelf: 'flex-end'
 	},
 	expand: {
 		transform: 'rotate(0deg)',
@@ -28,9 +31,8 @@ export const styles = (theme) => ({
 	},
 	header: {
 		background: 'linear-gradient(to top	, #0A0B0A00, #0A0B0A)',
-		width: 'calc(100% + 10px)',
+		width: '100%',
 		color: 'white',
-		height: 250,
 		alignItems: 'baseline'
 	}
 });

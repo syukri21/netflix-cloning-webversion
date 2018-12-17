@@ -5,6 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import CardList from '../../../components/cardlist';
 import { styles } from './popular-style';
 
+import { data } from '../../../dummy-data';
+
 class Popular extends React.Component {
 	render() {
 		const { classes } = this.props;
@@ -14,7 +16,7 @@ class Popular extends React.Component {
 					Popular
 				</Typography>
 				<div className={classes.item} style={{ gridGap: 6 }}>
-					{[ 10, 1, 2, 3, 4, 5, 6, 7, 8, 8, 7 ].map(() => <CardList />)}
+					{data.movies.map((item, key) => <CardList item={item} key={key} />)}
 				</div>
 			</div>
 		);

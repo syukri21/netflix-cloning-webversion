@@ -31,6 +31,15 @@ class Home extends React.Component {
 				<div className={classes.categories} style={{ top: height }}>
 					<Popular />
 				</div>
+				<div className={classes.categories} style={{ top: height }}>
+					<Popular />
+				</div>
+				<div className={classes.categories} style={{ top: height }}>
+					<Popular />
+				</div>
+				<div className={classes.categories} style={{ top: height }}>
+					<Popular />
+				</div>
 			</div>
 		);
 	}

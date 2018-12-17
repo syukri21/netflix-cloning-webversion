@@ -23,30 +23,46 @@ class CardList extends React.Component {
 	};
 
 	render() {
-		const { classes } = this.props;
+		const { classes, item, key } = this.props;
 
 		return (
 			<Card
 				className={classes.card}
 				style={{
-					backgroundImage: 'url(./assets/1.jpg)',
-					backgroundSize: 'cover'
+					backgroundImage: `url(${item.image})`,
+					backgroundSize: 'cover',
+					backgroundPosition: 'center'
 				}}
+				key={key}
 			>
 				<CardHeader
 					avatar={
 						<Avatar aria-label='Recipe' className={classes.avatar}>
-							R
+							{item.rating}
 						</Avatar>
 					}
 					color='secondary'
-					title={
-						<p style={{ color: 'white', fontWeight: 'lighter' }}>
-							Shrimp and Chorizo Paella
-						</p>
-					}
+					title={<p style={{ color: 'white' }}>{item.title}</p>}
 					className={classes.header}
 				/>
+				<div
+					style={{
+						width: '100%',
+						height: 150
+					}}
+				>
+					<Collapse
+						in={this.state.expanded}
+						timeout='auto'
+						unmountOnExit
+						style={{ background: 'white	', minWidth: '100%' }}
+					>
+						<CardContent style={{ background: 'white	', width: '100%' }}>
+							<Typography paragraph>Method:</Typography>
+							<Typography>{item.description}</Typography>
+						</CardContent>
+					</Collapse>
+				</div>
 				<CardActions className={classes.actions} disableActionSpacing>
 					<IconButton aria-label='Add to favorites' color='secondary'>
 						<FavoriteIcon />
@@ -54,6 +70,7 @@ class CardList extends React.Component {
 					<IconButton aria-label='Share' color='secondary'>
 						<ShareIcon />
 					</IconButton>
+
 					<IconButton
 						className={classnames(classes.expand, {
 							[classes.expandOpen]: this.state.expanded
@@ -66,20 +83,6 @@ class CardList extends React.Component {
 						<ExpandMoreIcon />
 					</IconButton>
 				</CardActions>
-				<Collapse
-					in={this.state.expanded}
-					timeout='auto'
-					unmountOnExit
-					style={{ background: 'white	' }}
-				>
-					<CardContent>
-						<Typography paragraph>Method:</Typography>
-						<Typography>
-							Set aside off of the heat to let rest for 10 minutes, and then
-							serve.
-						</Typography>
-					</CardContent>
-				</Collapse>
 			</Card>
 		);
 	}

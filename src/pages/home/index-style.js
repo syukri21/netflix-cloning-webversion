@@ -8,8 +8,7 @@ export const styles = (theme) => {
 		categories: {
 			position: 'relative',
 			zIndex: 200,
-			background: '#0A0B0A',
-			boxShadow: '0 0 20px #141414'
+			background: '#0A0B0A'
 		}
 	};
 };

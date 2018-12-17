@@ -15,10 +15,6 @@ import { data } from '../../../dummy-data';
 import { styles } from './jumbotron-styles';
 
 class Jumbotorn extends React.Component {
-	state = {
-		width: 0
-	};
-
 	renderChip = (item, classes) =>
 		item.categories.map((category, key) => (
 			<Grid item key={category}>
@@ -59,12 +55,6 @@ class Jumbotorn extends React.Component {
 		</Grid>
 	);
 
-	componentDidMount() {
-		this.setState({
-			width: window.innerWidth / 3
-		});
-	}
-
 	render() {
 		const { classes } = this.props;
 		return (
@@ -81,7 +71,7 @@ class Jumbotorn extends React.Component {
 						<img src={item.image} className={classes.images} alt='#' />
 
 						<Grid container className={classes.content}>
-							<Typography style={{ fontSize: '6vmax', color: 'white' }}>
+							<Typography style={{ fontSize: '4vmax', color: 'white' }}>
 								{item.title}
 							</Typography>
 							<Grid item xs={12}>

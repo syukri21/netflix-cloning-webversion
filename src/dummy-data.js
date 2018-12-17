@@ -3,7 +3,7 @@ export const data = {
 		{
 			title: 'LONDON HAS FALLEN',
 			description:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa eget nulla convallis consectetur.',
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa eget nulla convallis consectetur',
 			categories: [ 'Action', 'War' ],
 			image: './assets/1.jpg',
 			rating: 34
