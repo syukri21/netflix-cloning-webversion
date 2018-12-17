@@ -107,8 +107,8 @@ class Header extends React.Component {
 					className='section'
 					triggers={[
 						{
-							top: 50,
-							bottom: -50,
+							top: 0,
+							bottom: -0,
 							callback: (visible) => this.setSticky(visible)
 						}
 					]}

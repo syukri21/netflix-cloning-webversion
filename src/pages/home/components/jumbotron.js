@@ -27,27 +27,31 @@ class Jumbotorn extends React.Component {
 
 	renderButtonActions = (classes) => (
 		<Grid container className={classes.content}>
-			<Button
-				variant='contained'
-				color='secondary'
-				size='large'
-				className={classes.button}
-			>
-				<Icon className={classes.leftIcon}>play_arrow</Icon>
-				Play
-			</Button>
-			<Button
-				color='primary'
-				size='large'
-				className={classNames(
-					classes.button,
-					classes.leftIcon,
-					classes.BottomIcon
-				)}
-			>
-				<Icon className={classes.middleIcon}>info</Icon>
-				<Typography style={{ color: 'white' }}>Info</Typography>
-			</Button>
+			<Grid container className={classes.content}>
+				<Button
+					variant='contained'
+					color='secondary'
+					size='large'
+					className={classes.button}
+				>
+					<Icon className={classes.leftIcon}>play_arrow</Icon>
+					Play
+				</Button>
+			</Grid>
+			<Grid container className={classes.content}>
+				<Button
+					color='primary'
+					size='small'
+					className={classNames(
+						classes.button,
+						classes.leftIcon,
+						classes.BottomIcon
+					)}
+				>
+					<Icon className={classes.middleIcon}>info</Icon>
+					<Typography style={{ color: 'white' }}>Info</Typography>
+				</Button>
+			</Grid>
 		</Grid>
 	);
 
