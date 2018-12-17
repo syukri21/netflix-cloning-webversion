@@ -15,18 +15,19 @@ export const styles = (theme) => {
 			position: 'relative',
 			display: 'flex',
 			justifyContent: 'center',
-			alignItems: 'center'
+			alignItems: 'flex-end'
 		},
 		content: {
 			position: 'relative',
 			zIndex: 100,
 			justifyContent: 'center',
 			alignItems: 'center',
-			marginTop: 30
+			marginBottom: theme.spacing.unit
 		},
 		title: {
 			color: 'white'
 		},
+
 		typograhpy: {
 			marginRight: 20
 		},
@@ -36,7 +37,36 @@ export const styles = (theme) => {
 			color: 'white'
 		},
 		p: {
-			color: 'white'
+			color: 'white',
+			fontSize: 30
+		},
+		button: {
+			display: 'flex',
+			justifyContent: 'center',
+			alignItems: 'center',
+			margin: theme.spacing.unit
+		},
+		leftIcon: {
+			marginRight: theme.spacing.unit
+		},
+		rightIcon: {
+			marginLeft: theme.spacing.unit
+		},
+		middleIcon: {
+			alignSelf: 'center',
+			display: 'flex',
+			width: '100%',
+			justifyContent: 'center',
+			color: ' #FFFFFF'
+		},
+		iconSmall: {
+			fontSize: 20
+		},
+		BottomIcon: {
+			display: 'grid',
+			textAlign: 'center',
+			justifyContent: 'center',
+			alignItems: 'center'
 		}
 	};
 };
