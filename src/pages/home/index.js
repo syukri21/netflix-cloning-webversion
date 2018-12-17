@@ -1,9 +1,9 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import classNames from 'classnames';
 
 import Jumbotorn from './components/jumbotron';
 import Header from '../../components/header';
+import Popular from './components/popular';
 
 import { styles } from './index-style';
 import { withStyles } from '@material-ui/core/styles';
@@ -29,7 +29,7 @@ class Home extends React.Component {
 					<Jumbotorn />
 				</div>
 				<div className={classes.categories} style={{ top: height }}>
-					<p>Sit fugiat aute aute deserunt laboris ex occaecat excepteur.</p>
+					<Popular />
 				</div>
 			</div>
 		);

@@ -6,7 +6,6 @@ export const styles = (theme) => {
 			left: 0
 		},
 		categories: {
-			height: 2000,
 			position: 'relative',
 			zIndex: 200,
 			background: '#0A0B0A',
