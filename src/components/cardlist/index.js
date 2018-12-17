@@ -15,6 +15,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import { styles } from './index-style';
+import { Divider } from '@material-ui/core';
 class CardList extends React.Component {
 	state = { expanded: false };
 
@@ -58,8 +59,11 @@ class CardList extends React.Component {
 						style={{ background: 'white	', minWidth: '100%' }}
 					>
 						<CardContent style={{ background: 'white	', width: '100%' }}>
-							<Typography paragraph>Method:</Typography>
-							<Typography>{item.description}</Typography>
+							<Typography variant='body1'>Description :</Typography>
+							<Divider style={{ marginBottom: 5 }} />
+							<Typography variant='body1' paragraph>
+								{item.description}
+							</Typography>
 						</CardContent>
 					</Collapse>
 				</div>
@@ -70,7 +74,6 @@ class CardList extends React.Component {
 					<IconButton aria-label='Share' color='secondary'>
 						<ShareIcon />
 					</IconButton>
-
 					<IconButton
 						className={classnames(classes.expand, {
 							[classes.expandOpen]: this.state.expanded
