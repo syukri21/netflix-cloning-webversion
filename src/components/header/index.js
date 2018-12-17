@@ -17,14 +17,18 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
+import OnScroll from 'react-on-scroll';
 
 import { styles } from './index.style';
 
 class Header extends React.Component {
 	state = {
 		anchorEl: null,
-		mobileMoreAnchorEl: null
+		mobileMoreAnchorEl: null,
+		position: 'static',
+		sticky: false
 	};
+	setSticky = (sticky) => this.setState({ sticky });
 
 	handleProfileMenuOpen = (event) => {
 		this.setState({ anchorEl: event.currentTarget });
@@ -43,13 +47,8 @@ class Header extends React.Component {
 		this.setState({ mobileMoreAnchorEl: null });
 	};
 
-	render() {
-		const { anchorEl, mobileMoreAnchorEl } = this.state;
-		const { classes } = this.props;
-		const isMenuOpen = Boolean(anchorEl);
-		const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-		const renderMenu = (
+	renderMenu = (anchorEl, isMenuOpen) => {
+		return (
 			<Menu
 				anchorEl={anchorEl}
 				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -61,111 +60,132 @@ class Header extends React.Component {
 				<MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
 			</Menu>
 		);
+	};
 
-		const renderMobileMenu = (
-			<Menu
-				anchorEl={mobileMoreAnchorEl}
-				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-				transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-				open={isMobileMenuOpen}
-				onClose={this.handleMobileMenuClose}
-			>
-				<MenuItem>
-					<IconButton color='inherit'>
-						<Badge badgeContent={4} color='secondary'>
-							<MailIcon />
-						</Badge>
-					</IconButton>
-					<p>Messages</p>
-				</MenuItem>
-				<MenuItem>
-					<IconButton color='inherit'>
-						<Badge badgeContent={11} color='secondary'>
-							<NotificationsIcon />
-						</Badge>
-					</IconButton>
-					<p>Notifications</p>
-				</MenuItem>
-				<MenuItem onClick={this.handleProfileMenuOpen}>
-					<IconButton color='inherit'>
-						<AccountCircle />
-					</IconButton>
-					<p>Profile</p>
-				</MenuItem>
-			</Menu>
-		);
+	renderMobileMenu = (mobileMoreAnchorEl, isMobileMenuOpen) => (
+		<Menu
+			anchorEl={mobileMoreAnchorEl}
+			anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+			transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+			open={isMobileMenuOpen}
+			onClose={this.handleMobileMenuClose}
+		>
+			<MenuItem>
+				<IconButton color='inherit'>
+					<Badge badgeContent={4} color='secondary'>
+						<MailIcon />
+					</Badge>
+				</IconButton>
+				<p>Messages</p>
+			</MenuItem>
+			<MenuItem>
+				<IconButton color='inherit'>
+					<Badge badgeContent={11} color='secondary'>
+						<NotificationsIcon />
+					</Badge>
+				</IconButton>
+				<p>Notifications</p>
+			</MenuItem>
+			<MenuItem onClick={this.handleProfileMenuOpen}>
+				<IconButton color='inherit'>
+					<AccountCircle />
+				</IconButton>
+				<p>Profile</p>
+			</MenuItem>
+		</Menu>
+	);
+
+	render() {
+		const { anchorEl, mobileMoreAnchorEl, sticky } = this.state;
+		const { classes } = this.props;
+		const isMenuOpen = Boolean(anchorEl);
+		const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
 		return (
 			<div className={classes.root}>
-				<AppBar position='absolute'>
-					<Toolbar>
-						<IconButton
-							className={classes.menuButton}
-							color='inherit'
-							aria-label='Open drawer'
-						>
-							<MenuIcon />
-						</IconButton>
-						<Button
-							variant='contained'
-							color='primary'
-							className={classNames(classes.left)}
-						>
-							NOTFLIX
-						</Button>
-						<Button
-							variant='contained'
-							color='primary'
-							className={classNames(classes.sectionDesktop)}
-						>
-							Categories
-						</Button>
-						<div className={classes.search}>
-							<div className={classes.searchIcon}>
-								<SearchIcon />
+				<OnScroll
+					className='section'
+					triggers={[
+						{
+							top: 50,
+							bottom: -50,
+							callback: (visible) => this.setSticky(visible)
+						}
+					]}
+				>
+					<AppBar
+						position={sticky ? 'static' : 'fixed'}
+						style={{ backgroundColor: '#14141488' }}
+					>
+						<Toolbar>
+							<IconButton
+								className={classes.menuButton}
+								color='inherit'
+								aria-label='Open drawer'
+							>
+								<MenuIcon />
+							</IconButton>
+							<Button
+								variant='contained'
+								color='primary'
+								className={classNames(classes.left)}
+							>
+								NOTFLIX
+							</Button>
+							<Button
+								variant='contained'
+								color='primary'
+								className={classNames(classes.sectionDesktop)}
+							>
+								Categories
+							</Button>
+							<div className={classes.search}>
+								<div className={classes.searchIcon}>
+									<SearchIcon />
+								</div>
+								<InputBase
+									placeholder='Search…'
+									classes={{
+										root: classes.inputRoot,
+										input: classes.inputInput
+									}}
+								/>
 							</div>
-							<InputBase
-								placeholder='Search…'
-								classes={{
-									root: classes.inputRoot,
-									input: classes.inputInput
-								}}
-							/>
-						</div>
-						<div className={classes.grow} />
-						<div className={classes.sectionDesktop}>
-							<IconButton color='inherit'>
-								<Badge badgeContent={4} color='secondary'>
-									<MailIcon />
-								</Badge>
-							</IconButton>
-							<IconButton color='inherit'>
-								<Badge badgeContent={17} color='secondary'>
-									<NotificationsIcon />
-								</Badge>
-							</IconButton>
-							<IconButton
-								aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-								aria-haspopup='true'
-								onClick={this.handleProfileMenuOpen}
-								color='inherit'
-							>
-								<AccountCircle />
-							</IconButton>
-						</div>
-						<div className={classes.sectionMobile}>
-							<IconButton
-								aria-haspopup='true'
-								onClick={this.handleMobileMenuOpen}
-								color='inherit'
-							>
-								<MoreIcon />
-							</IconButton>
-						</div>
-					</Toolbar>
-				</AppBar>
-				{renderMenu}
-				{renderMobileMenu}
+							<div className={classes.grow} />
+							<div className={classes.sectionDesktop}>
+								<IconButton color='inherit'>
+									<Badge badgeContent={4} color='secondary'>
+										<MailIcon />
+									</Badge>
+								</IconButton>
+								<IconButton color='inherit'>
+									<Badge badgeContent={17} color='secondary'>
+										<NotificationsIcon />
+									</Badge>
+								</IconButton>
+								<IconButton
+									aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+									aria-haspopup='true'
+									onClick={this.handleProfileMenuOpen}
+									color='inherit'
+								>
+									<AccountCircle />
+								</IconButton>
+							</div>
+							<div className={classes.sectionMobile}>
+								<IconButton
+									aria-haspopup='true'
+									onClick={this.handleMobileMenuOpen}
+									color='inherit'
+								>
+									<MoreIcon />
+								</IconButton>
+							</div>
+						</Toolbar>
+					</AppBar>
+					{this.renderMenu(anchorEl, isMenuOpen)}
+					{this.renderMobileMenu(mobileMoreAnchorEl, isMobileMenuOpen)}
+				</OnScroll>
 			</div>
 		);
 	}

@@ -8,6 +8,7 @@ class Home extends React.Component {
 			<div>
 				<Header />
 				<Jumbotorn />
+				<div style={{ height: 2000 }} />
 			</div>
 		);
 	}
