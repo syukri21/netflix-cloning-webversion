@@ -1,8 +1,10 @@
 import React from 'react';
 
+import Home from './pages/home/';
+
 class App extends React.Component {
 	render() {
-		return <h1>wewe</h1>;
+		return <Home />;
 	}
 }
 
