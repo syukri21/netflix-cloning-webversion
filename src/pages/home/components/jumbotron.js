@@ -55,6 +55,18 @@ class Jumbotorn extends React.Component {
 		</Grid>
 	);
 
+	animationScrollEvent = () =>
+		window.addEventListener('scroll', (e) => {
+			let height = 580 - window.scrollY;
+			for (let i = 0; i < data.movies.length; i++) {
+				document.getElementById(`image${i}`).style.height = height + 'px';
+			}
+		});
+
+	componentDidMount() {
+		this.animationScrollEvent();
+	}
+
 	render() {
 		const { classes } = this.props;
 		return (
@@ -68,8 +80,12 @@ class Jumbotorn extends React.Component {
 				{data.movies.map((item, key) => (
 					<div className={classes.container} key={key}>
 						<BackgroundGradient />
-						<img src={item.image} className={classes.images} alt='#' />
-
+						<img
+							src={item.image}
+							className={classNames(classes.images, 'image')}
+							alt='#'
+							id={`image${key}`}
+						/>
 						<Grid container className={classes.content}>
 							<Typography style={{ fontSize: '4vmax', color: 'white' }}>
 								{item.title}

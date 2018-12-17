@@ -46,27 +46,7 @@ class CardList extends React.Component {
 					title={<p style={{ color: 'white' }}>{item.title}</p>}
 					className={classes.header}
 				/>
-				<div
-					style={{
-						width: '100%',
-						height: 150
-					}}
-				>
-					<Collapse
-						in={this.state.expanded}
-						timeout='auto'
-						unmountOnExit
-						style={{ background: 'white	', minWidth: '100%' }}
-					>
-						<CardContent style={{ background: 'white	', width: '100%' }}>
-							<Typography variant='body1'>Description :</Typography>
-							<Divider style={{ marginBottom: 5 }} />
-							<Typography variant='body1' paragraph>
-								{item.description}
-							</Typography>
-						</CardContent>
-					</Collapse>
-				</div>
+
 				<CardActions className={classes.actions} disableActionSpacing>
 					<IconButton aria-label='Add to favorites' color='secondary'>
 						<FavoriteIcon />
@@ -86,6 +66,20 @@ class CardList extends React.Component {
 						<ExpandMoreIcon />
 					</IconButton>
 				</CardActions>
+				<Collapse
+					in={this.state.expanded}
+					timeout='auto'
+					unmountOnExit
+					style={{ background: 'white	', minWidth: '100%' }}
+				>
+					<CardContent style={{ background: 'white	', width: '100%' }}>
+						<Typography variant='body1'>Description :</Typography>
+						<Divider style={{ marginBottom: 5 }} />
+						<Typography variant='body1' paragraph>
+							{item.description}
+						</Typography>
+					</CardContent>
+				</Collapse>
 			</Card>
 		);
 	}

@@ -11,7 +11,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 class Home extends React.Component {
 	state = {
-		height: 0
+		height: 0,
+		imgHeight: 580
 	};
 
 	getRefHeight = (ref) => {
@@ -20,6 +21,8 @@ class Home extends React.Component {
 		});
 	};
 
+	componentDidMount() {}
+
 	render() {
 		const { classes } = this.props;
 		const { height } = this.state;
@@ -27,12 +30,10 @@ class Home extends React.Component {
 			<div>
 				<Header />
 				<div className={classes.jumbotron} ref={this.getRefHeight}>
-					<Jumbotorn />
+					<Jumbotorn imgHeight={this.state.height} />
 				</div>
 				<div className={classes.categories} style={{ top: height }}>
 					<NewRelease />
-				</div>
-				<div className={classes.categories} style={{ top: height }}>
 					<Popular />
 				</div>
 			</div>

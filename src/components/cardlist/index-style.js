@@ -30,6 +30,7 @@ export const styles = (theme) => ({
 		backgroundColor: red[500]
 	},
 	header: {
+		height: '150px',
 		background: 'linear-gradient(to top	, #0A0B0A00, #0A0B0A)',
 		width: '100%',
 		color: 'white',
