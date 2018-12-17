@@ -18,7 +18,7 @@ class Jumbotorn extends React.Component {
 	renderChip = (item, classes) =>
 		item.categories.map((category, key) => (
 			<Grid item key={category}>
-				<Chip label={category} className={classes.chip} color='white' />
+				<Chip label={category} className={classes.chip} color='default' />
 				{key !== item.categories.map.length && (
 					<span className={classes.p}>.</span>
 				)}
@@ -28,9 +28,9 @@ class Jumbotorn extends React.Component {
 	renderButtonActions = (classes) => (
 		<Grid container className={classes.content}>
 			<Button
-				variant='raised'
+				variant='contained'
 				color='secondary'
-				size='play'
+				size='large'
 				className={classes.button}
 			>
 				<Icon className={classes.leftIcon}>play_arrow</Icon>
@@ -38,7 +38,7 @@ class Jumbotorn extends React.Component {
 			</Button>
 			<Button
 				color='primary'
-				size='play'
+				size='large'
 				className={classNames(
 					classes.button,
 					classes.leftIcon,
