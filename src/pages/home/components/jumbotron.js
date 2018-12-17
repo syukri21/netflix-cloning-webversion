@@ -15,6 +15,10 @@ import { data } from '../../../dummy-data';
 import { styles } from './jumbotron-styles';
 
 class Jumbotorn extends React.Component {
+	state = {
+		width: 0
+	};
+
 	renderChip = (item, classes) =>
 		item.categories.map((category, key) => (
 			<Grid item key={category}>
@@ -55,6 +59,12 @@ class Jumbotorn extends React.Component {
 		</Grid>
 	);
 
+	componentDidMount() {
+		this.setState({
+			width: window.innerWidth / 3
+		});
+	}
+
 	render() {
 		const { classes } = this.props;
 		return (
@@ -63,18 +73,18 @@ class Jumbotorn extends React.Component {
 				showStatus={false}
 				className={classes.container}
 				showIndicators={false}
+				style={{ width: '100%', backgroundColor: 'red' }}
 			>
 				{data.movies.map((item, key) => (
 					<div className={classes.container} key={key}>
 						<BackgroundGradient />
 						<img src={item.image} className={classes.images} alt='#' />
+
 						<Grid container className={classes.content}>
-							<Grid className={classes.typograhpy} item>
-								<Typography variant='h2' className={classes.title}>
-									{item.title}
-								</Typography>
-							</Grid>
-							<Grid item>
+							<Typography style={{ fontSize: '6vmax', color: 'white' }}>
+								{item.title}
+							</Typography>
+							<Grid item xs={12}>
 								<Circle
 									progress={item.rating}
 									showPercentageSymbol={false}
@@ -85,9 +95,10 @@ class Jumbotorn extends React.Component {
 										lineHeight: 120
 									}}
 									progressColor='#E50914'
-									bgColor='#0C0F0F88'
+									bgColor='#0C0F0F'
 								/>
 							</Grid>
+
 							<Grid container className={classes.content}>
 								{this.renderChip(item, classes)}
 							</Grid>

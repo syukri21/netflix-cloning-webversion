@@ -4,13 +4,10 @@ export const styles = (theme) => ({
 	card: {
 		borderRadius: 0
 	},
-	media: {
-		height: 0,
-		paddingTop: '56.25%' // 16:9
-	},
+
 	actions: {
 		display: 'flex',
-		background: 'linear-gradient(to bottom	, #0A0B0A55, #0A0B0A)',
+		background: 'linear-gradient(to bottom	, #0A0B0A00, #0A0B0A)',
 		width: 'calc(100% + 10px)'
 	},
 	expand: {
@@ -30,8 +27,10 @@ export const styles = (theme) => ({
 		backgroundColor: red[500]
 	},
 	header: {
-		background: 'linear-gradient(to top	, #0A0B0A55, #0A0B0A)',
+		background: 'linear-gradient(to top	, #0A0B0A00, #0A0B0A)',
 		width: 'calc(100% + 10px)',
-		color: 'white'
+		color: 'white',
+		height: 250,
+		alignItems: 'baseline'
 	}
 });

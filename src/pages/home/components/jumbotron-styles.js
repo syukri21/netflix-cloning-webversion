@@ -1,28 +1,30 @@
 export const styles = (theme) => {
 	return {
 		images: {
-			width: '100%',
 			height: '580px',
 			objectFit: 'fill',
 			position: 'absolute',
 			top: 0,
-			left: 0
+			left: 0,
+			right: 0
 		},
 		container: {
 			width: '100%',
 			height: '580px',
 			overflow: 'hidden',
-			position: 'relative',
 			display: 'flex',
-			justifyContent: 'center',
-			alignItems: 'flex-end'
+			flexDirection: 'column',
+			alignItems: 'center',
+			justifyContent: 'center'
 		},
 		content: {
+			width: '100%',
 			position: 'relative',
 			zIndex: 100,
 			justifyContent: 'center',
 			alignItems: 'center',
-			marginBottom: theme.spacing.unit
+			marginBottom: theme.spacing.unit,
+			margin: 'auto'
 		},
 		title: {
 			color: 'white'
