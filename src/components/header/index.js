@@ -16,6 +16,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
+import classNames from 'classnames';
 
 import { styles } from './index.style';
 
@@ -108,14 +109,14 @@ class Header extends React.Component {
 						<Button
 							variant='contained'
 							color='primary'
-							className={classes.left}
+							className={classNames(classes.left)}
 						>
 							NOTFLIX
 						</Button>
 						<Button
 							variant='contained'
 							color='primary'
-							className={classes.right}
+							className={classNames(classes.sectionDesktop)}
 						>
 							Categories
 						</Button>
