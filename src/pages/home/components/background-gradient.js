@@ -3,8 +3,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
 	gradient: {
-		background: 'radial-gradient( #03010200,#0B0B0A88, #0B0B0A)',
-		zIndex: 200,
+		background: 'radial-gradient( #03010244, #0B0B0A)',
+		zIndex: 50,
 		position: 'absolute',
 		top: 0,
 		left: 0,
@@ -16,7 +16,6 @@ const styles = (theme) => ({
 class BackgroundGradient extends React.Component {
 	render() {
 		const { classes } = this.props;
-		console.log(this.props);
 		return <div className={classes.gradient} />;
 	}
 }

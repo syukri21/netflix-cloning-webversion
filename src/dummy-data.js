@@ -5,21 +5,24 @@ export const data = {
 			description:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa eget nulla convallis consectetur.',
 			categories: [ 'Action', 'War' ],
-			image: './assets/1.jpg'
+			image: './assets/1.jpg',
+			rating: 34
 		},
 		{
 			title: 'HEROPANTI',
 			description:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa eget nulla convallis consectetur.',
 			categories: [ 'Action', 'Comedy' ],
-			image: './assets/2.jpg'
+			image: './assets/2.jpg',
+			rating: 64
 		},
 		{
 			title: 'IP MAN 2',
 			description:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa eget nulla convallis consectetur.',
 			categories: [ 'Action', 'Supranatural' ],
-			image: './assets/3.jpg'
+			image: './assets/3.jpg',
+			rating: 74
 		}
 	]
 };
