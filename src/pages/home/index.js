@@ -1,13 +1,13 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
+import { withStyles } from '@material-ui/core/styles';
 
 import Jumbotorn from './components/jumbotron';
 import Header from '../../components/header';
 import Popular from './components/popular';
+import CategoryList from './components/category-list';
 import NewRelease from './components/new-release';
-
 import { styles } from './index-style';
-import { withStyles } from '@material-ui/core/styles';
 
 class Home extends React.Component {
 	state = {
@@ -32,9 +32,10 @@ class Home extends React.Component {
 				<div className={classes.jumbotron} ref={this.getRefHeight}>
 					<Jumbotorn imgHeight={this.state.height} />
 				</div>
-				<div className={classes.categories} style={{ top: height }}>
+				<div className={classes.categories} style={{ top: height, padding: 30 }}>
 					<NewRelease />
 					<Popular />
+					<CategoryList />
 				</div>
 			</div>
 		);

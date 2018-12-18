@@ -2,7 +2,7 @@ export const styles = (theme) => {
 	return {
 		images: {
 			height: '580px',
-			objectFit: 'cover',
+			objectFit: 'fill',
 			position: 'absolute',
 			top: 0,
 			left: 0,

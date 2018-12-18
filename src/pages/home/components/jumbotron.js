@@ -55,17 +55,7 @@ class Jumbotorn extends React.Component {
 		</Grid>
 	);
 
-	animationScrollEvent = () =>
-		window.addEventListener('scroll', (e) => {
-			let height = 580 - window.scrollY;
-			for (let i = 0; i < data.movies.length; i++) {
-				document.getElementById(`image${i}`).style.height = height + 'px';
-			}
-		});
-
-	componentDidMount() {
-		this.animationScrollEvent();
-	}
+	componentDidMount() {}
 
 	render() {
 		const { classes } = this.props;
@@ -75,43 +65,48 @@ class Jumbotorn extends React.Component {
 				showStatus={false}
 				className={classes.container}
 				showIndicators={false}
-				style={{ width: '100%', backgroundColor: 'red' }}
+				style={{ width: '100vw' }}
+				dynamicHeight={true}
+				autoPlay
+				infiniteLoop
 			>
-				{data.movies.map((item, key) => (
-					<div className={classes.container} key={key}>
-						<BackgroundGradient />
-						<img
-							src={item.image}
-							className={classNames(classes.images, 'image')}
-							alt='#'
-							id={`image${key}`}
-						/>
-						<Grid container className={classes.content}>
-							<Typography style={{ fontSize: '4vmax', color: 'white' }}>
-								{item.title}
-							</Typography>
-							<Grid item xs={12}>
-								<Circle
-									progress={item.rating}
-									showPercentageSymbol={false}
-									textColor='white'
-									size={80}
-									textStyle={{
-										fontSize: 110,
-										lineHeight: 120
-									}}
-									progressColor='#E50914'
-									bgColor='#0C0F0F'
-								/>
-							</Grid>
-
+				{data.movies.filter(({ rating }) => rating > 70).map((item, key) => {
+					return (
+						<div className={classes.container} key={key}>
+							<BackgroundGradient />
+							<img
+								src={item.image}
+								className={classNames(classes.images, 'image')}
+								alt='#'
+								id={`image${key}`}
+							/>
 							<Grid container className={classes.content}>
-								{this.renderChip(item, classes)}
+								<Typography style={{ fontSize: '4vmax', color: 'white' }}>
+									{item.title}
+								</Typography>
+								<Grid item xs={12}>
+									<Circle
+										progress={item.rating}
+										showPercentageSymbol={false}
+										textColor='white'
+										size={80}
+										textStyle={{
+											fontSize: 110,
+											lineHeight: 120
+										}}
+										progressColor='#E50914'
+										bgColor='#0C0F0F'
+									/>
+								</Grid>
+
+								<Grid container className={classes.content}>
+									{this.renderChip(item, classes)}
+								</Grid>
+								{this.renderButtonActions(classes)}
 							</Grid>
-							{this.renderButtonActions(classes)}
-						</Grid>
-					</div>
-				))}
+						</div>
+					);
+				})}
 			</Carousel>
 		);
 	}
