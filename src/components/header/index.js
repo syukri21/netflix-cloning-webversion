@@ -17,6 +17,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
 import OnScroll from 'react-on-scroll';
+import { Link } from 'react-router-dom';
 
 import { styles } from './index.style';
 
@@ -124,20 +125,24 @@ class Header extends React.Component {
 							>
 								<MenuIcon />
 							</IconButton>
-							<Button
-								variant='contained'
-								color='primary'
-								className={classNames(classes.left)}
-							>
-								NOTFLIX
-							</Button>
-							<Button
-								variant='contained'
-								color='primary'
-								className={classNames(classes.sectionDesktop)}
-							>
-								Categories
-							</Button>
+							<Link to='/'>
+								<Button
+									variant='contained'
+									color='primary'
+									className={classNames(classes.left)}
+								>
+									NOTFLIX
+								</Button>
+							</Link>
+							<Link to='/categories'>
+								<Button
+									variant='contained'
+									color='primary'
+									className={classNames(classes.sectionDesktop)}
+								>
+									Categories
+								</Button>
+							</Link>
 							<div className={classes.search}>
 								<div className={classes.searchIcon}>
 									<SearchIcon />

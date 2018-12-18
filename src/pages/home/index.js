@@ -1,9 +1,7 @@
 import React from 'react';
-import { findDOMNode } from 'react-dom';
 import { withStyles } from '@material-ui/core/styles';
 
 import Jumbotorn from './components/jumbotron';
-import Header from '../../components/header';
 import Popular from './components/popular';
 import CategoryList from './components/category-list/';
 import NewRelease from './components/new-release';
@@ -17,12 +15,6 @@ class Home extends React.Component {
 		footerHeight: 0
 	};
 
-	getRefHeight = (ref) => {
-		this.setState({
-			height: findDOMNode(ref).offsetHeight
-		});
-	};
-
 	componentDidMount() {}
 
 	render() {
@@ -30,9 +22,8 @@ class Home extends React.Component {
 		const { height } = this.state;
 		return (
 			<div>
-				<Header />
-				<div className={classes.jumbotron} ref={this.getRefHeight}>
-					<Jumbotorn imgHeight={this.state.height} />
+				<div className={classes.jumbotron}>
+					<Jumbotorn />
 				</div>
 				<div
 					className={classes.categories}
