@@ -21,6 +21,7 @@ export const data = {
 			description:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa eget nulla convallis consectetur.',
 			categories: [ 'Action', 'Supranatural' ],
+			categoriesId: [ 1, 2, 3 ],
 			image: './assets/3.jpg',
 			rating: 74
 		},
@@ -29,6 +30,7 @@ export const data = {
 			description:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa eget nulla convallis consectetur.',
 			categories: [ 'Action', 'Supranatural' ],
+			categoriesId: [ 5, 6 ],
 			image: './assets/4.jpg',
 			rating: 30
 		},
@@ -38,6 +40,7 @@ export const data = {
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa eget nulla convallis consectetur.',
 			categories: [ 'Action', 'Supranatural' ],
 			image: './assets/5.jpg',
+			categoriesId: [ 5, 6 ],
 			rating: 23
 		},
 		{
@@ -45,6 +48,7 @@ export const data = {
 			description:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa eget nulla convallis consectetur.',
 			categories: [ 'Action', 'Supranatural' ],
+			categoriesId: [ 5, 6, 4 ],
 			image: './assets/6.jpg',
 			rating: 34
 		},
@@ -54,6 +58,7 @@ export const data = {
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa eget nulla convallis consectetur.',
 			categories: [ 'Action', 'Supranatural' ],
 			image: './assets/4.jpg',
+			categoriesId: [ 3 ],
 			rating: 30
 		},
 		{
@@ -62,6 +67,7 @@ export const data = {
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa eget nulla convallis consectetur.',
 			categories: [ 'Action', 'Supranatural' ],
 			image: './assets/5.jpg',
+			categoriesId: [ 1, 3 ],
 			rating: 23
 		},
 		{
@@ -70,6 +76,7 @@ export const data = {
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa eget nulla convallis consectetur.',
 			categories: [ 'Action', 'Supranatural' ],
 			image: './assets/6.jpg',
+			categoriesId: [ 1, 4 ],
 			rating: 34
 		}
 	],

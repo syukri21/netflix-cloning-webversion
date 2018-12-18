@@ -3,14 +3,10 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-
-import { styles } from './category-list-style';
 import {
 	Grid,
 	ListItem,
 	List,
-	Avatar,
 	ListItemText,
 	ListItemIcon,
 	Icon,
@@ -18,6 +14,8 @@ import {
 	Typography
 } from '@material-ui/core';
 
+import { styles } from './index-style';
+import CardList from '../../../../components/cardlist';
 import { data } from '../../../../dummy-data';
 import CategoryContent from './category-content';
 import _ from 'lodash';
@@ -27,11 +25,11 @@ class CategoryList extends React.Component {
 		categories: {
 			name: 'Adventure',
 			id: 2
-		}
+		},
+		data: _.filter(data.movies, (e) => _.includes(e.categoriesId, 2))
 	};
 
 	isActive = (id) => {
-		console.log(id === this.state.categories.id);
 		return id === this.state.categories.id;
 	};
 
@@ -40,7 +38,8 @@ class CategoryList extends React.Component {
 			categories: {
 				name: item.name,
 				id: item.id
-			}
+			},
+			data: _.filter(data.movies, (e) => _.includes(e.categoriesId, item.id))
 		});
 
 	renderListCategories = (classes) =>
@@ -49,12 +48,20 @@ class CategoryList extends React.Component {
 				className={classes.root}
 				key={key}
 				style={{
-					backgroundColor: this.isActive(item.id) ? '#0A0B0A77' : '#0A0B0A00'
+					backgroundColor: 'transparent'
 				}}
 			>
-				<ListItem button onClick={this.handleClick(item)}>
+				<ListItem
+					button
+					onClick={this.handleClick(item)}
+					style={{
+						backgroundColor: this.isActive(item.id)
+							? '#0A0B0A77'
+							: '#0A0B0A00'
+					}}
+				>
 					<ListItemIcon>
-						<Icon style={{ color: 'white' }}>movie</Icon>
+						<Icon style={{ color: '#0A0B0A' }}>movie</Icon>
 					</ListItemIcon>
 					<ListItemText color='red'>
 						<Typography style={{ color: 'white' }}>{item.name}</Typography>
@@ -65,6 +72,7 @@ class CategoryList extends React.Component {
 
 	render() {
 		const { classes } = this.props;
+		const { data, categories } = this.state;
 		return (
 			<Grid container spacing={16}>
 				<Grid item xs={12} md={3}>
@@ -75,17 +83,12 @@ class CategoryList extends React.Component {
 									Categories
 								</Typography>
 							}
-							subheading='Select your favourite one !'
 						/>
 						<CardContent>{this.renderListCategories(classes)}</CardContent>
 					</Card>
 				</Grid>
 				<Grid item xs={12} md={9}>
-					<Card>
-						<CardHeader title={this.state.categories.name} />
-						<CardMedia src='./assets/1.jpg' />
-						<CategoryContent data={this.state.categories} />
-					</Card>
+					<CategoryContent data={data} categories={categories} />
 				</Grid>
 			</Grid>
 		);

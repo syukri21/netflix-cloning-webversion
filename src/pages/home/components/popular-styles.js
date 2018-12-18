@@ -1,5 +1,4 @@
 export const styles = (theme) => {
-	console.log(theme.palette.secondary.main);
 	return {
 		item: {
 			display: 'grid',

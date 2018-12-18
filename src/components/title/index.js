@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import { styles } from './title-styles';
+import { styles } from './index-style';
 
 class Title extends React.Component {
 	render() {

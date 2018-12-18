@@ -1,9 +1,9 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Button, Typography } from '@material-ui/core';
+import { Button, Typography, Fab } from '@material-ui/core';
 
 import CardList from '../../../components/cardlist';
-import Title from '../../../components/title/title';
+import Title from '../../../components/title/';
 
 import { styles } from './popular-styles';
 import { data } from '../../../dummy-data';
@@ -16,8 +16,8 @@ class Popular extends React.Component {
 				<Title>Popular</Title>
 				<div className={classes.item} style={{ gridGap: 6 }}>
 					{data.movies.map((item, key) => <CardList item={item} key={key} />)}
-					<Button
-						variant='extendedFab'
+					<Fab
+						variant='extended'
 						size='small'
 						color='secondary'
 						style={{ width: '100px', alignSelf: 'center', margin: 'auto' }}
@@ -25,7 +25,7 @@ class Popular extends React.Component {
 						<Typography variant='caption' style={{ color: 'white' }}>
 							Show All
 						</Typography>
-					</Button>
+					</Fab>
 				</div>
 			</div>
 		);
