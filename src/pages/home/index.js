@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Jumbotorn from './components/jumbotron';
 import Header from '../../components/header';
 import Popular from './components/popular';
-import CategoryList from './components/category-list';
+import CategoryList from './components/category-list/';
 import NewRelease from './components/new-release';
 import { styles } from './index-style';
 

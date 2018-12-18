@@ -3,8 +3,9 @@ import { withStyles } from '@material-ui/core/styles';
 import { Button, Typography } from '@material-ui/core';
 
 import CardList from '../../../components/cardlist';
-import { styles } from './new-release-styles';
+import Title from '../../../components/title/title';
 
+import { styles } from './new-release-styles';
 import { data } from '../../../dummy-data';
 
 class NewRelease extends React.Component {
@@ -12,10 +13,7 @@ class NewRelease extends React.Component {
 		const { classes } = this.props;
 		return (
 			<div className={classes.container}>
-				<Typography variant='h4' style={{ color: 'white' }}>
-					New Releases
-				</Typography>
-
+				<Title>New Releases</Title>
 				<div className={classes.item} style={{ gridGap: 6 }}>
 					{data.movies.map((item, key) => <CardList item={item} key={key} />)}
 					<Button

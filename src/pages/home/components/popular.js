@@ -1,12 +1,11 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import { Carousel } from 'react-responsive-carousel';
+import { Button, Typography } from '@material-ui/core';
 
 import CardList from '../../../components/cardlist';
-import { styles } from './popular-styles';
-import { Button } from '@material-ui/core';
+import Title from '../../../components/title/title';
 
+import { styles } from './popular-styles';
 import { data } from '../../../dummy-data';
 
 class Popular extends React.Component {
@@ -14,9 +13,7 @@ class Popular extends React.Component {
 		const { classes } = this.props;
 		return (
 			<div className={classes.container}>
-				<Typography variant='h4' style={{ color: 'white' }}>
-					Popular
-				</Typography>
+				<Title>Popular</Title>
 				<div className={classes.item} style={{ gridGap: 6 }}>
 					{data.movies.map((item, key) => <CardList item={item} key={key} />)}
 					<Button

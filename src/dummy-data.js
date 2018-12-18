@@ -95,7 +95,7 @@ export const data = {
 			name: 'Mistery'
 		},
 		{
-			id: 5,
+			id: 6,
 			name: 'Supranatural'
 		}
 	]

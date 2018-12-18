@@ -18,18 +18,41 @@ import {
 	Typography
 } from '@material-ui/core';
 
-import { data } from '../../../dummy-data';
+import { data } from '../../../../dummy-data';
+import CategoryContent from './category-content';
 import _ from 'lodash';
 
 class CategoryList extends React.Component {
+	state = {
+		categories: {
+			name: 'Adventure',
+			id: 2
+		}
+	};
+
+	isActive = (id) => {
+		console.log(id === this.state.categories.id);
+		return id === this.state.categories.id;
+	};
+
+	handleClick = (item) => () =>
+		this.setState({
+			categories: {
+				name: item.name,
+				id: item.id
+			}
+		});
+
 	renderListCategories = (classes) =>
 		_.sortBy(data.categories, [ 'name' ]).map((item, key) => (
 			<List
 				className={classes.root}
-				key={item.id}
-				style={{ backgroundColor: '#0A0B0A00' }}
+				key={key}
+				style={{
+					backgroundColor: this.isActive(item.id) ? '#0A0B0A77' : '#0A0B0A00'
+				}}
 			>
-				<ListItem button>
+				<ListItem button onClick={this.handleClick(item)}>
 					<ListItemIcon>
 						<Icon style={{ color: 'white' }}>movie</Icon>
 					</ListItemIcon>
@@ -59,14 +82,9 @@ class CategoryList extends React.Component {
 				</Grid>
 				<Grid item xs={12} md={9}>
 					<Card>
-						<CardHeader title='Horor' />
+						<CardHeader title={this.state.categories.name} />
 						<CardMedia src='./assets/1.jpg' />
-						<CardContent>
-							<Typography paragraph variant='caption'>
-								Veniam ex ullamco duis tempor ex est reprehenderit laboris
-								fugiat reprehenderit amet exercitation.
-							</Typography>
-						</CardContent>
+						<CategoryContent data={this.state.categories} />
 					</Card>
 				</Grid>
 			</Grid>
