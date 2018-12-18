@@ -30,10 +30,10 @@ class Popular extends React.Component {
 			infinite: true,
 			speed: 500,
 			slidesToShow: this.getSideToShow(),
-			slidesToScroll: 1
+			slidesToScroll: this.getSideToShow() - 3 <= 0 ? 1 : this.getSideToShow() - 3
 		};
 		return (
-			<div className={classes.container}>
+			<div style={{ display: 'flex', flexDirection: 'column' }}>
 				<Title>Popular</Title>
 				<Slider
 					centerPadding={23}
@@ -45,22 +45,27 @@ class Popular extends React.Component {
 						<CardHorizontal item={item} key={key} />
 					))}
 				</Slider>
-				<Fab
-					variant='extended'
-					size='small'
-					color='secondary'
-					style={{
-						width: '100px',
-						alignSelf: 'center',
-						margin: 'auto',
-						marginTop: 10,
-						marginLeft: 20
-					}}
-				>
-					<Typography variant='caption' style={{ color: 'white' }}>
-						Show All
-					</Typography>
-				</Fab>
+				<div style={{ alignSelf: 'center' }}>
+					<Fab
+						variant='extended'
+						size='small'
+						color='secondary'
+						style={{
+							width: '100px',
+							alignSelf: 'center',
+							margin: 'auto',
+							marginTop: 10,
+							marginLeft: 20
+						}}
+					>
+						<Typography
+							variant='caption'
+							style={{ color: 'white', fontSize: 10 }}
+						>
+							Show All
+						</Typography>
+					</Fab>
+				</div>
 			</div>
 		);
 	}

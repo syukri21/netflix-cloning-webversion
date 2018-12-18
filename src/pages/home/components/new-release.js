@@ -1,6 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Button, Typography, Fab } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Fab from '@material-ui/core/Fab';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Slider from 'react-slick';
 
@@ -30,10 +32,10 @@ class NewRelease extends React.Component {
 			infinite: true,
 			speed: 500,
 			slidesToShow: this.getSideToShow(),
-			slidesToScroll: 1
+			slidesToScroll: this.getSideToShow() - 3 <= 0 ? 1 : this.getSideToShow() - 3
 		};
 		return (
-			<div className={classes.container}>
+			<div style={{ display: 'flex', flexDirection: 'column' }}>
 				<Title>New Releases</Title>
 				<Slider
 					centerPadding={23}
@@ -45,22 +47,27 @@ class NewRelease extends React.Component {
 						<CardHorizontal item={item} key={key} />
 					))}
 				</Slider>
-				<Fab
-					size='small'
-					color='secondary'
-					variant='extended'
-					style={{
-						width: '100px',
-						alignSelf: 'center',
-						margin: 'auto',
-						marginTop: 10,
-						marginLeft: 20
-					}}
-				>
-					<Typography variant='caption' style={{ color: 'white' }}>
-						Show All
-					</Typography>
-				</Fab>
+				<div style={{ alignSelf: 'center' }}>
+					<Fab
+						size='small'
+						color='secondary'
+						variant='extended'
+						style={{
+							width: '100px',
+							alignSelf: 'center',
+							margin: 'auto',
+							marginTop: 10,
+							marginLeft: 20
+						}}
+					>
+						<Typography
+							variant='button'
+							style={{ color: 'white', fontSize: 10 }}
+						>
+							Show All
+						</Typography>
+					</Fab>
+				</div>
 			</div>
 		);
 	}

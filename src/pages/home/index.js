@@ -7,12 +7,14 @@ import Header from '../../components/header';
 import Popular from './components/popular';
 import CategoryList from './components/category-list/';
 import NewRelease from './components/new-release';
+import Footer from '../../components/footer';
 import { styles } from './index-style';
 
 class Home extends React.Component {
 	state = {
 		height: 0,
-		imgHeight: 580
+		imgHeight: 580,
+		footerHeight: 0
 	};
 
 	getRefHeight = (ref) => {
@@ -32,10 +34,22 @@ class Home extends React.Component {
 				<div className={classes.jumbotron} ref={this.getRefHeight}>
 					<Jumbotorn imgHeight={this.state.height} />
 				</div>
-				<div className={classes.categories} style={{ top: height, padding: 30 }}>
-					<NewRelease />
-					<Popular />
-					<CategoryList />
+				<div
+					className={classes.categories}
+					style={{
+						top: height
+					}}
+				>
+					<div
+						style={{
+							padding: 30
+						}}
+					>
+						<NewRelease />
+						<Popular />
+						<CategoryList />
+					</div>
+					<Footer />
 				</div>
 			</div>
 		);
