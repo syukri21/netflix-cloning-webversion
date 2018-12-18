@@ -11,7 +11,8 @@ export const styles = (theme) => {
 		item: {
 			display: 'flex',
 			flexDirection: 'row',
-			width: 'calc(100vw - 80px)',
+			width: 'calc(100vw - 100px)',
+			margin: 'auto',
 			gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
 			justifyContent: 'center',
 			alignItems: 'center',
