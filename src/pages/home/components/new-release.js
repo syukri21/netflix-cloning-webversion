@@ -18,7 +18,7 @@ class NewRelease extends React.Component {
 		} else if (isWidthUp('md', this.props.width)) {
 			return 4;
 		} else if (isWidthUp('sm', this.props.width)) {
-			return 2;
+			return 3;
 		} else {
 			return 1;
 		}

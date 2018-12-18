@@ -5,6 +5,7 @@ export const data = {
 			description:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa eget nulla convallis consectetur',
 			categories: [ 'Action', 'War' ],
+			categoriesId: [ 1, 4 ],
 			image: './assets/1.jpg',
 			rating: 87
 		},
@@ -13,6 +14,7 @@ export const data = {
 			description:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa eget nulla convallis consectetur.',
 			categories: [ 'Action', 'Comedy' ],
+			categoriesId: [ 1, 4 ],
 			image: './assets/2.jpg',
 			rating: 91
 		},

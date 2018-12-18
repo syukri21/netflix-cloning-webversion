@@ -8,7 +8,13 @@ class Title extends React.Component {
 	render() {
 		const { classes } = this.props;
 		return (
-			<Typography variant='h4' className={classes.title}>
+			<Typography
+				variant={this.props.variant || 'h4'}
+				className={classes.title}
+				style={{
+					borderLeft: this.props.noLeft || '10px solid #F44336'
+				}}
+			>
 				{this.props.children}
 			</Typography>
 		);

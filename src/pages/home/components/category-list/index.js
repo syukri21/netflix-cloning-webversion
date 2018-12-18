@@ -16,6 +16,7 @@ import {
 
 import { styles } from './index-style';
 import CardList from '../../../../components/cardlist';
+import Title from '../../../../components/title';
 import { data } from '../../../../dummy-data';
 import CategoryContent from './category-content';
 import _ from 'lodash';
@@ -55,9 +56,7 @@ class CategoryList extends React.Component {
 					button
 					onClick={this.handleClick(item)}
 					style={{
-						backgroundColor: this.isActive(item.id)
-							? '#0A0B0A77'
-							: '#0A0B0A00'
+						backgroundColor: this.isActive(item.id) ? '#F44336' : '#0A0B0A00'
 					}}
 				>
 					<ListItemText color='red'>
@@ -71,24 +70,18 @@ class CategoryList extends React.Component {
 		const { classes } = this.props;
 		const { data, categories } = this.state;
 		return (
-			<Grid container spacing={16}>
-				<Grid item xs={12} md={4} lg={2}>
-					<Card style={{ background: '#C4352Bbb' }}>
-						<CardHeader
-							title={
-								<Typography variant='headline' style={{ color: 'white' }}>
-									Categories
-								</Typography>
-							}
-						/>
-						<CardContent>{this.renderListCategories(classes)}</CardContent>
-					</Card>
+			<div>
+				<Grid container>
+					<Grid item xs={12} sm={3}>
+						<Title>Categories</Title>
+
+						{this.renderListCategories(classes)}
+					</Grid>
+					<Grid item xs={12} sm={9}>
+						<CategoryContent data={data} categories={categories} />
+					</Grid>
 				</Grid>
-				<Grid item xs={12} md={8} lg={6}>
-					<CategoryContent data={data} categories={categories} />
-				</Grid>
-				<Grid item xs={12} md={12} lg={2} />
-			</Grid>
+			</div>
 		);
 	}
 }
