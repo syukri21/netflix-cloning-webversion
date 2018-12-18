@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { BrowserRouter } from 'react-router-dom';
 import 'typeface-roboto';
 import './main.css';
 
@@ -27,10 +28,12 @@ const theme = createMuiTheme({
 class Index extends React.Component {
 	render() {
 		return (
-			<MuiThemeProvider theme={theme}>
-				<CssBaseline />
-				<App />
-			</MuiThemeProvider>
+			<BrowserRouter>
+				<MuiThemeProvider theme={theme}>
+					<CssBaseline />
+					<App />
+				</MuiThemeProvider>
+			</BrowserRouter>
 		);
 	}
 }

@@ -40,11 +40,7 @@ class Home extends React.Component {
 						top: height
 					}}
 				>
-					<div
-						style={{
-							padding: 30
-						}}
-					>
+					<div className={classes.mainContent}>
 						<NewRelease />
 						<Popular />
 						<CategoryList />

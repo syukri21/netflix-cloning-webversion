@@ -11,6 +11,9 @@ export const styles = (theme) => {
 			background: '#0A0B0A',
 			display: 'grid',
 			gridGap: '80px'
+		},
+		mainContent: {
+			padding: 30
 		}
 	};
 };
