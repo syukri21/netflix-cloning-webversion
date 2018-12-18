@@ -60,9 +60,6 @@ class CategoryList extends React.Component {
 							: '#0A0B0A00'
 					}}
 				>
-					<ListItemIcon>
-						<Icon style={{ color: '#0A0B0A' }}>movie</Icon>
-					</ListItemIcon>
 					<ListItemText color='red'>
 						<Typography style={{ color: 'white' }}>{item.name}</Typography>
 					</ListItemText>
@@ -75,7 +72,7 @@ class CategoryList extends React.Component {
 		const { data, categories } = this.state;
 		return (
 			<Grid container spacing={16}>
-				<Grid item xs={12} md={3}>
+				<Grid item xs={12} md={4} lg={2}>
 					<Card style={{ background: '#C4352Bbb' }}>
 						<CardHeader
 							title={
@@ -87,9 +84,10 @@ class CategoryList extends React.Component {
 						<CardContent>{this.renderListCategories(classes)}</CardContent>
 					</Card>
 				</Grid>
-				<Grid item xs={12} md={9}>
+				<Grid item xs={12} md={8} lg={6}>
 					<CategoryContent data={data} categories={categories} />
 				</Grid>
+				<Grid item xs={12} md={12} lg={2} />
 			</Grid>
 		);
 	}

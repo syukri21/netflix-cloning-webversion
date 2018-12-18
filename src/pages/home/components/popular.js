@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Button, Typography, Fab } from '@material-ui/core';
 
-import CardList from '../../../components/cardlist';
+import CardHorizontal from '../../../components/card-horizontal/';
 import Title from '../../../components/title/';
 
 import { styles } from './popular-styles';
@@ -15,7 +15,9 @@ class Popular extends React.Component {
 			<div className={classes.container}>
 				<Title>Popular</Title>
 				<div className={classes.item} style={{ gridGap: 6 }}>
-					{data.movies.map((item, key) => <CardList item={item} key={key} />)}
+					{data.movies.map((item, key) => (
+						<CardHorizontal item={item} key={key} />
+					))}
 					<Fab
 						variant='extended'
 						size='small'
