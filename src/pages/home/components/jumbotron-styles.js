@@ -15,7 +15,12 @@ export const styles = (theme) => {
 			display: 'flex',
 			flexDirection: 'column',
 			alignItems: 'center',
-			justifyContent: 'center'
+			justifyContent: 'center',
+
+			[theme.breakpoints.down('xs')]: {
+				width: '410px',
+				margin: 'auto'
+			}
 		},
 		content: {
 			width: '100%',

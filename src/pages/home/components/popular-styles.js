@@ -9,11 +9,14 @@ export const styles = (theme) => {
 			backgroundColor: theme.palette.background.paper
 		},
 		item: {
-			display: 'grid',
+			display: 'flex',
+			flexDirection: 'row',
+			width: 'calc(100vw - 80px)',
 			gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
 			justifyContent: 'center',
 			alignItems: 'center',
 			flexWrap: 'nowrap',
+
 			// Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
 			transform: 'translateZ(0)'
 		},

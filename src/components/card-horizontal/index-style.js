@@ -3,6 +3,7 @@ import red from '@material-ui/core/colors/red';
 export const styles = (theme) => ({
 	card: {
 		borderRadius: 0,
+		marginLeft: 10,
 		display: 'flex',
 		flexDirection: 'column'
 	},

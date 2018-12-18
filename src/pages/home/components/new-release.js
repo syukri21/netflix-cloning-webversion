@@ -16,17 +16,21 @@ class NewRelease extends React.Component {
 				<Title>New Releases</Title>
 				<div className={classes.item} style={{ gridGap: 6 }}>
 					{data.movies.map((item, key) => <CardList item={item} key={key} />)}
-					<Fab
-						size='small'
-						color='secondary'
-						variant='extended'
-						style={{ width: '100px', alignSelf: 'center', margin: 'auto' }}
-					>
-						<Typography variant='caption' style={{ color: 'white' }}>
-							Show All
-						</Typography>
-					</Fab>
 				</div>
+				<Fab
+					size='small'
+					color='secondary'
+					variant='extended'
+					style={{
+						width: '100px',
+						alignSelf: 'center',
+						marginTop: 10
+					}}
+				>
+					<Typography variant='caption' style={{ color: 'white' }}>
+						Show All
+					</Typography>
+				</Fab>
 			</div>
 		);
 	}
