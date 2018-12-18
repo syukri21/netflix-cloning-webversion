@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { CardContent, Typography } from '@material-ui/core';
+import CardContent from '@material-ui/core/CardContent';
 
 import { styles } from './category-content-styles';
 import CardList from '../../../../components/cardlist';

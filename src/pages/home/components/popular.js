@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Button, Typography, Fab } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Fab from '@material-ui/core/Fab';
 
 import CardHorizontal from '../../../components/card-horizontal/';
 import Title from '../../../components/title/';

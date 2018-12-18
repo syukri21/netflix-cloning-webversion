@@ -1,21 +1,12 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import {
-	Grid,
-	ListItem,
-	List,
-	ListItemText,
-	ListItemIcon,
-	Icon,
-	CardMedia,
-	Typography
-} from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import ListItem from '@material-ui/core/ListItem';
+import List from '@material-ui/core/List';
+import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
 
 import { styles } from './index-style';
-import CardList from '../../../../components/cardlist';
 import Title from '../../../../components/title';
 import { data } from '../../../../dummy-data';
 import CategoryContent from './category-content';

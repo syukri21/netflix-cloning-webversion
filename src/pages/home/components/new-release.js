@@ -1,12 +1,10 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Slider from 'react-slick';
 
-import CardList from '../../../components/cardlist';
 import Title from '../../../components/title';
 import CardHorizontal from '../../../components/card-horizontal/';
 
