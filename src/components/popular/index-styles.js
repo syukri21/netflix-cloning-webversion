@@ -11,20 +11,34 @@ export const styles = (theme) => {
 		item: {
 			display: 'flex',
 			flexDirection: 'row',
-			width: 'calc(100vw - 100px)',
+			width: 'calc(100vw - 140px)',
 			margin: 'auto',
-			gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
 			justifyContent: 'center',
 			alignItems: 'center',
-			flexWrap: 'nowrap',
-
 			// Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-			transform: 'translateZ(0)'
+			'& button': {
+				display: 'flex'
+			}
 		},
 		gridList: {
 			flexWrap: 'nowrap',
 			// Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
 			transform: 'translateZ(0)'
+		},
+		arrow: {
+			opacity: 0.1,
+			backgroundColor: '#F44336',
+			zIndex: 200,
+			height: '200px',
+			borderRadius: 0,
+			alignSelf: 'center',
+
+			'&:focus': {
+				opacity: 1
+			},
+			'&:hover': {
+				opacity: 0.5
+			}
 		}
 	};
 };

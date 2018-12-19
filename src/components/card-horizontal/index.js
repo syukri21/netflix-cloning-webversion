@@ -37,20 +37,19 @@ class CardHorizontal extends React.Component {
 				key={key}
 			>
 				<CardHeader
-					avatar={
-						<Avatar aria-label='Recipe' className={classes.avatar}>
-							{item.rating}
-						</Avatar>
-					}
 					color='secondary'
-					title={<p style={{ color: 'white' }}>{item.title}</p>}
+					title={
+						<Typography variant='caption' style={{ color: 'white' }}>
+							{item.title}
+						</Typography>
+					}
 					className={classes.header}
 				/>
 
 				<CardActions className={classes.actions} disableActionSpacing>
-					<IconButton aria-label='Add to favorites' color='secondary'>
-						<FavoriteIcon />
-					</IconButton>
+					<Avatar aria-label='Recipe' className={classes.avatar}>
+						{item.rating}
+					</Avatar>
 					<IconButton aria-label='Share' color='secondary'>
 						<ShareIcon />
 					</IconButton>

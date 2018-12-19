@@ -7,7 +7,6 @@ export const styles = (theme) => ({
 		display: 'flex',
 		flexDirection: 'column'
 	},
-
 	actions: {
 		display: 'flex',
 		background: 'linear-gradient(to bottom	, #0A0B0A00, #0A0B0A)',

@@ -2,9 +2,12 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 
 import CardHorizontal from '../card-horizontal';
 import Title from '../title';
+import Icon from '@material-ui/core/Icon';
 
 import { styles } from './index-styles';
 import { data } from '../../dummy-data';
@@ -57,16 +60,44 @@ class Popular extends React.Component {
 		return (
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
 				<Title>Popular</Title>
-				<Slider
-					centerPadding={23}
-					{...settings}
-					className={classes.item}
-					style={{ gridGap: 5 }}
+				<div
+					style={{
+						display: 'flex',
+						position: 'relative',
+						alignItems: 'center',
+						justifyContent: 'center'
+					}}
 				>
-					{data.movies.map((item, key) => (
-						<CardHorizontal item={item} key={key} />
-					))}
-				</Slider>
+					<Fab
+						size='small'
+						variant='contained'
+						color='secondary'
+						className={classes.arrow}
+						onClick={() => this.slide.slickPrev()}
+					>
+						<Icon>arrow_left</Icon>
+					</Fab>
+					<Slider
+						{...settings}
+						className={classes.item}
+						style={{ gridGap: 5 }}
+						arrows={false}
+						ref={(ref) => (this.slide = ref)}
+					>
+						{data.movies.map((item, key) => (
+							<CardHorizontal item={item} key={key} />
+						))}
+					</Slider>
+					<Fab
+						size='small'
+						variant='contained'
+						color='secondary'
+						className={classes.arrow}
+						onClick={() => this.slide.slickNext()}
+					>
+						<Icon>arrow_right</Icon>
+					</Fab>
+				</div>
 			</div>
 		);
 	}

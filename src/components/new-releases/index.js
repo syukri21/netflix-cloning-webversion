@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Slider from 'react-slick';
+import Icon from '@material-ui/core/Icon';
 
 import Title from '../title';
 import CardHorizontal from '../card-horizontal';
@@ -56,16 +57,37 @@ class NewRelease extends React.Component {
 		return (
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
 				<Title>New Releases</Title>
-				<Slider
-					centerPadding={23}
-					{...settings}
-					className={classes.item}
-					style={{ gridGap: 5 }}
-				>
-					{data.movies.map((item, key) => (
-						<CardHorizontal item={item} key={key} />
-					))}
-				</Slider>
+				<div style={{ display: 'flex', position: 'relative' }}>
+					<Fab
+						size='small'
+						variant='contained'
+						color='secondary'
+						className={classes.arrow}
+						onClick={() => this.slide.slickPrev()}
+					>
+						<Icon>arrow_left</Icon>
+					</Fab>
+					<Slider
+						{...settings}
+						className={classes.item}
+						style={{ gridGap: 5 }}
+						arrows={false}
+						ref={(ref) => (this.slide = ref)}
+					>
+						{data.movies.map((item, key) => (
+							<CardHorizontal item={item} key={key} />
+						))}
+					</Slider>
+					<Fab
+						size='small'
+						variant='contained'
+						color='secondary'
+						className={classes.arrow}
+						onClick={() => this.slide.slickNext()}
+					>
+						<Icon>arrow_right</Icon>
+					</Fab>
+				</div>
 			</div>
 		);
 	}
