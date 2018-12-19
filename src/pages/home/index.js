@@ -6,7 +6,7 @@ import Popular from '../../components/popular';
 import CategoryList from './components/category-list/';
 import NewReleases from '../../components/new-releases';
 import Footer from '../../components/footer';
-import { styles } from './index-style';
+import { styles } from './styles';
 
 class Home extends React.Component {
 	state = {

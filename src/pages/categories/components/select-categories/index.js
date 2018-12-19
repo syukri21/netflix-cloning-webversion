@@ -5,67 +5,19 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
-import SvgIcon from '@material-ui/core/SvgIcon';
 
 import { data } from '../../../../dummy-data';
-
-const styles = (theme) => {
-	return {
-		form: {
-			display: 'flex'
-		},
-		buttonWraper: {
-			alignSelf: 'center'
-		},
-		button: {
-			display: 'block',
-			paddingLeft: 10,
-			color: 'white',
-			'&:focus': {
-				color: 'white'
-			},
-			backgroundColor: '#F44336'
-		},
-		dropdownStyle: {
-			'& ul': {
-				display: 'grid',
-				gridTemplateColumns: 'repeat(4, 1fr)',
-				'& li': {
-					display: 'flex',
-					justifyContent: 'center'
-				}
-			}
-		},
-		label: {
-			color: 'white'
-		},
-		formControl: {
-			margin: theme.spacing.unit,
-			minWidth: 200,
-			color: 'white',
-			borderRadius: 10
-		},
-		selectForm: {
-			padding: 10,
-			color: 'white !important',
-			borderBottom: '3px solid #F44336',
-			'& svg': {
-				color: 'white'
-			}
-		}
-	};
-};
+import { styles } from './styles';
 
 class SelectCategories extends React.Component {
 	state = {
-		age: '',
+		category: '',
 		open: false
 	};
 
 	handleChange = (event) => {
 		this.setState({ [event.target.name]: event.target.value });
+		this.props.getCategory(event.target.value);
 	};
 
 	handleClose = () => {
@@ -87,23 +39,22 @@ class SelectCategories extends React.Component {
 						className={classes.label}
 						focused={false}
 					>
-						categories
+						category
 					</InputLabel>
 					<Select
 						open={this.state.open}
 						onClose={this.handleClose}
 						onOpen={this.handleOpen}
-						value={this.state.age}
+						value={this.state.category}
 						onChange={this.handleChange}
 						inputProps={{
-							name: 'age',
+							name: 'category',
 							id: 'demo-controlled-open-select'
 						}}
 						className={classes.selectForm}
 						MenuProps={{
 							classes: {
-								paper: classes.dropdownStyle,
-								List: classes.dropdownStyle
+								paper: classes.dropdownStyle
 							}
 						}}
 					>
