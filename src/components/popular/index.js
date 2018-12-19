@@ -67,7 +67,7 @@ class Popular extends React.Component {
 				>
 					<Fab
 						size='small'
-						variant='contained'
+						variant='extended'
 						color='secondary'
 						className={classes.arrow}
 						onClick={() => this.slide.slickPrev()}
@@ -87,7 +87,7 @@ class Popular extends React.Component {
 					</Slider>
 					<Fab
 						size='small'
-						variant='contained'
+						variant='extended'
 						color='secondary'
 						className={classes.arrow}
 						onClick={() => this.slide.slickNext()}

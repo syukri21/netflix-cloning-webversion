@@ -9,15 +9,39 @@ import Categories from './pages/categories';
 import Detail from './pages/detail';
 
 class App extends React.Component {
+	scrollTop = () =>
+		window.scrollTo({
+			top: 0,
+			left: 0
+		});
 	render() {
-		console.log(this.props);
 		return (
 			<div>
 				<Header />
 				<Switch>
-					<Route exact path='/' component={Home} />
-					<Route exact path='/categories' component={Categories} />
-					<Route path='/movie/:name' component={Detail} />
+					<Route
+						exact
+						path='/'
+						render={(props) => {
+							this.scrollTop();
+							return <Home {...props} />;
+						}}
+					/>
+					<Route
+						exact
+						path='/categories'
+						render={(props) => {
+							this.scrollTop();
+							return <Categories {...props} />;
+						}}
+					/>
+					<Route
+						path='/movie/:name'
+						render={(props) => {
+							this.scrollTop();
+							return <Detail {...props} />;
+						}}
+					/>
 				</Switch>
 				{this.props.location.pathname === '/' || <Footer />}
 			</div>

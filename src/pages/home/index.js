@@ -31,10 +31,20 @@ class Home extends React.Component {
 						top: height
 					}}
 				>
-					<div>
+					<div
+						style={{
+							display: 'flex',
+							padding: '20px',
+							justifyContent: 'center',
+							alignItems: 'center',
+							flexDirection: 'column'
+						}}
+					>
 						<NewReleases />
 						<Popular />
-						<CategoryList />
+						<div style={{ width: '100%' }}>
+							<CategoryList />
+						</div>
 					</div>
 					<Footer />
 				</div>

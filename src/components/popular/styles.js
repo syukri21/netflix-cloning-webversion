@@ -11,7 +11,7 @@ export const styles = (theme) => {
 		item: {
 			display: 'flex',
 			flexDirection: 'row',
-			width: 'calc(100vw - 140px)',
+			width: 'calc(100vw - 17px - 100px - 40px)',
 			margin: 'auto',
 			justifyContent: 'center',
 			alignItems: 'center',
@@ -27,6 +27,7 @@ export const styles = (theme) => {
 		},
 		arrow: {
 			opacity: 0.1,
+			width: 50,
 			backgroundColor: '#F44336',
 			zIndex: 200,
 			height: '200px',

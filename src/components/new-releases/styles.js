@@ -3,7 +3,7 @@ export const styles = (theme) => {
 		item: {
 			display: 'flex',
 			flexDirection: 'row',
-			width: 'calc(100vw - 140px)',
+			width: 'calc(100vw - 17px - 100px - 40px)',
 			margin: 'auto',
 			gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
 			justifyContent: 'center',
@@ -17,6 +17,7 @@ export const styles = (theme) => {
 			opacity: 0.1,
 			backgroundColor: '#F44336',
 			zIndex: 200,
+			width: 50,
 			height: '200px',
 			borderRadius: 0,
 			alignSelf: 'center',

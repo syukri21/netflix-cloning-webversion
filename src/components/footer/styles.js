@@ -16,7 +16,8 @@ export const styles = (theme) => ({
 	footerRightContent: {
 		display: 'flex',
 		flexDirection: 'column',
-		justifyContent: 'center',
+		justifyContent: 'flex-start',
+
 		padding: 20,
 		':& button': {
 			height: 50

@@ -44,8 +44,9 @@ class Footer extends React.Component {
 							<Button
 								className='fab fa-google-play fa-2x'
 								style={{ height: 50, color: 'white' }}
-							/>
-							<Button style={{ height: 50, color: 'white' }} />
+							>
+								{' '}
+							</Button>
 						</Grid>
 						<Grid item xs={12} sm={3} className={classes.footerRightContent}>
 							<Button variant='contained' color='primary'>
@@ -54,11 +55,15 @@ class Footer extends React.Component {
 							<Button
 								className='fab fa-facebook fa-2x'
 								style={{ height: 50, color: 'white' }}
-							/>
+							>
+								{' '}
+							</Button>
 							<Button
 								className='fab fa-instagram fa-2x'
 								style={{ height: 50, color: 'white' }}
-							/>
+							>
+								{' '}
+							</Button>
 						</Grid>
 						<Grid
 							item

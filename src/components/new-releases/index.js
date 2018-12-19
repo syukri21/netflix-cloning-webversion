@@ -57,10 +57,17 @@ class NewRelease extends React.Component {
 		return (
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
 				<Title>New Releases</Title>
-				<div style={{ display: 'flex', position: 'relative' }}>
+				<div
+					style={{
+						display: 'flex',
+						position: 'relative',
+						alignItems: 'center',
+						justifyContent: 'center'
+					}}
+				>
 					<Fab
 						size='small'
-						variant='contained'
+						variant='extended'
 						color='secondary'
 						className={classes.arrow}
 						onClick={() => this.slide.slickPrev()}
@@ -80,7 +87,7 @@ class NewRelease extends React.Component {
 					</Slider>
 					<Fab
 						size='small'
-						variant='contained'
+						variant='extended'
 						color='secondary'
 						className={classes.arrow}
 						onClick={() => this.slide.slickNext()}
