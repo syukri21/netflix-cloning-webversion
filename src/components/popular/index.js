@@ -6,8 +6,7 @@ import Fab from '@material-ui/core/Fab';
 import CardHorizontal from '../card-horizontal';
 import Title from '../title';
 import Icon from '@material-ui/core/Icon';
-
-import { styles } from './index-styles';
+import { styles } from './styles';
 import { data } from '../../dummy-data';
 import Slider from 'react-slick';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';

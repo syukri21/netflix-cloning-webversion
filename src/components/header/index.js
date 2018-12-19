@@ -19,7 +19,7 @@ import classNames from 'classnames';
 import OnScroll from 'react-on-scroll';
 import { Link } from 'react-router-dom';
 
-import { styles } from './index.style';
+import { styles } from './styles';
 
 class Header extends React.Component {
 	state = {

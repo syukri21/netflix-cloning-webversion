@@ -16,7 +16,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import { styles } from './index-style';
+import { styles } from './styles';
 import { Divider } from '@material-ui/core';
 
 class CardList extends React.Component {

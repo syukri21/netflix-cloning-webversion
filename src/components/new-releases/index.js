@@ -9,7 +9,7 @@ import Icon from '@material-ui/core/Icon';
 import Title from '../title';
 import CardHorizontal from '../card-horizontal';
 
-import { styles } from './index-styles';
+import { styles } from './styles';
 import { data } from '../../dummy-data';
 
 class NewRelease extends React.Component {
