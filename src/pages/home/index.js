@@ -2,9 +2,9 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 import Jumbotorn from './components/jumbotron';
-import Popular from './components/popular';
+import Popular from '../../components/popular';
 import CategoryList from './components/category-list/';
-import NewRelease from './components/new-release';
+import NewReleases from '../../components/new-releases';
 import Footer from '../../components/footer';
 import { styles } from './index-style';
 
@@ -32,7 +32,7 @@ class Home extends React.Component {
 					}}
 				>
 					<div className={classes.mainContent}>
-						<NewRelease />
+						<NewReleases />
 						<Popular />
 						<CategoryList />
 					</div>

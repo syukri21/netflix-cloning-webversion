@@ -5,11 +5,11 @@ import Fab from '@material-ui/core/Fab';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Slider from 'react-slick';
 
-import Title from '../../../components/title';
-import CardHorizontal from '../../../components/card-horizontal/';
+import Title from '../title';
+import CardHorizontal from '../card-horizontal';
 
-import { styles } from './new-release-styles';
-import { data } from '../../../dummy-data';
+import { styles } from './index-styles';
+import { data } from '../../dummy-data';
 
 class NewRelease extends React.Component {
 	getSideToShow = () => {
@@ -22,6 +22,27 @@ class NewRelease extends React.Component {
 		} else {
 			return 1;
 		}
+	};
+
+	renderShowAll = () => {
+		return (
+			<Fab
+				variant='extended'
+				size='small'
+				color='secondary'
+				style={{
+					width: '100px',
+					alignSelf: 'center',
+					margin: 'auto',
+					marginTop: 10,
+					marginLeft: 20
+				}}
+			>
+				<Typography variant='caption' style={{ color: 'white', fontSize: 10 }}>
+					Show All
+				</Typography>
+			</Fab>
+		);
 	};
 	render() {
 		const { classes } = this.props;
@@ -45,27 +66,6 @@ class NewRelease extends React.Component {
 						<CardHorizontal item={item} key={key} />
 					))}
 				</Slider>
-				<div style={{ alignSelf: 'center' }}>
-					<Fab
-						size='small'
-						color='secondary'
-						variant='extended'
-						style={{
-							width: '100px',
-							alignSelf: 'center',
-							margin: 'auto',
-							marginTop: 10,
-							marginLeft: 20
-						}}
-					>
-						<Typography
-							variant='button'
-							style={{ color: 'white', fontSize: 10 }}
-						>
-							Show All
-						</Typography>
-					</Fab>
-				</div>
 			</div>
 		);
 	}

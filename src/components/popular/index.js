@@ -3,11 +3,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 
-import CardHorizontal from '../../../components/card-horizontal/';
-import Title from '../../../components/title/';
+import CardHorizontal from '../card-horizontal';
+import Title from '../title';
 
-import { styles } from './popular-styles';
-import { data } from '../../../dummy-data';
+import { styles } from './index-styles';
+import { data } from '../../dummy-data';
 import Slider from 'react-slick';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
@@ -22,6 +22,27 @@ class Popular extends React.Component {
 		} else {
 			return 1;
 		}
+	};
+
+	renderShowAll = () => {
+		return (
+			<Fab
+				variant='extended'
+				size='small'
+				color='secondary'
+				style={{
+					width: '100px',
+					alignSelf: 'center',
+					margin: 'auto',
+					marginTop: 10,
+					marginLeft: 20
+				}}
+			>
+				<Typography variant='caption' style={{ color: 'white', fontSize: 10 }}>
+					Show All
+				</Typography>
+			</Fab>
+		);
 	};
 
 	render() {
@@ -46,27 +67,6 @@ class Popular extends React.Component {
 						<CardHorizontal item={item} key={key} />
 					))}
 				</Slider>
-				<div style={{ alignSelf: 'center' }}>
-					<Fab
-						variant='extended'
-						size='small'
-						color='secondary'
-						style={{
-							width: '100px',
-							alignSelf: 'center',
-							margin: 'auto',
-							marginTop: 10,
-							marginLeft: 20
-						}}
-					>
-						<Typography
-							variant='caption'
-							style={{ color: 'white', fontSize: 10 }}
-						>
-							Show All
-						</Typography>
-					</Fab>
-				</div>
 			</div>
 		);
 	}
