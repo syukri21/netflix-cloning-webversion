@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
 import { styles } from './index-styles';
-import SelectCategories from './select-categories';
+import SelectCategories from '../select-categories';
 
 class Main extends React.Component {
 	render() {
