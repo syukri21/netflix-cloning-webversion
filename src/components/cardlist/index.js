@@ -4,10 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -15,9 +13,9 @@ import Icon from '@material-ui/core/Icon';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Link } from 'react-router-dom';
 
 import { styles } from './styles';
-import { Divider } from '@material-ui/core';
 
 class CardList extends React.Component {
 	state = { expanded: false };
@@ -36,8 +34,12 @@ class CardList extends React.Component {
 			expanded: true
 		});
 
+	goToLink = () => {};
+
 	render() {
 		const { classes, item, key } = this.props;
+
+		const title = item.title.replace(/\s+/g, '').toLowerCase();
 
 		return (
 			<Card
@@ -102,9 +104,19 @@ class CardList extends React.Component {
 							height: '100px'
 						}}
 					>
-						<Button color='secondary' variant='contained'>
-							<Icon>play_arrow</Icon>
-						</Button>
+						<Link
+							to={{
+								pathname: `/movie/${title}`,
+								query: {
+									title: item.title,
+									id: item.id
+								}
+							}}
+						>
+							<Button color='secondary' variant='contained'>
+								<Icon>play_arrow</Icon>
+							</Button>
+						</Link>
 					</div>
 				</Collapse>
 			</Card>

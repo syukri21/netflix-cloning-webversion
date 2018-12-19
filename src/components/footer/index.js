@@ -19,7 +19,7 @@ class Footer extends React.Component {
 		return (
 			<Grid container>
 				<Grid item xs={12} sm={3} className={classes.footerLeft}>
-					<img src='assets/notflix.png' className={classes.image} alt='#' />
+					<img src='/assets/notflix.png' className={classes.image} alt='#' />
 					<Typography
 						style={{ color: 'white', transform: 'translateY(-50px)' }}
 					>
