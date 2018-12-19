@@ -16,6 +16,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import { styles } from './index-style';
 import { Divider } from '@material-ui/core';
+
 class CardList extends React.Component {
 	state = { expanded: false };
 
@@ -32,7 +33,8 @@ class CardList extends React.Component {
 				style={{
 					backgroundImage: `url(${item.image})`,
 					backgroundSize: 'cover',
-					backgroundPosition: 'center'
+					backgroundPosition: 'center',
+					...this.props.styles
 				}}
 				key={key}
 			>
