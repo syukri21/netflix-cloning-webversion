@@ -3,9 +3,16 @@ import red from '@material-ui/core/colors/red';
 export const styles = (theme) => ({
 	card: {
 		borderRadius: 0,
+		position: 'relative',
 		marginLeft: 10,
 		display: 'flex',
-		flexDirection: 'column'
+		flexDirection: 'column',
+		cursor: 'pointer',
+		transition: ' 0.3s ease-in-out',
+		'&:hover': {
+			transform: 'scale(1.1)',
+			transition: ' 0.3s ease-in-out'
+		}
 	},
 	actions: {
 		display: 'flex',

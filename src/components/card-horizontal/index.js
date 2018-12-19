@@ -7,15 +7,18 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
+import Grow from '@material-ui/core/Grow';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 // eslint-disable-next-line no-unused-vars
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import { styles } from './index-style';
+import { styles } from './styles';
 import { Divider } from '@material-ui/core';
 class CardHorizontal extends React.Component {
 	state = { expanded: false };
@@ -23,6 +26,16 @@ class CardHorizontal extends React.Component {
 	handleExpandClick = () => {
 		this.setState((state) => ({ expanded: !state.expanded }));
 	};
+
+	closeExpand = () =>
+		this.setState({
+			expanded: false
+		});
+
+	openExpand = () =>
+		this.setState({
+			expanded: true
+		});
 
 	render() {
 		const { classes, item, key } = this.props;
@@ -35,6 +48,8 @@ class CardHorizontal extends React.Component {
 					backgroundSize: 'cover',
 					backgroundPosition: 'center'
 				}}
+				onMouseEnter={this.openExpand}
+				onMouseLeave={this.closeExpand}
 				key={key}
 			>
 				<CardHeader
@@ -66,20 +81,32 @@ class CardHorizontal extends React.Component {
 						<ExpandMoreIcon />
 					</IconButton>
 				</CardActions>
-				<Collapse
+				<Grow
 					in={this.state.expanded}
 					timeout='auto'
 					unmountOnExit
-					style={{ background: 'white	', minWidth: '100%' }}
+					style={{
+						minWidth: '100%',
+						top: 50,
+						bottom: 50,
+						position: 'absolute'
+					}}
 				>
-					<CardContent style={{ background: 'white	', width: '100%' }}>
-						<Typography variant='body1'>Description :</Typography>
-						<Divider style={{ marginBottom: 5 }} />
-						<Typography variant='body1' paragraph>
-							{item.description}
-						</Typography>
-					</CardContent>
-				</Collapse>
+					<div
+						style={{
+							background: '#0A0B0A88',
+							width: '100%',
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+							height: '100px'
+						}}
+					>
+						<Button color='secondary' variant='contained'>
+							<Icon>play_arrow</Icon>
+						</Button>
+					</div>
+				</Grow>
 			</Card>
 		);
 	}

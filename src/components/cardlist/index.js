@@ -10,6 +10,8 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -24,6 +26,16 @@ class CardList extends React.Component {
 		this.setState((state) => ({ expanded: !state.expanded }));
 	};
 
+	closeExpand = () =>
+		this.setState({
+			expanded: false
+		});
+
+	openExpand = () =>
+		this.setState({
+			expanded: true
+		});
+
 	render() {
 		const { classes, item, key } = this.props;
 
@@ -34,18 +46,20 @@ class CardList extends React.Component {
 					backgroundImage: `url(${item.image})`,
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
-					...this.props.styles
+					...this.props.styles,
+					position: 'relative'
 				}}
 				key={key}
+				onMouseEnter={this.openExpand}
+				onMouseLeave={this.closeExpand}
 			>
 				<CardHeader
-					avatar={
-						<Avatar aria-label='Recipe' className={classes.avatar}>
-							{item.rating}
-						</Avatar>
-					}
 					color='secondary'
-					title={<p style={{ color: 'white' }}>{item.title}</p>}
+					title={
+						<Typography variant='caption' style={{ color: 'white' }}>
+							{item.title}
+						</Typography>
+					}
 					className={classes.header}
 				/>
 
@@ -72,15 +86,26 @@ class CardList extends React.Component {
 					in={this.state.expanded}
 					timeout='auto'
 					unmountOnExit
-					style={{ background: 'white	', minWidth: '100%' }}
+					style={{
+						minWidth: '100%',
+						bottom: 0,
+						position: 'absolute'
+					}}
 				>
-					<CardContent style={{ background: 'white	', width: '100%' }}>
-						<Typography variant='body1'>Description :</Typography>
-						<Divider style={{ marginBottom: 5 }} />
-						<Typography variant='body1' paragraph>
-							{item.description}
-						</Typography>
-					</CardContent>
+					<div
+						style={{
+							background: '#0A0B0A88',
+							width: '100%',
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+							height: '100px'
+						}}
+					>
+						<Button color='secondary' variant='contained'>
+							<Icon>play_arrow</Icon>
+						</Button>
+					</div>
 				</Collapse>
 			</Card>
 		);
