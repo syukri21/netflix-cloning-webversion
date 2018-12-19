@@ -13,9 +13,6 @@ export const styles = (theme) => {
 			display: 'grid',
 			gridGap: '80px',
 			marginTop: '580px'
-		},
-		mainContent: {
-			padding: 30
 		}
 	};
 };

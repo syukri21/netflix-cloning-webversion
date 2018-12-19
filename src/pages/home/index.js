@@ -31,7 +31,7 @@ class Home extends React.Component {
 						top: height
 					}}
 				>
-					<div className={classes.mainContent}>
+					<div>
 						<NewReleases />
 						<Popular />
 						<CategoryList />
