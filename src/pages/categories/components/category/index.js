@@ -58,6 +58,3 @@ class Category extends React.Component {
 }
 
 export default withStyles(styles)(Category);
-
-{
-}
