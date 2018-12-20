@@ -11,7 +11,7 @@ class CategoryContent extends React.Component {
 		const { data, classes, categories } = this.props;
 		return (
 			<CardContent>
-				<Title variant='subheading' noLeft={true}>
+				<Title variant='subtitle1' noLeft={true}>
 					{categories.name}
 				</Title>
 				<div className={classes.item} style={{ gridGap: 6 }}>

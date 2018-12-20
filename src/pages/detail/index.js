@@ -82,10 +82,10 @@ class Detail extends React.Component {
 				spacing={24}
 			>
 				<Grid item xs={12} sm={4}>
-					<Typography gutterBottom variant='display1' style={{ color: '#F44336' }}>
+					<Typography gutterBottom variant='h4' style={{ color: '#F44336' }}>
 						{this.state.movie && this.state.movie.title}
 					</Typography>
-					<Typography gutterBottom paragraph variant='subheading' style={{ color: 'white' }}>
+					<Typography gutterBottom paragraph variant='subtitle1' style={{ color: 'white' }}>
 						{this.state.movie && this.state.movie.description}
 					</Typography>
 					{this.state.movie && this.renderCategoryList()}

@@ -61,13 +61,13 @@ class CardHorizontal extends React.Component {
 				}}
 				onMouseEnter={this.openExpand}
 				onMouseLeave={this.closeExpand}
-				key={key}
+				key={item.id}
 			>
 				<div style={{ position: 'relative' }}>
 					<CardHeader
 						color='secondary'
 						title={
-							<Typography variant='caption' style={{ color: 'white' }}>
+							<Typography variant='subtitle1' style={{ color: 'white' }}>
 								{item.title}
 							</Typography>
 						}

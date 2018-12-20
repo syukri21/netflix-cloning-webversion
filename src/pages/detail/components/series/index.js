@@ -1,21 +1,39 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import { connect } from 'react-redux';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import ListMovie from '../../../../components/list-movie';
+import { ALL_POPULARS } from '../../../../redux/actions/popular';
 
 import { styles } from './styles';
 import { data } from '../../../../dummy-data';
 
-class Series extends React.Component {
+class Popular extends React.Component {
+	componentDidMount() {
+		this.props.dispatch(ALL_POPULARS());
+	}
+
+	renderLoading(classes) {
+		if (!this.props.popular.results) return <CircularProgress className={classes.progress} color='secondary' />;
+		return <ListMovie title='Popular' data={this.props.popular.results} />;
+	}
+
 	render() {
 		const { classes } = this.props;
 		return (
 			<Grid container className={classes.root}>
-				<ListMovie title='Series' data={data} />
+				{this.renderLoading(classes)}
 			</Grid>
 		);
 	}
 }
 
-export default withStyles(styles)(Series);
+const mapStateToProps = (state) => ({
+	popular: state.popularReducer
+});
+
+const withStylesConnect = withStyles(styles)(Popular);
+
+export default connect(mapStateToProps)(withStylesConnect);

@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
 import 'typeface-roboto';
 import './main.css';
 
@@ -32,10 +35,12 @@ class Index extends React.Component {
 	render() {
 		return (
 			<BrowserRouter>
-				<MuiThemeProvider theme={theme}>
-					<CssBaseline />
-					<App />
-				</MuiThemeProvider>
+				<Provider store={store}>
+					<MuiThemeProvider theme={theme}>
+						<CssBaseline />
+						<App />
+					</MuiThemeProvider>
+				</Provider>
 			</BrowserRouter>
 		);
 	}

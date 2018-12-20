@@ -40,8 +40,8 @@ class Home extends React.Component {
 							flexDirection: 'column'
 						}}
 					>
-						<NewReleases />
-						<Popular />
+						<NewReleases title='Popular' />
+						<NewReleases title='New Relases' />
 						<div style={{ width: '100%' }}>
 							<CategoryList />
 						</div>
