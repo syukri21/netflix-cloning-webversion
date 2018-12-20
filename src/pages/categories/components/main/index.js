@@ -11,7 +11,7 @@ class Main extends React.Component {
 		return (
 			<div>
 				<div className={classes.root}>
-					<Typography className={classes.text} variant='display2'>
+					<Typography className={classes.text} variant='h3'>
 						Movies
 					</Typography>
 					<SelectCategories getCategory={this.props.getCategory} />

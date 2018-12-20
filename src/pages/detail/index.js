@@ -69,7 +69,6 @@ class Detail extends React.Component {
 		));
 
 	renderMovie = () => {
-		const { classes } = this.props;
 		return (
 			<Grid
 				container
