@@ -1,10 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { ALL_POPULARS } from '../../redux/actions/popular';
-import { ALL_TRENDINGS } from '../../redux/actions/trending';
 import Jumbotorn from './components/jumbotron';
-import Popular from '../../components/popular';
 import CategoryList from './components/category-list/';
 import NewReleases from '../../components/horizontal-list';
 import Footer from '../../components/footer';

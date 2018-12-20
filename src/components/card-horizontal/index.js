@@ -6,13 +6,10 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
 import Grow from '@material-ui/core/Grow';
 import Chip from '@material-ui/core/Chip';
-import Fab from '@material-ui/core/Fab';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Link } from 'react-router-dom';
 
@@ -48,7 +45,7 @@ class CardHorizontal extends React.Component {
 	);
 
 	render() {
-		const { classes, item, key } = this.props;
+		const { classes, item } = this.props;
 		const title = item.title.replace(/\s+/g, '').toLowerCase();
 		return (
 			<div

@@ -16,7 +16,6 @@ import Title from '../title';
 import CardHorizontal from '../card-horizontal';
 
 import { styles } from './styles';
-import { data } from '../../dummy-data';
 
 class NewReleases extends React.Component {
 	state = {

@@ -12,7 +12,6 @@ import _ from 'lodash';
 import Title from '../title';
 import Icon from '@material-ui/core/Icon';
 import { styles } from './styles';
-import { data } from '../../dummy-data';
 import Slider from 'react-slick';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 

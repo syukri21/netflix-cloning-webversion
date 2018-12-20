@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 
 import Main from './components/main/';
-import Popular from '../../components/popular/';
 import NewReleases from '../../components/horizontal-list';
 import Category from './components/category';
 import { styles } from './styles';
