@@ -47,7 +47,9 @@ class CategoryList extends React.Component {
 					button
 					onClick={this.handleClick(item)}
 					style={{
-						backgroundColor: this.isActive(item.id) ? '#F44336' : '#0A0B0A00'
+						background: this.isActive(item.id)
+							? 'linear-gradient(to right , #F44336, #F4433655,  #0A0B0A)'
+							: '#0A0B0A00'
 					}}
 				>
 					<ListItemText color='red'>
@@ -63,12 +65,11 @@ class CategoryList extends React.Component {
 		return (
 			<div>
 				<Grid container>
-					<Grid item xs={12} sm={3}>
+					<Grid item xs={12} sm={2}>
 						<Title>Categories</Title>
-
 						{this.renderListCategories(classes)}
 					</Grid>
-					<Grid item xs={12} sm={9}>
+					<Grid item xs={12} sm={10}>
 						<CategoryContent data={data} categories={categories} />
 					</Grid>
 				</Grid>

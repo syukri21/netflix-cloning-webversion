@@ -6,21 +6,18 @@ export const styles = (theme) => ({
 		top: 0,
 		bottom: 0,
 		zIndex: '2',
-		backgroundImage:
-			'linear-gradient(to left,rgba(0,0,0, 1), rgba(0,0,0, 1),  rgba(0,0,0, 0.7), rgba(0,0,0, 0.1))'
+		backgroundImage: 'linear-gradient(to top,rgba(0,0,0, 1), rgba(0,0,0, 1),  rgba(0,0,0, 0.7), rgba(0,0,0, 0.1))'
+	},
+	roots: {
+		height: 'calc(100vh - 50px)'
 	}
 });
 
 export const styled = {
 	root: (movie) => ({
-		height: 'calc(100vh )',
 		position: 'relative',
 		backgroundImage: `url(${movie && movie.image})`,
 		backgroundSize: 'cover',
-		backgroundPosition: 'center',
-		marginBottom: 2,
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center'
+		backgroundPosition: 'center'
 	})
 };

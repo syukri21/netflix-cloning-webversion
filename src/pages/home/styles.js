@@ -12,7 +12,8 @@ export const styles = (theme) => {
 			background: '#0A0B0A',
 			display: 'grid',
 			gridGap: '80px',
-			marginTop: '580px'
+			marginTop: '580px',
+			overflowX: 'hidden'
 		}
 	};
 };

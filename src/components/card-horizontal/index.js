@@ -33,87 +33,105 @@ class CardHorizontal extends React.Component {
 			expanded: true
 		});
 
+	renderBackgroundLinear = () => (
+		<div
+			style={{
+				position: 'absolute',
+				background: 'linear-gradient(to left, #F4433622, #1E1E1E88)',
+				top: 0,
+				left: 0,
+				bottom: 9,
+				right: 0
+			}}
+		/>
+	);
+
 	render() {
 		const { classes, item, key } = this.props;
 		const title = item.title.replace(/\s+/g, '').toLowerCase();
+
 		return (
-			<Card
+			<div
 				className={classes.card}
 				style={{
 					backgroundImage: `url(${item.image})`,
 					backgroundSize: 'cover',
-					backgroundPosition: 'center'
+					backgroundPosition: 'center',
+					display: 'relative',
+					position: 'relative'
 				}}
 				onMouseEnter={this.openExpand}
 				onMouseLeave={this.closeExpand}
 				key={key}
 			>
-				<CardHeader
-					color='secondary'
-					title={
-						<Typography variant='caption' style={{ color: 'white' }}>
-							{item.title}
-						</Typography>
-					}
-					className={classes.header}
-				/>
-
-				<CardActions className={classes.actions} disableActionSpacing>
-					<Avatar aria-label='Recipe' className={classes.avatar}>
-						{item.rating}
-					</Avatar>
-					<IconButton aria-label='Share' color='secondary'>
-						<ShareIcon />
-					</IconButton>
-					<IconButton
-						className={classnames(classes.expand, {
-							[classes.expandOpen]: this.state.expanded
-						})}
-						onClick={this.handleExpandClick}
-						aria-expanded={this.state.expanded}
-						aria-label='Show more'
+				<div style={{ position: 'relative' }}>
+					<CardHeader
 						color='secondary'
-					>
-						<ExpandMoreIcon />
-					</IconButton>
-				</CardActions>
-				<Grow
-					in={this.state.expanded}
-					timeout='auto'
-					unmountOnExit
-					style={{
-						minWidth: '100%',
-						top: 50,
-						bottom: 50,
-						position: 'absolute'
-					}}
-				>
-					<div
+						title={
+							<Typography variant='caption' style={{ color: 'white' }}>
+								{item.title}
+							</Typography>
+						}
+						className={classes.header}
+					/>
+
+					<CardActions className={classes.actions} disableActionSpacing>
+						<Avatar aria-label='Recipe' className={classes.avatar}>
+							{item.rating}
+						</Avatar>
+						<IconButton aria-label='Share' color='secondary'>
+							<ShareIcon />
+						</IconButton>
+						<IconButton
+							className={classnames(classes.expand, {
+								[classes.expandOpen]: this.state.expanded
+							})}
+							onClick={this.handleExpandClick}
+							aria-expanded={this.state.expanded}
+							aria-label='Show more'
+							color='secondary'
+						>
+							<ExpandMoreIcon />
+						</IconButton>
+					</CardActions>
+					<Grow
+						in={this.state.expanded}
+						timeout='auto'
+						unmountOnExit
 						style={{
-							background: '#0A0B0A88',
-							width: '100%',
-							display: 'flex',
-							justifyContent: 'center',
-							alignItems: 'center',
-							height: '100px'
+							minWidth: '100%',
+							top: 50,
+							bottom: 50,
+							position: 'absolute'
 						}}
 					>
-						<Link
-							to={{
-								pathname: `/movie/${title}`,
-								query: {
-									title: item.title,
-									id: item.id
-								}
+						<div
+							style={{
+								background: '#0A0B0A88',
+								width: '100%',
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+								height: '100px'
 							}}
 						>
-							<Button color='secondary' variant='contained'>
-								<Icon>play_arrow</Icon>
-							</Button>
-						</Link>
-					</div>
-				</Grow>
-			</Card>
+							<Link
+								to={{
+									pathname: `/movie/${title}`,
+									query: {
+										title: item.title,
+										id: item.id
+									}
+								}}
+							>
+								<Button color='secondary' variant='contained'>
+									<Icon>play_arrow</Icon>
+								</Button>
+							</Link>
+						</div>
+					</Grow>
+				</div>
+			</div>
 		);
 	}
 }

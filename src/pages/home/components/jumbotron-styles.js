@@ -31,6 +31,14 @@ export const styles = (theme) => {
 			marginBottom: theme.spacing.unit,
 			margin: 'auto'
 		},
+		buttonWraper: {
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'center',
+			'& > div': {
+				marginRight: 10
+			}
+		},
 		title: {
 			color: 'white'
 		},
@@ -73,7 +81,8 @@ export const styles = (theme) => {
 			display: 'grid',
 			textAlign: 'center',
 			justifyContent: 'center',
-			alignItems: 'center'
+			alignItems: 'center',
+			width: 100
 		}
 	};
 };

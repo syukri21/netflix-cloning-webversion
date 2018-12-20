@@ -19,40 +19,41 @@ class Jumbotorn extends React.Component {
 		item.categories.map((category, key) => (
 			<Grid item key={category}>
 				<Chip label={category} className={classes.chip} color='default' />
-				{key !== item.categories.map.length && (
-					<span className={classes.p}>.</span>
-				)}
+				{key !== item.categories.map.length && <span className={classes.p}>.</span>}
 			</Grid>
 		));
 
 	renderButtonActions = (classes) => (
-		<Grid container className={classes.content}>
-			<Grid container className={classes.content}>
-				<Button
-					variant='contained'
-					color='secondary'
-					size='large'
-					className={classes.button}
-				>
-					<Icon className={classes.leftIcon}>play_arrow</Icon>
-					Play
-				</Button>
-			</Grid>
-			<Grid container className={classes.content}>
+		<div className={classes.buttonWraper}>
+			<div>
 				<Button
 					color='primary'
 					size='small'
-					className={classNames(
-						classes.button,
-						classes.leftIcon,
-						classes.BottomIcon
-					)}
+					className={classNames(classes.button, classes.leftIcon, classes.BottomIcon)}
 				>
 					<Icon className={classes.middleIcon}>info</Icon>
 					<Typography style={{ color: 'white' }}>Info</Typography>
 				</Button>
-			</Grid>
-		</Grid>
+			</div>
+
+			<div>
+				<Button variant='contained' color='secondary' size='large' className={classes.button}>
+					<Icon className={classes.leftIcon}>play_arrow</Icon>
+					Play
+				</Button>
+			</div>
+
+			<div>
+				<Button
+					color='primary'
+					size='small'
+					className={classNames(classes.button, classes.leftIcon, classes.BottomIcon)}
+				>
+					<Icon className={classes.middleIcon}>bookmark</Icon>
+					<Typography style={{ color: 'white' }}>bookmark</Typography>
+				</Button>
+			</div>
+		</div>
 	);
 
 	componentDidMount() {}
@@ -81,15 +82,13 @@ class Jumbotorn extends React.Component {
 								id={`image${key}`}
 							/>
 							<Grid container className={classes.content}>
-								<Typography style={{ fontSize: '4vmax', color: 'white' }}>
-									{item.title}
-								</Typography>
-								<Grid item xs={12}>
+								<Typography style={{ fontSize: '4vmax', color: 'white' }}>{item.title}</Typography>
+								<Grid style={{ marginBottom: 12 }} item xs={12}>
 									<Circle
 										progress={item.rating}
 										showPercentageSymbol={false}
 										textColor='white'
-										size={80}
+										size={50}
 										textStyle={{
 											fontSize: 110,
 											lineHeight: 120
@@ -98,7 +97,9 @@ class Jumbotorn extends React.Component {
 										bgColor='#0C0F0F'
 									/>
 								</Grid>
-
+								<Typography paragraph variant='body1' style={{ color: 'white', maxWidth: 400 }}>
+									{item.description}
+								</Typography>
 								<Grid container className={classes.content}>
 									{this.renderChip(item, classes)}
 								</Grid>

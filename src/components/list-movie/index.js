@@ -2,17 +2,15 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
-import Slider from 'react-slick';
-import Icon from '@material-ui/core/Icon';
-
-import Title from '../title';
 import CardHorizontal from '../card-horizontal';
 
+import Title from '../title';
+import Icon from '@material-ui/core/Icon';
 import { styles } from './styles';
-import { data } from '../../dummy-data';
+import Slider from 'react-slick';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
-class NewRelease extends React.Component {
+class Popular extends React.Component {
 	state = {
 		middle: null
 	};
@@ -56,8 +54,9 @@ class NewRelease extends React.Component {
 		this.setState({
 			middle: val
 		});
+
 	render() {
-		const { classes } = this.props;
+		const { classes, data } = this.props;
 		var settings = {
 			dots: true,
 			infinite: true,
@@ -70,7 +69,7 @@ class NewRelease extends React.Component {
 		};
 		return (
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
-				<Title>New Releases</Title>
+				<Title>{this.props.title}</Title>
 				<div
 					style={{
 						display: 'flex',
@@ -97,14 +96,14 @@ class NewRelease extends React.Component {
 						adaptiveHeight={true}
 					>
 						{data.movies.map((item, key) => (
-							<CardHorizontal item={item} key={key} />
+							<CardHorizontal item={item} key={key} isMiddle={this.isOddMidle(key)} />
 						))}
 					</Slider>
 					<Fab
 						size='small'
 						variant='extended'
-						color='secondary'
 						className={classes.arrow}
+						color='secondary'
 						onClick={() => this.slide.slickNext()}
 					>
 						<Icon style={{ fontSize: 100, color: 'white' }}>arrow_right</Icon>
@@ -115,5 +114,6 @@ class NewRelease extends React.Component {
 	}
 }
 
-const withWidthNewRelease = withWidth()(NewRelease);
-export default withStyles(styles)(withWidthNewRelease);
+const withWidthPopular = withWidth()(Popular);
+
+export default withStyles(styles)(withWidthPopular);

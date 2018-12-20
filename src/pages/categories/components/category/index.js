@@ -46,9 +46,9 @@ class Category extends React.Component {
 					<Animate
 						play={true}
 						{...props}
+						key={key}
 						render={({ style }) => {
-							console.log(style);
-							return <CardList item={item} key={key} styles={style} />;
+							return <CardList item={item}  styles={style} />;
 						}}
 					/>
 				))}
