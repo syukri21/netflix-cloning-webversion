@@ -5,6 +5,8 @@ import classnames from 'classnames';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
 import Grow from '@material-ui/core/Grow';
+import Chip from '@material-ui/core/Chip';
+import Fab from '@material-ui/core/Fab';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -71,16 +73,12 @@ class CardHorizontal extends React.Component {
 								{item.title}
 							</Typography>
 						}
+						subheader={<Chip variant='outlined' color='secondary' label={item.rating} />}
 						className={classes.header}
 					/>
 
 					<CardActions className={classes.actions} disableActionSpacing>
-						<Avatar aria-label='Recipe' className={classes.avatar}>
-							{item.rating}
-						</Avatar>
-						<IconButton aria-label='Share' color='secondary'>
-							<ShareIcon />
-						</IconButton>
+						<Chip label={item.genre} className={classes.avatar} />
 						<IconButton
 							className={classnames(classes.expand, {
 								[classes.expandOpen]: this.state.expanded

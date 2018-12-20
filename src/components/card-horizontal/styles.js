@@ -34,7 +34,8 @@ export const styles = (theme) => ({
 		transform: 'rotate(180deg)'
 	},
 	avatar: {
-		backgroundColor: red[500]
+		backgroundColor: red[500],
+		color: 'white'
 	},
 	header: {
 		height: '150px',

@@ -6,7 +6,6 @@ import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Slider from 'react-slick';
 import Icon from '@material-ui/core/Icon';
 import { connect } from 'react-redux';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 import { ALL_POPULARS } from '../../redux/actions/popular';
@@ -71,7 +70,7 @@ class NewReleases extends React.Component {
 						ref={(ref) => (this.slide = ref)}
 						adaptiveHeight={true}
 					>
-						{_.uniqBy(this.props.popular.results, 'title').map((item, key) => (
+						{_.uniqBy(this.props.data.results, 'title').map((item, key) => (
 							<CardHorizontal item={item} key={key} isMiddle={this.isOddMidle(key)} />
 						))}
 					</Slider>
@@ -103,7 +102,7 @@ class NewReleases extends React.Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		if (!this.props.popular.isLoading && !this.props.popular.isError && this.state.counter === 3) {
+		if (!this.props.data.isLoading && !this.props.data.isError && this.state.counter === 3) {
 			this.slide.slickGoTo(3, true);
 		}
 	}

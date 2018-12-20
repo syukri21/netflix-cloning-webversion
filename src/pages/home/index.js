@@ -1,10 +1,11 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
 
 import Jumbotorn from './components/jumbotron';
 import Popular from '../../components/popular';
 import CategoryList from './components/category-list/';
-import NewReleases from '../../components/new-releases';
+import NewReleases from '../../components/horizontal-list';
 import Footer from '../../components/footer';
 import { styles } from './styles';
 
@@ -20,6 +21,7 @@ class Home extends React.Component {
 	render() {
 		const { classes } = this.props;
 		const { height } = this.state;
+
 		return (
 			<div>
 				<div className={classes.jumbotron}>
@@ -40,8 +42,8 @@ class Home extends React.Component {
 							flexDirection: 'column'
 						}}
 					>
-						<NewReleases title='Popular' />
-						<NewReleases title='New Relases' />
+						<NewReleases title='Popular' data={this.props.popular} />
+						<NewReleases title='New Relases' data={this.props.popular} />
 						<div style={{ width: '100%' }}>
 							<CategoryList />
 						</div>
@@ -52,5 +54,10 @@ class Home extends React.Component {
 		);
 	}
 }
+const withStylesHome = withStyles(styles)(Home);
 
-export default withStyles(styles)(Home);
+const mapStateToProps = (state) => ({
+	popular: state.popularReducer
+});
+
+export default connect(mapStateToProps)(withStylesHome);
