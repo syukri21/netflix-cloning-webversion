@@ -154,8 +154,6 @@ class NewReleases extends React.Component {
 		});
 	render() {
 		const { classes } = this.props;
-		console.log(this.props);
-		console.log(this.state.counter);
 
 		return (
 			<div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>

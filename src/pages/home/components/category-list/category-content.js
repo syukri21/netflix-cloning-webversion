@@ -9,13 +9,15 @@ import Title from '../../../../components/title/';
 class CategoryContent extends React.Component {
 	render() {
 		const { data, classes, categories } = this.props;
+		const valiData = data.length ? data : [];
+		console.log(valiData.length);
 		return (
 			<CardContent>
 				<Title variant='subtitle1' noLeft={true}>
 					{categories.name}
 				</Title>
 				<div className={classes.item} style={{ gridGap: 6 }}>
-					{data.map((item, key) => <CardList item={item} key={key} />)}
+					{valiData.map((item, key) => <CardList item={item} key={key} />)}
 				</div>
 			</CardContent>
 		);
