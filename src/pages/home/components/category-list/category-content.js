@@ -10,7 +10,6 @@ class CategoryContent extends React.Component {
 	render() {
 		const { data, classes, categories } = this.props;
 		const valiData = data.length ? data : [];
-		console.log(valiData.length);
 		return (
 			<CardContent>
 				<Title variant='subtitle1' noLeft={true}>

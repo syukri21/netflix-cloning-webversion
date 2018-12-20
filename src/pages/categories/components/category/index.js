@@ -1,5 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import { GET_CATEGORY } from '../../../../redux/actions/category';
 
 import { styles } from './styles';
 import CardList from '../../../../components/cardlist';
@@ -21,34 +23,23 @@ const props = {
 };
 
 class Category extends React.Component {
-	state = {
-		movies: []
-	};
-
-	findCategory = (val) => {
-		const movies = _.filter(data.movies, (e) => _.includes(e.categoriesId, val));
-		this.setState({
-			movies: movies
-		});
-	};
-
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.category) {
-			this.findCategory(nextProps.category);
-		}
+	componentDidMount() {
+		this.props.dispatch(GET_CATEGORY(this.props.category, 30));
 	}
 
 	render() {
 		const { classes } = this.props;
+		const { categories } = this.props;
+		const validCategoris = categories.length ? categories : [];
 		return (
 			<div className={classes.root}>
-				{this.state.movies.map((item, key) => (
+				{validCategoris.map((item, key) => (
 					<Animate
 						play={true}
 						{...props}
 						key={key}
 						render={({ style }) => {
-							return <CardList item={item}  styles={style} />;
+							return <CardList item={item} styles={style} />;
 						}}
 					/>
 				))}
@@ -57,4 +48,10 @@ class Category extends React.Component {
 	}
 }
 
-export default withStyles(styles)(Category);
+const mapStateToProps = (state) => ({
+	categories: state.categoryReducer.data
+});
+
+const withStylesCategories = connect(mapStateToProps)(Category);
+
+export default withStyles(styles)(withStylesCategories);

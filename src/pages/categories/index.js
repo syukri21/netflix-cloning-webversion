@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
+import { GET_CATEGORY } from '../../redux/actions/category';
 
 import Main from './components/main/';
 import NewReleases from '../../components/horizontal-list';
@@ -9,13 +10,14 @@ import { styles } from './styles';
 
 class Categories extends React.Component {
 	state = {
-		category: null
+		category: 'Action'
 	};
 
-	getCategory = (val) =>
+	getCategory = (val) => {
 		this.setState({
 			category: val
 		});
+	};
 
 	render() {
 		const { classes } = this.props;
@@ -34,6 +36,7 @@ const withStylesCategories = withStyles(styles)(Categories);
 
 const mapStateToProps = (state) => ({
 	popular: state.popularReducer,
-	trending: state.trendingReducer
+	trending: state.trendingReducer,
+	categories: state.categoryReducer
 });
 export default connect(mapStateToProps)(withStylesCategories);

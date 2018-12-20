@@ -71,7 +71,6 @@ class CategoryList extends React.Component {
 
 	render() {
 		const { classes } = this.props;
-		console.log(this.props);
 
 		const { data, categories } = this.state;
 		return (

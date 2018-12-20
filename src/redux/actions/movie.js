@@ -1,9 +1,9 @@
 import axios from 'axios';
-
+import { ip } from '../../configip';
 export function ALL_MOVIES() {
 	return {
 		type: 'ALL_MOVIES',
-		payload: axios.get('http://192.168.0.11:3333/movies')
+		payload: axios.get(`${ip}`)
 	};
 }
 
