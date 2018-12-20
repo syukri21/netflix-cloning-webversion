@@ -4,10 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import ListMovie from '../../../../components/list-movie';
 import { ALL_POPULARS } from '../../../../redux/actions/popular';
 import HorizontalList from '../../../../components/horizontal-list';
-import { data } from '../../../../dummy-data';
 
 import { styles } from './styles';
 
