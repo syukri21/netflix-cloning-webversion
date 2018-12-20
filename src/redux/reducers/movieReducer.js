@@ -7,17 +7,11 @@ const initialState = {
 
 export default function movieReducer(state = initialState, action) {
 	switch (action.type) {
-		case 'ALL_CATEGORIES_PENDING':
+		case 'GET_MOVIE_PENDING':
 			return { ...state, isLoading: true };
-		case 'ALL_CATEGORIES_FULFILLED':
-			return { ...state, isLoading: false, results: action.payload.data };
-		case 'ALL_CATEGORIES_REJECTED':
-			return { ...state, isLoading: false, isError: true };
-		case 'GET_CATEGORY_PENDING':
-			return { ...state, isLoading: true };
-		case 'GET_CATEGORY_FULFILLED':
+		case 'GET_MOVIE_FULFILLED':
 			return { ...state, isLoading: false, data: action.payload.data };
-		case 'GET_CATEGORY_REJECTED':
+		case 'GET_MOVIE_REJECTED':
 			return { ...state, isLoading: false, isError: true };
 		default:
 			return state;

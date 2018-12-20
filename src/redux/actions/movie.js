@@ -7,9 +7,9 @@ export function ALL_MOVIES() {
 	};
 }
 
-export function GET_MOVIE() {
+export function GET_MOVIE(id) {
 	return {
 		type: 'GET_MOVIE',
-		payload: { id: 1, title: 'beranak dalam kolam' }
+		payload: axios.get(`${ip}movie/${id}`)
 	};
 }

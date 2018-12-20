@@ -5,7 +5,8 @@ import { Redirect } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
-
+import { GET_MOVIE } from '../../redux/actions/movie';
+import { connect } from 'react-redux';
 import Video from './components/video';
 import BottomTab from './components/bottom-tab';
 import Related from './components/related';
@@ -45,28 +46,28 @@ class Detail extends React.Component {
 
 	componentDidMount() {
 		if (!this.state.query) return;
+		this.props.dispatch(GET_MOVIE(this.state.query.id));
 		const results = _.find(data.movies, (e) => e.id === this.state.query.id);
+
 		this.setState({
 			movie: results
 		});
 	}
 
-	renderCategoryList = () =>
-		this.state.movie.categories.map((item, key) => (
-			<Button
-				key={key}
-				variant='outlined'
-				style={{
-					marginRight: 20,
-					borderRadius: 10,
-					border: '2px solid #F44336'
-				}}
-			>
-				<Typography variant='caption' style={{ color: '#F44336' }}>
-					{item}
-				</Typography>
-			</Button>
-		));
+	renderCategoryList = () => (
+		<Button
+			variant='outlined'
+			style={{
+				marginRight: 20,
+				borderRadius: 10,
+				border: '2px solid #F44336'
+			}}
+		>
+			<Typography variant='caption' style={{ color: '#F44336' }}>
+				{this.props.movie.data[0].genre}
+			</Typography>
+		</Button>
+	);
 
 	renderMovie = () => {
 		return (
@@ -83,12 +84,12 @@ class Detail extends React.Component {
 			>
 				<Grid item xs={12} sm={4}>
 					<Typography gutterBottom variant='h4' style={{ color: '#F44336' }}>
-						{this.state.movie && this.state.movie.title}
+						{this.props.movie.data[0] && this.props.movie.data[0].title}
 					</Typography>
 					<Typography gutterBottom paragraph variant='subtitle1' style={{ color: 'white' }}>
-						{this.state.movie && this.state.movie.description}
+						{this.props.movie.data[0] && this.props.movie.data[0].sinopsis}
 					</Typography>
-					{this.state.movie && this.renderCategoryList()}
+					{this.props.movie.data[0] && this.renderCategoryList()}
 				</Grid>
 				<Grid
 					item
@@ -99,7 +100,7 @@ class Detail extends React.Component {
 						overflow: 'hidden'
 					}}
 				>
-					<Video />
+					<Video video={this.props.movie.data[0] && this.props.movie.data[0].video} />
 				</Grid>
 			</Grid>
 		);
@@ -118,10 +119,11 @@ class Detail extends React.Component {
 	};
 
 	render() {
+		console.log(this.props.movie.data[0]);
 		const { classes } = this.props;
 		if (!this.state.query) return <Redirect to='/' />;
 		return (
-			<div style={styled.root(this.state.movie)}>
+			<div style={styled.root(this.props.movie.data[0])}>
 				<div className={classes.backgroundLinear} />
 				<div className={classes.roots}>{this.renderMain()}</div>
 				<Grid container style={{ display: 'flex', position: 'relative', zIndex: 200 }}>
@@ -132,4 +134,10 @@ class Detail extends React.Component {
 	}
 }
 
-export default withStyles(styles)(Detail);
+const mapStateToProps = (state) => ({
+	movie: state.movieReducer
+});
+
+const withConnect = connect(mapStateToProps)(Detail);
+
+export default withStyles(styles)(withConnect);
