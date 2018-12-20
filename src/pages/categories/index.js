@@ -24,8 +24,8 @@ class Categories extends React.Component {
 			<div className={classes.root}>
 				<Main getCategory={this.getCategory} />
 				<Category category={this.state.category} />
-				<Popular data={this.props.popular} />
-				<NewReleases data={this.props.popular} />
+				<NewReleases data={this.props.popular} type='ALL_POPULARS' title='Popular' />
+				<NewReleases data={this.props.trending} type='ALL_TRENDINGS' title='New Relases' />
 			</div>
 		);
 	}
@@ -34,6 +34,7 @@ class Categories extends React.Component {
 const withStylesCategories = withStyles(styles)(Categories);
 
 const mapStateToProps = (state) => ({
-	popular: state.popularReducer
+	popular: state.popularReducer,
+	trending: state.trendingReducer
 });
 export default connect(mapStateToProps)(withStylesCategories);

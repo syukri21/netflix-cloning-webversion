@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 import { ALL_POPULARS } from '../../redux/actions/popular';
+import { ALL_TRENDINGS } from '../../redux/actions/trending';
 import _ from 'lodash';
 
 import Title from '../title';
@@ -36,13 +37,13 @@ class NewReleases extends React.Component {
 			slidesToShow: this.getSideToShow() - 1,
 			slidesToScroll: 1
 		};
-		if (this.state.counter < 3)
+		if (this.state.counter < 2)
 			return (
 				<div style={{ alignSelf: 'center', width: '100%', height: '10px', opacity: 0.5 }}>
 					<LinearProgress />;
 				</div>
 			);
-		if (this.state.counter >= 3)
+		if (this.state.counter >= 2)
 			return (
 				<div
 					style={{
@@ -89,7 +90,13 @@ class NewReleases extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.dispatch(ALL_POPULARS());
+		if (this.props.type === 'ALL_POPULARS') {
+			this.props.dispatch(ALL_POPULARS());
+		}
+
+		if (this.props.type === 'ALL_TRENDINGS') {
+			this.props.dispatch(ALL_TRENDINGS());
+		}
 	}
 
 	static getDerivedStateFromProps(nextProps, prevState) {
@@ -148,6 +155,8 @@ class NewReleases extends React.Component {
 		});
 	render() {
 		const { classes } = this.props;
+		console.log(this.props);
+		console.log(this.state.counter);
 
 		return (
 			<div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>

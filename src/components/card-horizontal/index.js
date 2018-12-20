@@ -50,7 +50,6 @@ class CardHorizontal extends React.Component {
 	render() {
 		const { classes, item, key } = this.props;
 		const title = item.title.replace(/\s+/g, '').toLowerCase();
-
 		return (
 			<div
 				className={classes.card}

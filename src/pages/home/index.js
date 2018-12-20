@@ -1,7 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-
+import { ALL_POPULARS } from '../../redux/actions/popular';
+import { ALL_TRENDINGS } from '../../redux/actions/trending';
 import Jumbotorn from './components/jumbotron';
 import Popular from '../../components/popular';
 import CategoryList from './components/category-list/';
@@ -42,8 +43,8 @@ class Home extends React.Component {
 							flexDirection: 'column'
 						}}
 					>
-						<NewReleases title='Popular' data={this.props.popular} />
-						<NewReleases title='New Relases' data={this.props.popular} />
+						<NewReleases title='Popular' data={this.props.popular} type='ALL_POPULARS' />
+						<NewReleases title='New Relases' data={this.props.trending} type='ALL_TRENDINGS' />
 						<div style={{ width: '100%' }}>
 							<CategoryList />
 						</div>
@@ -57,7 +58,8 @@ class Home extends React.Component {
 const withStylesHome = withStyles(styles)(Home);
 
 const mapStateToProps = (state) => ({
-	popular: state.popularReducer
+	popular: state.popularReducer,
+	trending: state.trendingReducer
 });
 
 export default connect(mapStateToProps)(withStylesHome);
