@@ -9,6 +9,7 @@ import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
 
 import BackgroundGradient from './background-gradient';
 import { data } from '../../../dummy-data';
@@ -113,4 +114,8 @@ class Jumbotorn extends React.Component {
 	}
 }
 
-export default withStyles(styles)(Jumbotorn);
+const mapStateToProps = (state) => ({});
+
+const withConnectJumbotron = connect(mapStateToProps)(Jumbotorn);
+
+export default withStyles(styles)(withConnectJumbotron);
