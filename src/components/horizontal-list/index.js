@@ -7,6 +7,7 @@ import Slider from 'react-slick';
 import Icon from '@material-ui/core/Icon';
 import { connect } from 'react-redux';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { ALL_POPULARS } from '../../redux/actions/popular';
 import { ALL_TRENDINGS } from '../../redux/actions/trending';
@@ -38,8 +39,8 @@ class NewReleases extends React.Component {
 		};
 		if (this.state.counter < 2)
 			return (
-				<div style={{ alignSelf: 'center', width: '100%', height: '10px', opacity: 0.5 }}>
-					<LinearProgress />;
+				<div style={{ alignSelf: 'center' }}>
+					<CircularProgress color='secondary' />;
 				</div>
 			);
 		if (this.state.counter >= 2)
@@ -152,6 +153,7 @@ class NewReleases extends React.Component {
 		this.setState({
 			middle: val
 		});
+
 	render() {
 		const { classes } = this.props;
 

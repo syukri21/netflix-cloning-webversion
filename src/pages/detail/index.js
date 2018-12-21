@@ -108,12 +108,9 @@ class Detail extends React.Component {
 
 	renderMain = () => {
 		if (this.state.renderStatus === 0) {
-			return this.renderMovie();
-		}
-		if (this.state.renderStatus === 1) {
 			return <Series />;
 		}
-		if (this.state.renderStatus === 2) {
+		if (this.state.renderStatus === 1) {
 			return <Related category={this.props.movie.data[0] && this.props.movie.data[0].genre} />;
 		}
 	};
@@ -138,6 +135,7 @@ class Detail extends React.Component {
 					}}
 				/>
 				<div className={classes.backgroundLinear} />
+				<div>{this.renderMovie()}</div>
 				<div className={classes.roots}>{this.renderMain()}</div>
 				<Grid container style={{ display: 'flex', position: 'relative', zIndex: 200 }}>
 					<BottomTab getRenderState={this.getRenderState} />

@@ -18,7 +18,6 @@ class Popular extends React.Component {
 		if (!this.props.popular.results) return <CircularProgress className={classes.progress} color='secondary' />;
 		return <HorizontalList title='Popular' data={this.props.popular} type='ALL_POPULARS' />;
 	}
-
 	render() {
 		const { classes } = this.props;
 		return (

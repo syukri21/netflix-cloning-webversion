@@ -23,7 +23,6 @@ class BottomTab extends React.Component {
 		if (this.state.value !== value) {
 			color = '#AC2F25';
 		}
-
 		return { color };
 	};
 
@@ -34,19 +33,13 @@ class BottomTab extends React.Component {
 		return (
 			<BottomNavigation value={value} onChange={this.handleChange} showLabels className={classes.root}>
 				<BottomNavigationAction
-					className={classes.navigation}
 					style={this.changeColor(0)}
-					label='Movie'
-					icon={<Movie />}
-				/>
-				<BottomNavigationAction
-					style={this.changeColor(1)}
 					className={classes.navigation}
 					label='Popular'
 					icon={<LocalMovies />}
 				/>
 				<BottomNavigationAction
-					style={this.changeColor(2)}
+					style={this.changeColor(1)}
 					className={classes.navigation}
 					label='Related'
 					icon={<FavoriteIcon />}

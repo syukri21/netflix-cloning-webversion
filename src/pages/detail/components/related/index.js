@@ -15,13 +15,10 @@ class Related extends React.Component {
 
 	renderLoading(classes) {
 		if (!this.props.categories) return <CircularProgress className={classes.progress} color='secondary' />;
-		return (
-			<HorizontalList title={this.props.category} data={{ results: this.props.categories }} type='ALL_POPULARS' />
-		);
+		return <HorizontalList title='Related' data={{ results: this.props.categories }} type='ALL_POPULARS' />;
 	}
 	render() {
 		const { classes } = this.props;
-		console.log(this.props.categories);
 		return (
 			<Grid container className={classes.root}>
 				{this.props.categories && this.renderLoading(classes)}
