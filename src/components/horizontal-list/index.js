@@ -6,7 +6,6 @@ import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Slider from 'react-slick';
 import Icon from '@material-ui/core/Icon';
 import { connect } from 'react-redux';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { ALL_POPULARS } from '../../redux/actions/popular';

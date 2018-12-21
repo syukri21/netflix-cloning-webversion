@@ -5,7 +5,6 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocalMovies from '@material-ui/icons/LocalMovies';
-import Movie from '@material-ui/icons/Movie';
 import { styles } from './style';
 
 class BottomTab extends React.Component {
