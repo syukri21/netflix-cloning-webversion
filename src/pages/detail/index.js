@@ -31,19 +31,11 @@ class Detail extends React.Component {
 
 	static getDerivedStateFromProps(nextProps, prevState) {
 		if (nextProps.location.query !== prevState.query) {
-			if (nextProps.location.query) nextProps.dispatch(GET_MOVIE(nextProps.location.query.id));
-
+			if (nextProps.location.query) {
+				nextProps.dispatch(GET_MOVIE(nextProps.location.query.id));
+			}
 			return { query: nextProps.location.query };
 		} else return null;
-	}
-
-	componentDidUpdate(prevProps, prevState) {
-		if (prevState.query !== this.state.query) {
-			const results = _.find(data.movies, (e) => e.id === this.state.query.id);
-			this.setState({
-				movie: results
-			});
-		}
 	}
 
 	componentDidMount() {
@@ -127,11 +119,24 @@ class Detail extends React.Component {
 	};
 
 	render() {
-		console.log(this.props.movie.data[0]);
 		const { classes } = this.props;
 		if (!this.state.query) return <Redirect to='/' />;
 		return (
 			<div style={styled.root(this.props.movie.data[0])}>
+				<div
+					style={{
+						position: 'absolute',
+						backgroundImage: `url(${this.props.movie.data[0] && this.props.movie.data[0].image})`,
+						backgroundSize: 'cover',
+						backgroundPosition: 'center center',
+						top: '0',
+						left: '0',
+						right: '0',
+						bottom: '0',
+						zIndex: '1',
+						filter: 'blur(20px)'
+					}}
+				/>
 				<div className={classes.backgroundLinear} />
 				<div className={classes.roots}>{this.renderMain()}</div>
 				<Grid container style={{ display: 'flex', position: 'relative', zIndex: 200 }}>

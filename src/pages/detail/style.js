@@ -6,7 +6,7 @@ export const styles = (theme) => ({
 		top: 0,
 		bottom: 0,
 		zIndex: '2',
-		backgroundImage: 'linear-gradient(to top,rgba(0,0,0, 1), rgba(0,0,0, 1),  rgba(0,0,0, 0.7), rgba(0,0,0, 0.1))'
+		backgroundImage: 'linear-gradient(to top, rgba(0,0,0, 1),  rgba(0,0,0, 0.7), rgba(0,0,0, 0.1))'
 	},
 	roots: {
 		minHeight: 'calc(100vh )',
@@ -16,9 +16,6 @@ export const styles = (theme) => ({
 
 export const styled = {
 	root: (movie) => ({
-		position: 'relative',
-		backgroundImage: `url(${movie && movie.image})`,
-		backgroundSize: 'cover',
-		backgroundPosition: 'center'
+		position: 'relative'
 	})
 };

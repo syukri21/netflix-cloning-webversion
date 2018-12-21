@@ -4,14 +4,18 @@ class Video extends React.Component {
 	render() {
 		return (
 			<iframe
+				style={{
+					borderRadius: '10px',
+					overflow: 'hidden',
+					border: '10px solid #F44336'
+				}}
 				title='video'
 				width='100%'
 				height='100%'
 				src={this.props.video}
-				style={{ boxShadow: 'inset 0px 0px 300px 0px rgba(0,0,0,0.75)' }}
 				frameBorder='0'
 				allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-				allowFullScreen={false}
+				allowFullScreen={true}
 			/>
 		);
 	}

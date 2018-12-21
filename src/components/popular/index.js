@@ -30,7 +30,7 @@ class Popular extends React.Component {
 			centerMode: true,
 			focusOnSelect: true,
 			afterChange: this.getIndexCenter,
-			slidesToShow: this.getSideToShow() - 1,
+			slidesToShow: this.getSideToShow(),
 			slidesToScroll: 1
 		};
 
@@ -83,11 +83,11 @@ class Popular extends React.Component {
 
 	getSideToShow = () => {
 		if (isWidthUp('lg', this.props.width)) {
-			return 6;
-		} else if (isWidthUp('md', this.props.width)) {
 			return 4;
-		} else if (isWidthUp('sm', this.props.width)) {
+		} else if (isWidthUp('md', this.props.width)) {
 			return 3;
+		} else if (isWidthUp('sm', this.props.width)) {
+			return 2;
 		} else {
 			return 1;
 		}

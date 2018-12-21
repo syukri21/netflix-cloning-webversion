@@ -33,7 +33,7 @@ class NewReleases extends React.Component {
 			focusOnSelect: true,
 			centerMode: true,
 			afterChange: this.getIndexCenter,
-			slidesToShow: this.getSideToShow() - 1,
+			slidesToShow: this.getSideToShow(),
 			slidesToScroll: 1
 		};
 		if (this.state.counter < 2)
@@ -115,11 +115,11 @@ class NewReleases extends React.Component {
 
 	getSideToShow = () => {
 		if (isWidthUp('lg', this.props.width)) {
-			return 6;
+			return 5;
 		} else if (isWidthUp('md', this.props.width)) {
 			return 4;
 		} else if (isWidthUp('sm', this.props.width)) {
-			return 3;
+			return 2;
 		} else {
 			return 1;
 		}
