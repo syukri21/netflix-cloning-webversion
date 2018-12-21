@@ -5,7 +5,6 @@ import { GET_SEARCH, SAVE_KEYWORD } from '../../redux/actions/search';
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
 import { styles } from './styles';
 import SearchList from './components/searc-list';
 import Typography from '@material-ui/core/Typography';

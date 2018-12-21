@@ -6,16 +6,14 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
 import Chip from '@material-ui/core/Chip';
 import { Link } from 'react-router-dom';
 
 import { styles } from './styles';
 
 function SearchList(props) {
-	const { classes, theme, item } = props;
+	const { classes, item } = props;
 	const title = item.title.replace(/\s+/g, '').toLowerCase();
 
 	return (
