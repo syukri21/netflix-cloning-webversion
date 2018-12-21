@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import Home from './pages/home/';
 import Categories from './pages/categories';
 import Detail from './pages/detail';
+import Search from './pages/search';
 
 class App extends React.Component {
 	scrollTop = () =>
@@ -41,6 +42,13 @@ class App extends React.Component {
 						render={(props) => {
 							this.scrollTop();
 							return <Detail {...props} />;
+						}}
+					/>
+					<Route
+						path='/search'
+						render={(props) => {
+							this.scrollTop();
+							return <Search {...props} />;
 						}}
 					/>
 				</Switch>

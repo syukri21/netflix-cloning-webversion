@@ -16,7 +16,9 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
 import OnScroll from 'react-on-scroll';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { SAVE_KEYWORD } from '../../redux/actions/search';
+import { connect } from 'react-redux';
 
 import { styles } from './styles';
 
@@ -25,7 +27,8 @@ class Header extends React.Component {
 		anchorEl: null,
 		mobileMoreAnchorEl: null,
 		position: 'static',
-		sticky: false
+		sticky: false,
+		search: null
 	};
 	setSticky = (sticky) => this.setState({ sticky });
 
@@ -94,12 +97,29 @@ class Header extends React.Component {
 		</Menu>
 	);
 
+	handleInputSearch = (e) =>
+		this.setState({
+			search: e.target.value
+		});
+
+	handleEnterSearch = (e) => {
+		if (e.key === 'Enter') {
+			this.props.dispatch(SAVE_KEYWORD(this.state.search));
+			this.props.history.push({
+				pathname: '/search',
+				search: `?s=${this.state.search}`,
+				params: {
+					query: this.state.search
+				}
+			});
+		}
+	};
+
 	render() {
 		const { anchorEl, mobileMoreAnchorEl, sticky } = this.state;
 		const { classes } = this.props;
 		const isMenuOpen = Boolean(anchorEl);
 		const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
 		return (
 			<div className={classes.root}>
 				<OnScroll
@@ -138,6 +158,8 @@ class Header extends React.Component {
 										root: classes.inputRoot,
 										input: classes.inputInput
 									}}
+									onChange={this.handleInputSearch}
+									onKeyPress={this.handleEnterSearch}
 								/>
 							</div>
 							<div className={classes.grow} />
@@ -180,4 +202,11 @@ Header.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Header);
+const mapStateToProps = (state) => ({
+	search: state.searchReducer
+});
+
+const withRouterHeader = withRouter(Header);
+const withConnectHeader = connect(mapStateToProps)(withRouterHeader);
+
+export default withStyles(styles)(withConnectHeader);
