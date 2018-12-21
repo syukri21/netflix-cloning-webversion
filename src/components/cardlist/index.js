@@ -34,13 +34,9 @@ class CardList extends React.Component {
 			expanded: true
 		});
 
-	goToLink = () => {};
-
 	render() {
 		const { classes, item, key } = this.props;
-
 		const title = item.title.replace(/\s+/g, '').toLowerCase();
-
 		return (
 			<Card
 				className={classes.card}
@@ -48,8 +44,8 @@ class CardList extends React.Component {
 					backgroundImage: `url(${item.image})`,
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
-					...this.props.styles,
-					position: 'relative'
+					position: 'relative',
+					...this.props.styles
 				}}
 				key={key}
 				onMouseEnter={this.openExpand}

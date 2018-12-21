@@ -7,6 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import { ALL_CATEGORIES, GET_CATEGORY } from '../../../../redux/actions/category';
+import { findDOMNode } from 'react-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -34,12 +35,21 @@ class CategoryList extends React.Component {
 				id: item
 			}
 		});
+		this.scrollToTop(this.offsetTop);
 	};
 
 	componentDidMount() {
 		this.props.dispatch(ALL_CATEGORIES());
 		this.props.dispatch(GET_CATEGORY('Action', 30));
 	}
+
+	scrollToTop = (top) => {
+		window.scrollTo({
+			top: top,
+			left: 0,
+			behavior: 'smooth'
+		});
+	};
 
 	renderListCategories = (classes) =>
 		this.props.categories.results.map((item, key) => (
@@ -66,20 +76,24 @@ class CategoryList extends React.Component {
 			</List>
 		));
 
+	renderLoadingListCategories = (classes) => {
+		if (this.props.categories.results.length === 0) return <CircularProgress />;
+		return this.renderListCategories(classes);
+	};
+
+	getRef = (ref) => {
+		this.offsetTop = findDOMNode(ref) && findDOMNode(ref).getBoundingClientRect().top + 600;
+	};
+
 	render() {
 		const { classes } = this.props;
-
 		const { categories } = this.state;
 		return (
-			<div>
+			<div ref={this.getRef}>
 				<Grid container>
 					<Grid item xs={12} sm={2}>
 						<Title>Categories</Title>
-						{this.props.categories.results.length !== 0 ? (
-							this.renderListCategories(classes)
-						) : (
-							<CircularProgress />
-						)}
+						{this.renderLoadingListCategories(classes)}
 					</Grid>
 					<Grid item xs={12} sm={10}>
 						<CategoryContent data={this.props.categories.data} categories={categories} />
