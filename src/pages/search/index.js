@@ -62,10 +62,9 @@ class Search extends React.Component {
 			);
 		}
 		return (
-			<div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+			<div style={classes.loopingStart}>
 				{this.props.search.data.length &&
 					this.props.search.data.map((item, key) => <SearchList item={item} key={key} />)}
-
 				<Button onClick={this.handleLoadMore} color='secondary'>
 					Load More
 				</Button>
@@ -81,11 +80,10 @@ class Search extends React.Component {
 				<Typography variant='h5' gutterBottom style={{ color: 'white' }}>
 					You search for : {this.props.search.keyword}
 				</Typography>
-				<Grid container>
-					<Grid item xs={12} md={8}>
+				<Grid container style={{ display: 'flex', justifyContent: 'center' }}>
+					<Grid item xs={12} style={{ display: 'flex', justifyContent: 'center' }}>
 						{this.renderSearchList(classes)}
 					</Grid>
-					<Grid item xs={12} md={4} />
 				</Grid>
 			</div>
 		);

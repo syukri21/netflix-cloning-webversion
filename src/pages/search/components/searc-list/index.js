@@ -9,40 +9,42 @@ import Typography from '@material-ui/core/Typography';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
+import Chip from '@material-ui/core/Chip';
+import { Link } from 'react-router-dom';
 
 import { styles } from './styles';
 
 function SearchList(props) {
 	const { classes, theme, item } = props;
+	const title = item.title.replace(/\s+/g, '').toLowerCase();
 
 	return (
 		<Card className={classes.card}>
 			<div className={classes.details}>
 				<CardContent className={classes.content}>
-					<Typography component='h5' variant='h5'>
+					<Typography gutterBottom={true} component='h5' style={{ color: 'white' }} variant='h5'>
 						{item.title}
 					</Typography>
-					<Typography variant='subtitle1' color='textSecondary'>
-						Mac Miller
-					</Typography>
+					<Chip label={item.rating} style={{ marginRight: 10 }} />
+					<Chip label={item.genre} />
 				</CardContent>
 				<div className={classes.controls}>
-					<IconButton aria-label='Previous'>
-						{theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-					</IconButton>
-					<IconButton aria-label='Play/pause'>
-						<PlayArrowIcon className={classes.playIcon} />
-					</IconButton>
-					<IconButton aria-label='Next'>
-						{theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-					</IconButton>
+					<Link
+						to={{
+							pathname: `/movie/${title}`,
+							query: {
+								title: item.title,
+								id: item.id
+							}
+						}}
+					>
+						<IconButton color='secondary' aria-label='Play/pause'>
+							<PlayArrowIcon className={classes.playIcon} />
+						</IconButton>
+					</Link>
 				</div>
 			</div>
-			<CardMedia
-				className={classes.cover}
-				image='/static/images/cards/live-from-space.jpg'
-				title='Live from space album cover'
-			/>
+			<CardMedia className={classes.cover} image={item.image} title={item.title} />
 		</Card>
 	);
 }

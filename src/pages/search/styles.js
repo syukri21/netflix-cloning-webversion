@@ -5,5 +5,10 @@ export const styles = (theme) => ({
 	},
 	progress: {
 		margin: theme.spacing.unit * 2
+	},
+	lopingStart: {
+		display: 'flex',
+		justifyContent: 'center',
+		flexDirection: 'column'
 	}
 });
