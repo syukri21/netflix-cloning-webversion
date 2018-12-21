@@ -6,7 +6,8 @@ export const styles = (theme) => {
 			position: 'absolute',
 			top: 0,
 			left: 0,
-			right: 0
+			right: 0,
+			filter: 'blur(40px)'
 		},
 		container: {
 			width: '100%',
