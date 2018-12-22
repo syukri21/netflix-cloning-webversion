@@ -18,7 +18,10 @@ import classNames from 'classnames';
 import OnScroll from 'react-on-scroll';
 import { Link, withRouter } from 'react-router-dom';
 import { SAVE_KEYWORD } from '../../redux/actions/search';
+import { GET_USER } from '../../redux/actions/user';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import { ip } from '../../configip';
 
 import { styles } from './styles';
 
@@ -28,7 +31,8 @@ class Header extends React.Component {
 		mobileMoreAnchorEl: null,
 		position: 'static',
 		sticky: false,
-		search: null
+		search: null,
+		isLogin: false
 	};
 	setSticky = (sticky) => this.setState({ sticky });
 
@@ -36,7 +40,20 @@ class Header extends React.Component {
 		this.setState({ anchorEl: event.currentTarget });
 	};
 
-	handleMenuClose = () => {
+	handleMenuClose = async () => {
+		if (sessionStorage.getItem('token')) {
+			console.log(
+				"​Header -> handleMenuClose -> sessionStorage.getItem('token')",
+				sessionStorage.getItem('token')
+			);
+			await axios.post(`${ip}logout`, null, {
+				headers: { Authorization: `Bearer ${sessionStorage.getItem('token')}` }
+			});
+			sessionStorage.setItem('token', null);
+			this.setState({
+				isLogin: false
+			});
+		}
 		this.setState({ anchorEl: null });
 		this.handleMobileMenuClose();
 	};
@@ -58,8 +75,7 @@ class Header extends React.Component {
 				open={isMenuOpen}
 				onClose={this.handleMenuClose}
 			>
-				<MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-				<MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+				<MenuItem onClick={this.handleMenuClose}>Logout</MenuItem>
 			</Menu>
 		);
 	};
@@ -72,22 +88,6 @@ class Header extends React.Component {
 			open={isMobileMenuOpen}
 			onClose={this.handleMobileMenuClose}
 		>
-			<MenuItem>
-				<IconButton color='inherit'>
-					<Badge badgeContent={4} color='secondary'>
-						<MailIcon />
-					</Badge>
-				</IconButton>
-				<p>Messages</p>
-			</MenuItem>
-			<MenuItem>
-				<IconButton color='inherit'>
-					<Badge badgeContent={11} color='secondary'>
-						<NotificationsIcon />
-					</Badge>
-				</IconButton>
-				<p>Notifications</p>
-			</MenuItem>
 			<MenuItem onClick={this.handleProfileMenuOpen}>
 				<IconButton color='inherit'>
 					<AccountCircle />
@@ -115,8 +115,17 @@ class Header extends React.Component {
 		}
 	};
 
+	async componentDidMount() {
+		if (sessionStorage.getItem('token')) {
+			await this.props.dispatch(GET_USER(sessionStorage.getItem('token')));
+			this.setState({
+				isLogin: true
+			});
+		}
+	}
+
 	render() {
-		const { anchorEl, mobileMoreAnchorEl, sticky } = this.state;
+		const { anchorEl, mobileMoreAnchorEl, sticky, isLogin } = this.state;
 		const { classes } = this.props;
 		const isMenuOpen = Boolean(anchorEl);
 		const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -166,8 +175,12 @@ class Header extends React.Component {
 							<div className={classes.sectionDesktop}>
 								<div style={{ display: 'flex', alignItems: 'center' }}>
 									<Link to='/login'>
-										<Button color='secondary' variant='contained'>
-											Login
+										<Button
+											color='secondary'
+											style={{ color: isLogin && 'white' }}
+											variant={isLogin || 'contained'}
+										>
+											{isLogin ? this.props.user.user.username : 'login'}
 										</Button>
 									</Link>
 								</div>
@@ -200,7 +213,8 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-	search: state.searchReducer
+	search: state.searchReducer,
+	user: state.userReducer
 });
 
 const withRouterHeader = withRouter(Header);

@@ -41,7 +41,7 @@ class LoginTab extends React.Component {
 		}
 		await this.props.dispatch(USER_REGISTER(username, username, mail, password));
 		alert(this.props.user.regist && this.props.user.regist.message);
-		this.props.history.push('/login');
+		this.props.user.regist && this.props.user.regist && this.props.history.push('/login');
 	};
 
 	render() {
