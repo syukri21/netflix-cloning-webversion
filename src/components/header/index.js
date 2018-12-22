@@ -197,7 +197,7 @@ class Header extends React.Component {
 							</div>
 						</Toolbar>
 					</AppBar>
-					{this.renderMenu(anchorEl, isMenuOpen)}
+					{this.state.isLogin && this.renderMenu(anchorEl, isMenuOpen)}
 					{this.renderMobileMenu(mobileMoreAnchorEl, isMobileMenuOpen)}
 				</OnScroll>
 			</div>
