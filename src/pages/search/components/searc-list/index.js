@@ -36,7 +36,18 @@ function SearchList(props) {
 							}
 						}}
 					>
-						<IconButton color='secondary' aria-label='Play/pause'>
+						<IconButton
+							color='secondary'
+							style={{
+								width: 50,
+								height: 50,
+								border: '1px solid #F44336',
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center'
+							}}
+							aria-label='Play/pause'
+						>
 							<PlayArrowIcon className={classes.playIcon} />
 						</IconButton>
 					</Link>

@@ -4,8 +4,17 @@ export const styles = (theme) => ({
 		flexDirection: 'row',
 		gridTemplateColumns: '2fr 1fr',
 		marginBottom: '10px',
-		backgroundColor: '#0A0B0A',
-		width: '100%'
+		backgroundColor: '#343434',
+
+		[theme.breakpoints.up('xs')]: {
+			width: 300
+		},
+		[theme.breakpoints.up('sm')]: {
+			width: 600
+		},
+		[theme.breakpoints.up('md')]: {
+			width: 800
+		}
 	},
 	details: {
 		display: 'flex',
@@ -21,13 +30,10 @@ export const styles = (theme) => ({
 	controls: {
 		display: 'flex',
 		alignItems: 'center',
-		paddingLeft: theme.spacing.unit,
+		paddingLeft: theme.spacing.unit * 3,
 		paddingBottom: theme.spacing.unit
 	},
-	playIcon: {
-		height: 38,
-		width: 38
-	},
+	playIcon: {},
 	lopingStart: {
 		display: 'flex',
 		justifyContent: 'center',
