@@ -20,60 +20,62 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<Switch>
-					<Route
-						exact
-						path='/login'
-						render={(props) => {
-							this.scrollTop();
-							return <Login {...props} />;
-						}}
-					/>
-					<Route
-						exact
-						path='/signup'
-						render={(props) => {
-							this.scrollTop();
-							return <SignUp {...props} />;
-						}}
-					/>
-					<div style={{ width: '100%', overflowX: 'hidden' }}>
-						<Header />
-						<Switch>
-							<Route
-								exact
-								path='/'
-								render={(props) => {
-									this.scrollTop();
-									return <Home {...props} />;
-								}}
-							/>
-							<Route
-								exact
-								path='/categories'
-								render={(props) => {
-									this.scrollTop();
-									return <Categories {...props} />;
-								}}
-							/>
-							<Route
-								path='/movie/:name'
-								render={(props) => {
-									this.scrollTop();
-									return <Detail {...props} />;
-								}}
-							/>
-							<Route
-								path='/search'
-								render={(props) => {
-									this.scrollTop();
-									return <Search {...props} />;
-								}}
-							/>
-						</Switch>
-						{this.props.location.pathname === '/' || <Footer />}
-					</div>
-				</Switch>
+				<Route
+					exact
+					path='/login'
+					render={(props) => {
+						this.scrollTop();
+						return <Login {...props} />;
+					}}
+				/>
+				<Route
+					exact
+					path='/signup'
+					render={(props) => {
+						this.scrollTop();
+						return <SignUp {...props} />;
+					}}
+				/>
+				<div style={{ width: '100%', overflowX: 'hidden' }}>
+					{this.props.location.pathname !== '/login' &&
+					this.props.location.pathname !== '/signup' && <Header />}
+
+					<Switch>
+						<Route
+							exact
+							path='/'
+							render={(props) => {
+								this.scrollTop();
+								return <Home {...props} />;
+							}}
+						/>
+						<Route
+							exact
+							path='/categories'
+							render={(props) => {
+								this.scrollTop();
+								return <Categories {...props} />;
+							}}
+						/>
+						<Route
+							path='/movie/:name'
+							render={(props) => {
+								this.scrollTop();
+								return <Detail {...props} />;
+							}}
+						/>
+						<Route
+							path='/search'
+							render={(props) => {
+								this.scrollTop();
+								return <Search {...props} />;
+							}}
+						/>
+					</Switch>
+					{this.props.location.pathname !== '/' &&
+					this.props.location.pathname !== '/login' &&
+					this.props.location.pathname !== '/signup' && <Footer />}
+				</div>
 			</div>
 		);
 	}
