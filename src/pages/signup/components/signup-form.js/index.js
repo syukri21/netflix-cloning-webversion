@@ -1,6 +1,6 @@
 import React from 'react';
 import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
-import { Face, Fingerprint, Mail, Lock } from '@material-ui/icons';
+import { Face, Mail, Lock } from '@material-ui/icons';
 import { Link, withRouter } from 'react-router-dom';
 import validator from 'validator';
 import { connect } from 'react-redux';
