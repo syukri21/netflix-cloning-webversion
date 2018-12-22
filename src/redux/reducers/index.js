@@ -5,6 +5,7 @@ import trendingReducer from './trendingReducer';
 import popularReducer from './popularReducer';
 import featuredReducer from './featuredReducer';
 import searchReducer from './searchReducer';
+import userReducer from './userReducer';
 
 const reducers = combineReducers({
 	categoryReducer,
@@ -12,7 +13,8 @@ const reducers = combineReducers({
 	trendingReducer,
 	popularReducer,
 	featuredReducer,
-	searchReducer
+	searchReducer,
+	userReducer
 });
 
 export default reducers;

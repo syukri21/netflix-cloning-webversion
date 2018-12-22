@@ -23,7 +23,8 @@
     "redux": "^4.0.1",
     "redux-promise-middleware": "^5.1.1",
     "slick-carousel": "^1.8.1",
-    "typeface-roboto": "^0.0.54"
+    "typeface-roboto": "^0.0.54",
+    "validator": "^10.9.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -164,16 +164,13 @@ class Header extends React.Component {
 							</div>
 							<div className={classes.grow} />
 							<div className={classes.sectionDesktop}>
-								<IconButton color='inherit'>
-									<Badge badgeContent={4} color='secondary'>
-										<MailIcon />
-									</Badge>
-								</IconButton>
-								<IconButton color='inherit'>
-									<Badge badgeContent={17} color='secondary'>
-										<NotificationsIcon />
-									</Badge>
-								</IconButton>
+								<div style={{ display: 'flex', alignItems: 'center' }}>
+									<Link to='/login'>
+										<Button color='secondary' variant='contained'>
+											Login
+										</Button>
+									</Link>
+								</div>
 								<IconButton
 									aria-owns={isMenuOpen ? 'material-appbar' : undefined}
 									aria-haspopup='true'

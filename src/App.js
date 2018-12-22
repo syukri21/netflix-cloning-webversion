@@ -8,7 +8,8 @@ import Home from './pages/home/';
 import Categories from './pages/categories';
 import Detail from './pages/detail';
 import Search from './pages/search';
-
+import Login from './pages/login';
+import SignUp from './pages/signup';
 class App extends React.Component {
 	scrollTop = () =>
 		window.scrollTo({
@@ -18,41 +19,61 @@ class App extends React.Component {
 		});
 	render() {
 		return (
-			<div style={{ width: '100%', overflowX: 'hidden' }}>
-				<Header />
+			<div>
 				<Switch>
 					<Route
 						exact
-						path='/'
+						path='/login'
 						render={(props) => {
 							this.scrollTop();
-							return <Home {...props} />;
+							return <Login {...props} />;
 						}}
 					/>
 					<Route
 						exact
-						path='/categories'
+						path='/signup'
 						render={(props) => {
 							this.scrollTop();
-							return <Categories {...props} />;
+							return <SignUp {...props} />;
 						}}
 					/>
-					<Route
-						path='/movie/:name'
-						render={(props) => {
-							this.scrollTop();
-							return <Detail {...props} />;
-						}}
-					/>
-					<Route
-						path='/search'
-						render={(props) => {
-							this.scrollTop();
-							return <Search {...props} />;
-						}}
-					/>
+					<div style={{ width: '100%', overflowX: 'hidden' }}>
+						<Header />
+						<Switch>
+							<Route
+								exact
+								path='/'
+								render={(props) => {
+									this.scrollTop();
+									return <Home {...props} />;
+								}}
+							/>
+							<Route
+								exact
+								path='/categories'
+								render={(props) => {
+									this.scrollTop();
+									return <Categories {...props} />;
+								}}
+							/>
+							<Route
+								path='/movie/:name'
+								render={(props) => {
+									this.scrollTop();
+									return <Detail {...props} />;
+								}}
+							/>
+							<Route
+								path='/search'
+								render={(props) => {
+									this.scrollTop();
+									return <Search {...props} />;
+								}}
+							/>
+						</Switch>
+						{this.props.location.pathname === '/' || <Footer />}
+					</div>
 				</Switch>
-				{this.props.location.pathname === '/' || <Footer />}
 			</div>
 		);
 	}
