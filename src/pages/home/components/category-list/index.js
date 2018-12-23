@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, withTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
@@ -35,7 +35,7 @@ class CategoryList extends React.Component {
 				id: item
 			}
 		});
-		this.scrollToTop(this.offsetTop);
+		this.scrollToTop(this.element);
 	};
 
 	componentDidMount() {
@@ -43,9 +43,11 @@ class CategoryList extends React.Component {
 		this.props.dispatch(GET_CATEGORY('Action', 30));
 	}
 
-	scrollToTop = (top) => {
+	scrollToTop = (element) => {
+		const offsetTop = findDOMNode(element) && findDOMNode(element).getBoundingClientRect().top;
+		const windowY = window.scrollY;
 		window.scrollTo({
-			top: top,
+			top: windowY + offsetTop - 100,
 			left: 0,
 			behavior: 'smooth'
 		});
@@ -53,24 +55,18 @@ class CategoryList extends React.Component {
 
 	renderListCategories = (classes) =>
 		this.props.categories.results.map((item, key) => (
-			<List
-				className={classes.root}
-				key={key}
-				style={{
-					backgroundColor: 'transparent'
-				}}
-			>
+			<List className={classes.root} key={key}>
 				<ListItem
 					button
 					onClick={this.handleClick(item.genre)}
 					style={{
 						background: this.isActive(item.genre)
-							? 'linear-gradient(to right , #F44336, #F4433655,  #0A0B0A)'
+							? `linear-gradient(to right , #F44336, #F4433655,  #0A0B0A)`
 							: '#0A0B0A00'
 					}}
 				>
 					<ListItemText color='red'>
-						<Typography style={{ color: 'white' }}>{item.genre}</Typography>
+						<Typography color='textPrimary'>{item.genre}</Typography>
 					</ListItemText>
 				</ListItem>
 			</List>
@@ -81,18 +77,16 @@ class CategoryList extends React.Component {
 		return this.renderListCategories(classes);
 	};
 
-	getRef = (ref) => {
-		this.offsetTop = findDOMNode(ref) && findDOMNode(ref).getBoundingClientRect().top + 600;
-	};
+	getRef = (ref) => (this.element = ref);
 
 	render() {
 		const { classes } = this.props;
 		const { categories } = this.state;
 		return (
-			<div ref={this.getRef}>
+			<div>
 				<Grid container>
 					<Grid item xs={12} sm={2}>
-						<Title>Categories</Title>
+						<Title ref={this.getRef}>Categories</Title>
 						{this.renderLoadingListCategories(classes)}
 					</Grid>
 					<Grid item xs={12} sm={10}>
@@ -109,5 +103,6 @@ const mapStateToProps = (state) => ({
 });
 
 const withConnect = withStyles(styles)(CategoryList);
+const withThemeCategoryList = withTheme()(withConnect);
 
-export default connect(mapStateToProps)(withConnect);
+export default connect(mapStateToProps)(withThemeCategoryList);

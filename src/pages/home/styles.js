@@ -14,6 +14,16 @@ export const styles = (theme) => {
 			gridGap: '80px',
 			marginTop: '580px',
 			overflowX: 'hidden'
+		},
+		categoryList: {
+			width: '100%'
+		},
+		containerHomeContent: {
+			display: 'flex',
+			padding: '20px',
+			justifyContent: 'center',
+			alignItems: 'center',
+			flexDirection: 'column'
 		}
 	};
 };
