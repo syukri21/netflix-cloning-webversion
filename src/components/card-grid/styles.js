@@ -42,7 +42,10 @@ export const styles = (theme) => ({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-		height: '100px'
+		height: '100px',
+		minWidth: '100%',
+		bottom: 0,
+		position: 'absolute'
 	},
 	collaps: {
 		minWidth: '100%',
