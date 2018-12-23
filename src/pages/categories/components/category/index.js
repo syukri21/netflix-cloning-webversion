@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { GET_CATEGORY } from '../../../../redux/actions/category';
 
 import { styles } from './styles';
-import CardList from '../../../../components/cardlist';
+import CardList from '../../../../components/card-grid';
 import { Animate } from 'react-simple-animate';
 
 const props = {

@@ -35,5 +35,18 @@ export const styles = (theme) => ({
 		width: '100%',
 		color: 'white',
 		alignItems: 'baseline'
+	},
+	collapsRoot: {
+		background: '#0A0B0A88',
+		width: '100%',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		height: '100px'
+	},
+	collaps: {
+		minWidth: '100%',
+		bottom: 0,
+		position: 'absolute'
 	}
 });

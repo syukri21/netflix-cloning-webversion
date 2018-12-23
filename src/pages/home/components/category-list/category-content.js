@@ -4,7 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import { Animate } from 'react-simple-animate';
 
 import { styles } from './category-content-styles';
-import CardList from '../../../../components/cardlist';
+import CardList from '../../../../components/card-grid';
 import Title from '../../../../components/title/';
 
 const props = {

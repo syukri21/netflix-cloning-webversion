@@ -1,5 +1,10 @@
 export const styles = (theme) => {
 	return {
+		root: {
+			display: 'flex',
+			flexDirection: 'column',
+			width: '100%'
+		},
 		item: {
 			display: 'flex',
 			flexDirection: 'row',
@@ -30,6 +35,29 @@ export const styles = (theme) => {
 		arrowIcon: {
 			fontSize: 100,
 			color: theme.palette.text.primary
+		},
+		flexStart: {
+			alignSelf: 'flex-start'
+		},
+		center: {
+			alignSelf: 'center'
+		},
+		showAllButton: {
+			width: '100px',
+			alignSelf: 'center',
+			margin: 'auto',
+			marginTop: 10,
+			marginLeft: 20
+		},
+		showAllTextButton: {
+			color: theme.palette.text.primary,
+			fontSize: 10
+		},
+		horizontalListContainer: {
+			display: 'flex',
+			position: 'relative',
+			alignItems: 'center',
+			justifyContent: 'center'
 		}
 	};
 };

@@ -54,7 +54,7 @@ class CardList extends React.Component {
 				<CardHeader
 					color='secondary'
 					title={
-						<Typography variant='caption' style={{ color: 'white' }}>
+						<Typography variant='caption' color='textPrimary'>
 							{item.title}
 						</Typography>
 					}
@@ -80,26 +80,8 @@ class CardList extends React.Component {
 						<ExpandMoreIcon />
 					</IconButton>
 				</CardActions>
-				<Collapse
-					in={this.state.expanded}
-					timeout='auto'
-					unmountOnExit
-					style={{
-						minWidth: '100%',
-						bottom: 0,
-						position: 'absolute'
-					}}
-				>
-					<div
-						style={{
-							background: '#0A0B0A88',
-							width: '100%',
-							display: 'flex',
-							justifyContent: 'center',
-							alignItems: 'center',
-							height: '100px'
-						}}
-					>
+				<Collapse in={this.state.expanded} timeout='auto' unmountOnExit className={classes.collapse}>
+					<div className={classes.collapsRoot}>
 						<Link
 							to={{
 								pathname: `/movie/${title}`,

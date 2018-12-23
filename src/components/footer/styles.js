@@ -22,5 +22,13 @@ export const styles = (theme) => ({
 		':& button': {
 			height: 50
 		}
+	},
+	logo: {
+		color: 'white',
+		transform: 'translateY(-50px)'
+	},
+	button: {
+		color: theme.palette.text.primary,
+		height: 50
 	}
 });

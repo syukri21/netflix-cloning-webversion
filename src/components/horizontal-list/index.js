@@ -25,6 +25,9 @@ class NewReleases extends React.Component {
 		counter: 0
 	};
 
+	next = () => this.slide.slickNext();
+	prev = () => this.slide.slickPrev();
+
 	renderLoading(classes) {
 		var settings = {
 			dots: true,
@@ -33,57 +36,39 @@ class NewReleases extends React.Component {
 			focusOnSelect: true,
 			afterChange: this.getIndexCenter,
 			slidesToShow: this.getSideToShow(),
-			slidesToScroll: 5
+			slidesToScroll: this.getSideToShow()
 		};
+
 		if (this.state.counter < 2)
 			return (
-				<div style={{ alignSelf: 'center' }}>
+				<div className={classes.center}>
 					<CircularProgress color='secondary' />;
 				</div>
 			);
-		if (this.state.counter >= 2)
-			return (
-				<div
-					style={{
-						display: 'flex',
-						position: 'relative',
-						alignItems: 'center',
-						justifyContent: 'center'
-					}}
+
+		return (
+			<div className={classes.horizontalListContainer}>
+				<Fab size='small' variant='extended' color='secondary' className={classes.arrow} onClick={this.prev}>
+					<Icon className={classes.arrowIcon}>arrow_left</Icon>
+				</Fab>
+
+				<Slider
+					{...settings}
+					className={classes.item}
+					arrows={false}
+					ref={(ref) => (this.slide = ref)}
+					adaptiveHeight={true}
 				>
-					<Fab
-						size='small'
-						variant='extended'
-						color='secondary'
-						className={classes.arrow}
-						onClick={() => this.slide.slickPrev()}
-					>
-						<Icon className={classes.arrowIcon}>arrow_left</Icon>
-					</Fab>
+					{_.uniqBy(this.props.data.results, 'title').map((item, key) => (
+						<CardHorizontal item={item} key={key} />
+					))}
+				</Slider>
 
-					<Slider
-						{...settings}
-						className={classes.item}
-						arrows={false}
-						ref={(ref) => (this.slide = ref)}
-						adaptiveHeight={true}
-					>
-						{_.uniqBy(this.props.data.results, 'title').map((item, key) => (
-							<CardHorizontal item={item} key={key} />
-						))}
-					</Slider>
-
-					<Fab
-						size='small'
-						variant='extended'
-						className={classes.arrow}
-						color='secondary'
-						onClick={() => this.slide.slickNext()}
-					>
-						<Icon className={classes.arrowIcon}>arrow_right</Icon>
-					</Fab>
-				</div>
-			);
+				<Fab size='small' variant='extended' className={classes.arrow} color='secondary' onClick={this.next}>
+					<Icon className={classes.arrowIcon}>arrow_right</Icon>
+				</Fab>
+			</div>
+		);
 	}
 
 	componentDidMount() {
@@ -117,20 +102,10 @@ class NewReleases extends React.Component {
 	};
 
 	renderShowAll = () => {
+		const { classes } = this.props;
 		return (
-			<Fab
-				variant='extended'
-				size='small'
-				color='secondary'
-				style={{
-					width: '100px',
-					alignSelf: 'center',
-					margin: 'auto',
-					marginTop: 10,
-					marginLeft: 20
-				}}
-			>
-				<Typography variant='caption' style={{ color: 'white', fontSize: 10 }}>
+			<Fab variant='extended' size='small' color='secondary' className={classes.showAllButton}>
+				<Typography variant='caption' className={classes.showAllTextButton}>
 					Show All
 				</Typography>
 			</Fab>
@@ -144,10 +119,9 @@ class NewReleases extends React.Component {
 
 	render() {
 		const { classes } = this.props;
-
 		return (
-			<div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-				<div style={{ alignSelf: 'flex-start' }}>
+			<div className={classes.root}>
+				<div className={classes.flexStart}>
 					<Title>{this.props.title}</Title>
 				</div>
 				{this.renderLoading(classes)}
@@ -159,6 +133,4 @@ class NewReleases extends React.Component {
 const withWidthNewReleases = withWidth()(NewReleases);
 const withStylesNewReleases = withStyles(styles)(withWidthNewReleases);
 
-const mapStateToProps = (state) => ({});
-
-export default connect(mapStateToProps)(withStylesNewReleases);
+export default connect()(withStylesNewReleases);

@@ -6,7 +6,7 @@ const initialState = {
 	isError: false
 };
 
-export default function trendingReducer(state = initialState, action) {
+export default function userReducer(state = initialState, action) {
 	switch (action.type) {
 		case 'USER_REGISTER_PENDING':
 			return { ...state, isLoading: true, isError: false };

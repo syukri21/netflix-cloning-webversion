@@ -1,6 +1,9 @@
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
 export const styles = (theme) => ({
+	appBarBackground: {
+		backgroundColor: '#14141488'
+	},
 	root: {
 		width: '100%'
 	},

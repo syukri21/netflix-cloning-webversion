@@ -138,7 +138,7 @@ class Header extends React.Component {
 						}
 					]}
 				>
-					<AppBar position={sticky ? 'static' : 'fixed'} style={{ backgroundColor: '#14141488' }}>
+					<AppBar position={sticky ? 'static' : 'fixed'} className={classes.appBarBackground}>
 						<Toolbar>
 							<Link to='/'>
 								<Button variant='contained' color='primary' className={classNames(classes.left)}>
