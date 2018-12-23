@@ -21,6 +21,7 @@ import axios from 'axios';
 import { ip } from '../../configip';
 
 import { styles } from './styles';
+import { Typography } from '@material-ui/core';
 
 class Header extends React.Component {
 	state = {
@@ -37,7 +38,12 @@ class Header extends React.Component {
 		this.setState({ anchorEl: event.currentTarget });
 	};
 
-	handleMenuClose = async () => {
+	handleMenuClose = () => {
+		this.setState({ anchorEl: null });
+		this.handleMobileMenuClose();
+	};
+
+	handleLogOut = async () => {
 		if (sessionStorage.getItem('token')) {
 			console.log(
 				"​Header -> handleMenuClose -> sessionStorage.getItem('token')",
@@ -51,8 +57,7 @@ class Header extends React.Component {
 				isLogin: false
 			});
 		}
-		this.setState({ anchorEl: null });
-		this.handleMobileMenuClose();
+		this.handleMenuClose();
 	};
 
 	handleMobileMenuOpen = (event) => {
@@ -72,7 +77,9 @@ class Header extends React.Component {
 				open={isMenuOpen}
 				onClose={this.handleMenuClose}
 			>
-				<MenuItem onClick={this.handleMenuClose}>Logout</MenuItem>
+				<MenuItem onClick={this.handleLogOut}>
+					<Typography color='primary'>Logout</Typography>
+				</MenuItem>
 			</Menu>
 		);
 	};
@@ -133,7 +140,7 @@ class Header extends React.Component {
 					triggers={[
 						{
 							top: 0,
-							bottom: -0,
+							bottom: 0,
 							callback: (visible) => this.setSticky(visible)
 						}
 					]}

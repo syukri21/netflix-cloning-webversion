@@ -11,6 +11,21 @@ export const styles = (theme) => ({
 	roots: {
 		display: 'flex',
 		justifyContent: 'center'
+	},
+	movieRoot: {
+		position: 'relative',
+		zIndex: 100,
+		minHeight: 'calc(100vh - 50px)',
+		padding: '70px 10px 10px 10px',
+		width: '100%'
+	},
+	categoriesRoot: {
+		marginRight: 20,
+		borderRadius: 10,
+		border: '2px solid #F44336'
+	},
+	black: {
+		color: 'black	'
 	}
 });
 

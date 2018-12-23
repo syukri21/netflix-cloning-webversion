@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
+import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
 import { connect } from 'react-redux';
 import { ALL_CATEGORIES, GET_CATEGORY } from '../../../../redux/actions/category';
@@ -62,8 +63,10 @@ class SelectCategories extends React.Component {
 						}}
 					>
 						{validCat.map((item, key) => (
-							<MenuItem value={item.genre} key={key}>
-								{item.genre}
+							<MenuItem value={item.genre} key={key} color='secondary'>
+								<Typography color={this.state.open ? 'primary' : 'textPrimary'}>
+									{item.genre}
+								</Typography>
 							</MenuItem>
 						))}
 					</Select>

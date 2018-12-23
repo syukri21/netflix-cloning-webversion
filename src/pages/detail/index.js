@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import _ from 'lodash';
 import { Redirect } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -8,8 +7,6 @@ import { Typography } from '@material-ui/core';
 import Chip from '@material-ui/core/Chip';
 import { connect } from 'react-redux';
 
-import Series from './components/series';
-import { data } from '../../dummy-data';
 import BottomTab from './components/bottom-tab';
 import Video from './components/video';
 import Related from './components/bottom-list';
@@ -45,34 +42,17 @@ class Detail extends React.Component {
 		this.props.dispatch(GET_MOVIE(this.state.query.id));
 	}
 
-	renderCategoryList = () => (
-		<Button
-			variant='outlined'
-			style={{
-				marginRight: 20,
-				borderRadius: 10,
-				border: '2px solid #F44336'
-			}}
-		>
+	renderCategoryList = (classes) => (
+		<Button variant='outlined' className={classes.categoriesRoot}>
 			<Typography variant='caption' style={{ color: '#F44336' }}>
 				{this.props.movie.data[0].genre}
 			</Typography>
 		</Button>
 	);
 
-	renderMovie = () => {
+	renderMovie = (classes) => {
 		return (
-			<Grid
-				container
-				style={{
-					position: 'relative',
-					zIndex: 100,
-					minHeight: 'calc(100vh - 50px)',
-					padding: '70px 10px 10px 10px',
-					width: '100%'
-				}}
-				spacing={24}
-			>
+			<Grid container className={classes.movieRoot} spacing={24}>
 				<Grid item xs={12} sm={4}>
 					<Typography gutterBottom variant='h4' style={{ color: '#F44336' }}>
 						{this.props.movie.data[0] && this.props.movie.data[0].title}
@@ -86,7 +66,7 @@ class Detail extends React.Component {
 					<Typography gutterBottom paragraph variant='caption' style={{ color: 'white' }}>
 						{this.props.movie.data[0] && this.props.movie.data[0].sinopsis}
 					</Typography>
-					{this.props.movie.data[0] && this.renderCategoryList()}
+					{this.props.movie.data[0] && this.renderCategoryList(classes)}
 				</Grid>
 				<Grid
 					item
@@ -139,7 +119,7 @@ class Detail extends React.Component {
 					}}
 				/>
 				<div className={classes.backgroundLinear} />
-				<div>{this.renderMovie()}</div>
+				<div>{this.renderMovie(classes)}</div>
 				<div className={classes.roots}>{this.renderSlide()}</div>
 				<Grid container style={{ display: 'flex', position: 'relative', zIndex: 200 }}>
 					<BottomTab getRenderState={this.getRenderState} />

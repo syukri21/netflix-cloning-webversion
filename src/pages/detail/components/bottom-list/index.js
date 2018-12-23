@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 import { styles } from './styles';
 import HorizontalList from '../../../../components/horizontal-list';
-import { GET_CATEGORY } from '../../../../redux/actions/category';
 
 class Related extends React.Component {
 	componentDidMount() {
