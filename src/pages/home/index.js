@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import Jumbotorn from './components/jumbotron';
+import Jumbotorn from './components/jumbotron/';
 import CategoryList from './components/category-list/';
 import HorizontalList from '../../components/horizontal-list';
 import Footer from '../../components/footer';

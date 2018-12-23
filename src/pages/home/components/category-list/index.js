@@ -11,9 +11,9 @@ import { findDOMNode } from 'react-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import { styles } from './index-style';
+import { styles } from './styles';
 import Title from '../../../../components/title';
-import CategoryContent from './category-content';
+import GridList from '../../../../components/grid-list';
 
 class CategoryList extends React.Component {
 	state = {
@@ -90,7 +90,7 @@ class CategoryList extends React.Component {
 						{this.renderLoadingListCategories(classes)}
 					</Grid>
 					<Grid item xs={12} sm={10}>
-						<CategoryContent data={this.props.categories.data} categories={categories} />
+						<GridList data={this.props.categories.data} categories={categories} />
 					</Grid>
 				</Grid>
 			</div>

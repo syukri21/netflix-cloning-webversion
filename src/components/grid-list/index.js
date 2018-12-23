@@ -3,9 +3,9 @@ import { withStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
 import { Animate } from 'react-simple-animate';
 
-import { styles } from './category-content-styles';
-import CardList from '../../../../components/card-grid';
-import Title from '../../../../components/title/';
+import { styles } from './styles';
+import CardGrid from '../card-grid';
+import Title from '../title';
 
 const props = {
 	startStyle: {
@@ -37,7 +37,7 @@ class CategoryContent extends React.Component {
 							{...props}
 							key={key}
 							render={({ style }) => {
-								return <CardList item={item} key={key} styles={style} />;
+								return <CardGrid item={item} key={key} styles={style} />;
 							}}
 						/>
 					))}

@@ -5,21 +5,23 @@ import { Redirect } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
-import { GET_MOVIE } from '../../redux/actions/movie';
-import { connect } from 'react-redux';
-import Video from './components/video';
-import BottomTab from './components/bottom-tab';
-import Related from './components/related';
-import Series from './components/series';
 import Chip from '@material-ui/core/Chip';
-import { styles, styled } from './style';
+import { connect } from 'react-redux';
+
+import Series from './components/series';
 import { data } from '../../dummy-data';
+import BottomTab from './components/bottom-tab';
+import Video from './components/video';
+import Related from './components/bottom-list';
+import { GET_MOVIE } from '../../redux/actions/movie';
+import { styles, styled } from './style';
+import { ALL_POPULARS } from '../../redux/actions/popular';
+import { GET_CATEGORY } from '../../redux/actions/category';
 
 class Detail extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			movie: null,
 			renderStatus: 0,
 			query: props.location.query || null
 		};
@@ -41,11 +43,6 @@ class Detail extends React.Component {
 	componentDidMount() {
 		if (!this.state.query) return;
 		this.props.dispatch(GET_MOVIE(this.state.query.id));
-		const results = _.find(data.movies, (e) => e.id === this.state.query.id);
-
-		this.setState({
-			movie: results
-		});
 	}
 
 	renderCategoryList = () => (
@@ -106,12 +103,19 @@ class Detail extends React.Component {
 		);
 	};
 
-	renderMain = () => {
+	renderSlide = () => {
 		if (this.state.renderStatus === 0) {
-			return <Series />;
+			return <Related type='Popular' action={ALL_POPULARS} />;
 		}
 		if (this.state.renderStatus === 1) {
-			return <Related category={this.props.movie.data[0] && this.props.movie.data[0].genre} />;
+			return (
+				<Related
+					type='Related'
+					data={this.props.movie.data[0] && this.props.movie.data[0].genre}
+					limit={10}
+					action={GET_CATEGORY}
+				/>
+			);
 		}
 	};
 
@@ -136,7 +140,7 @@ class Detail extends React.Component {
 				/>
 				<div className={classes.backgroundLinear} />
 				<div>{this.renderMovie()}</div>
-				<div className={classes.roots}>{this.renderMain()}</div>
+				<div className={classes.roots}>{this.renderSlide()}</div>
 				<Grid container style={{ display: 'flex', position: 'relative', zIndex: 200 }}>
 					<BottomTab getRenderState={this.getRenderState} />
 				</Grid>
