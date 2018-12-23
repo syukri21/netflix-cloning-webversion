@@ -12,7 +12,6 @@ export const styles = (theme) => {
 			margin: 'auto',
 			justifyContent: 'center',
 			alignItems: 'center',
-
 			// Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
 			'& button': {
 				display: 'flex'

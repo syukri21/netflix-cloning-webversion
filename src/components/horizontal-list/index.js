@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
@@ -22,19 +23,26 @@ class NewReleases extends React.Component {
 		middle: null,
 		isDone: false,
 		check: false,
-		counter: 0
+		counter: 0,
+		hover: false,
+		hoverKey: -1
 	};
 
 	next = () => this.slide.slickNext();
 	prev = () => this.slide.slickPrev();
 
+	getSliderRef = (ref) => (this.slide = ref);
+
+	handleMouseEnter = () => this.setState({ hover: true });
+	handleMouseLeave = () => this.setState({ hover: false });
+
 	renderLoading(classes) {
 		var settings = {
 			dots: true,
-			infinite: true,
+			infinite: false,
 			speed: 300,
-			focusOnSelect: true,
 			afterChange: this.getIndexCenter,
+			variableWidth: true,
 			slidesToShow: this.getSideToShow(),
 			slidesToScroll: this.getSideToShow()
 		};
@@ -45,25 +53,34 @@ class NewReleases extends React.Component {
 					<CircularProgress color='secondary' />;
 				</div>
 			);
-
 		return (
 			<div className={classes.horizontalListContainer}>
 				<Fab size='small' variant='extended' color='secondary' className={classes.arrow} onClick={this.prev}>
 					<Icon className={classes.arrowIcon}>arrow_left</Icon>
 				</Fab>
-
-				<Slider
-					{...settings}
-					className={classes.item}
-					arrows={false}
-					ref={(ref) => (this.slide = ref)}
-					adaptiveHeight={true}
-				>
-					{_.uniqBy(this.props.data.results, 'title').map((item, key) => (
-						<CardHorizontal item={item} key={key} />
-					))}
-				</Slider>
-
+				<div>
+					<Slider
+						{...settings}
+						className={classes.item}
+						arrows={false}
+						ref={this.getSliderRef}
+						adaptiveHeight={true}
+					>
+						{_.uniqBy(this.props.data.results, 'title').map((item, key) => (
+							<div onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} key={key}>
+								<CardHorizontal
+									hover={this.state.hover}
+									style={{ overflow: 'visible' }}
+									item={item}
+									theKey={key}
+									key={key}
+									hoverKey={this.state.hoverKey}
+									getHoverKey={(key) => this.setState({ hoverKey: key })}
+								/>
+							</div>
+						))}
+					</Slider>
+				</div>
 				<Fab size='small' variant='extended' className={classes.arrow} color='secondary' onClick={this.next}>
 					<Icon className={classes.arrowIcon}>arrow_right</Icon>
 				</Fab>

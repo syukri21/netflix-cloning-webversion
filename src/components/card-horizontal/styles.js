@@ -2,21 +2,21 @@ import red from '@material-ui/core/colors/red';
 
 export const styles = (theme) => ({
 	card: {
+		width: 250,
 		borderRadius: 0,
+		height: 300,
 		position: 'relative',
 		marginLeft: 10,
 		display: 'flex',
 		flexDirection: 'column',
 		cursor: 'pointer',
-		transition: ' 0.3s ease-in-out',
-		'&:hover': {
-			transform: 'scale(1.1)',
-			transition: ' 0.3s ease-in-out'
-		}
+		transition: ' 300ms ease-in-out',
+		transitionDelay: '0.4s',
+		transform: 'scaleY(0.7)'
 	},
 	actions: {
 		display: 'flex',
-		background: 'linear-gradient(to bottom	, #0A0B0A00, #0A0B0A)',
+		// background: 'linear-gradient(to bottom	, #0A0B0A00, #0A0B0A)',
 		width: '100%',
 		alignSelf: 'flex-end'
 	},
@@ -39,7 +39,7 @@ export const styles = (theme) => ({
 	},
 	header: {
 		height: '150px',
-		background: 'linear-gradient(to top	, #0A0B0A00, #0A0B0A)',
+		// background: 'linear-gradient(to top	, #0A0B0A00, #0A0B0A)',
 		width: '100%',
 		color: 'white',
 		alignItems: 'baseline'

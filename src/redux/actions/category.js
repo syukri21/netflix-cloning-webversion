@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ip } from '../../configip';
+
 export function ALL_CATEGORIES() {
 	return {
 		type: 'ALL_CATEGORIES',

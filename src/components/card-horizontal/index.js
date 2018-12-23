@@ -12,6 +12,8 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Link } from 'react-router-dom';
+import Fade from '@material-ui/core/Fade';
+import _ from 'lodash';
 
 import { styles } from './styles';
 class CardHorizontal extends React.Component {
@@ -21,15 +23,57 @@ class CardHorizontal extends React.Component {
 		this.setState((state) => ({ expanded: !state.expanded }));
 	};
 
-	closeExpand = () =>
+	closeExpand = () => {
+		this.props.getHoverKey(-1);
 		this.setState({
 			expanded: false
 		});
+	};
 
-	openExpand = () =>
+	openExpand = () => {
+		this.props.getHoverKey(this.props.theKey);
 		this.setState({
 			expanded: true
 		});
+	};
+
+	styleWhileHover = () => {
+		if (this.state.expanded) {
+			if (this.props.hoverKey === 0 || this.props.hoverKey % 5 === 0)
+				return {
+					transform: 'translate3d(50px, 0, 0) scaleX(1.5) scaleY(1) '
+				};
+			if ((this.props.hoverKey + 1) % 5 === 0)
+				return {
+					transform: 'translate3d(-160px, 0, 0) scaleX(1.5) scaleY(1) '
+				};
+			return {
+				transform: 'scaleX(1.7) scaleY(1)'
+			};
+		}
+		if (this.props.hover) {
+			if (this.props.hoverKey === 0 || this.props.hoverKey % 5 === 0) {
+				if (this.props.hoverKey < this.props.theKey)
+					return {
+						transform: 'translate3d(110px, 0, 0) scaleY(0.7) '
+					};
+			}
+			if ((this.props.hoverKey + 1) % 5 === 0) {
+				if (this.props.hoverKey > this.props.theKey)
+					return {
+						transform: 'translate3d(-220px, 0, 0) scaleY(0.7) '
+					};
+			}
+
+			if (this.props.hoverKey < this.props.theKey)
+				return {
+					transform: 'translate3d(80px, 0, 0) scaleY(0.7) '
+				};
+			return {
+				transform: 'translate3d(-80px, 0, 0)  scaleY(0.7)'
+			};
+		}
+	};
 
 	renderBackgroundLinear = () => (
 		<div
@@ -46,6 +90,8 @@ class CardHorizontal extends React.Component {
 
 	render() {
 		const { classes, item } = this.props;
+		console.log('​CardHorizontal -> render -> this.props;', this.props);
+
 		const title = item.title.replace(/\s+/g, '').toLowerCase();
 		return (
 			<div
@@ -55,14 +101,15 @@ class CardHorizontal extends React.Component {
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
 					display: 'relative',
-					position: 'relative'
+					position: 'relative',
+					...this.styleWhileHover()
 				}}
 				onMouseEnter={this.openExpand}
 				onMouseLeave={this.closeExpand}
 				key={item.id}
 			>
 				<div style={{ position: 'relative' }}>
-					<CardHeader
+					{/* <CardHeader
 						color='secondary'
 						title={
 							<Typography variant='subtitle1' style={{ color: 'white' }}>
@@ -71,9 +118,9 @@ class CardHorizontal extends React.Component {
 						}
 						subheader={<Chip variant='outlined' color='secondary' label={item.rating} />}
 						className={classes.header}
-					/>
+					/> */}
 
-					<CardActions className={classes.actions} disableActionSpacing>
+					{/* <CardActions className={classes.actions} disableActionSpacing>
 						<Chip label={item.genre} className={classes.avatar} />
 						<IconButton
 							className={classnames(classes.expand, {
@@ -86,44 +133,69 @@ class CardHorizontal extends React.Component {
 						>
 							<ExpandMoreIcon />
 						</IconButton>
-					</CardActions>
-					<Grow
-						in={this.state.expanded}
-						timeout='auto'
-						unmountOnExit
-						style={{
-							minWidth: '100%',
-							top: 50,
-							bottom: 50,
-							position: 'absolute'
+					</CardActions> */}
+				</div>
+				<Fade
+					in={this.state.expanded}
+					unmountOnExit
+					mountOnEnter
+					style={{
+						top: 0,
+						bottom: 0,
+						right: 0,
+						left: 0,
+						position: 'absolute'
+					}}
+				>
+					<Link
+						to={{
+							pathname: `/movie/${title}`,
+							query: {
+								title: item.title,
+								id: item.id
+							}
 						}}
 					>
 						<div
 							style={{
-								background: '#0A0B0A88',
+								background: 'linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0.3))',
 								width: '100%',
 								display: 'flex',
 								justifyContent: 'center',
-								alignItems: 'center',
-								height: '100px'
+								flexDirection: 'column',
+								alignItems: 'flex-start',
+								boxSizing: 'border-box',
+								padding: '0 30px',
+								height: 300
 							}}
 						>
-							<Link
-								to={{
-									pathname: `/movie/${title}`,
-									query: {
-										title: item.title,
-										id: item.id
-									}
+							<div
+								style={{
+									width: 25,
+									height: 25,
+									borderRadius: 25,
+									border: '1px solid #F44336',
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									marginBottom: 5
 								}}
 							>
-								<Button color='secondary' variant='contained'>
-									<Icon>play_arrow</Icon>
-								</Button>
-							</Link>
+								<Icon color='secondary'>play_arrow</Icon>
+							</div>
+
+							<Typography variant='subtitle1' style={{ maxWidth: 150 }}>
+								{item.title}
+							</Typography>
+							<Typography variant='caption' style={{ maxWidth: 150, color: '#46D369' }}>
+								{item.rating}
+							</Typography>
+							<Typography variant='caption' style={{ maxWidth: 150 }}>
+								<span style={{ color: '#46D369' }}>Genre</span> : {item.genre}
+							</Typography>
 						</div>
-					</Grow>
-				</div>
+					</Link>
+				</Fade>
 			</div>
 		);
 	}

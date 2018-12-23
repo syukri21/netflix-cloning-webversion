@@ -29,19 +29,15 @@ const theme = createMuiTheme({
 	}
 });
 
-class Index extends React.Component {
-	render() {
-		return (
-			<BrowserRouter>
-				<Provider store={store}>
-					<MuiThemeProvider theme={theme}>
-						<CssBaseline />
-						<App />
-					</MuiThemeProvider>
-				</Provider>
-			</BrowserRouter>
-		);
-	}
-}
+const Index = () => (
+	<BrowserRouter>
+		<Provider store={store}>
+			<MuiThemeProvider theme={theme}>
+				<CssBaseline />
+				<App />
+			</MuiThemeProvider>
+		</Provider>
+	</BrowserRouter>
+);
 
 ReactDOM.render(<Index />, document.getElementById('root'));
