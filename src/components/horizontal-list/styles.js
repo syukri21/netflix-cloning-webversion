@@ -7,6 +7,7 @@ export const styles = (theme) => {
 			margin: 'auto',
 			justifyContent: 'center',
 			alignItems: 'center',
+
 			// Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
 			'& button': {
 				display: 'flex'
@@ -14,12 +15,21 @@ export const styles = (theme) => {
 		},
 		arrow: {
 			opacity: 0.1,
-			backgroundColor: '#0A0B0A44',
+			backgroundColor: theme.palette.secondary.main,
 			zIndex: 200,
 			width: 50,
 			height: '200px',
 			borderRadius: 0,
-			alignSelf: 'center'
+			alignSelf: 'center',
+			transistion: 'all 0.5s ease-in-out',
+			'&:hover': {
+				opacity: 0.8,
+				transistion: 'all 0.5s ease-in-out'
+			}
+		},
+		arrowIcon: {
+			fontSize: 100,
+			color: theme.palette.text.primary
 		}
 	};
 };

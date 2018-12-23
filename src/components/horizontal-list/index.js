@@ -31,10 +31,9 @@ class NewReleases extends React.Component {
 			infinite: true,
 			speed: 300,
 			focusOnSelect: true,
-			centerMode: true,
 			afterChange: this.getIndexCenter,
 			slidesToShow: this.getSideToShow(),
-			slidesToScroll: 1
+			slidesToScroll: 5
 		};
 		if (this.state.counter < 2)
 			return (
@@ -59,19 +58,18 @@ class NewReleases extends React.Component {
 						className={classes.arrow}
 						onClick={() => this.slide.slickPrev()}
 					>
-						<Icon style={{ fontSize: 100, color: 'white' }}>arrow_left</Icon>
+						<Icon className={classes.arrowIcon}>arrow_left</Icon>
 					</Fab>
 
 					<Slider
 						{...settings}
 						className={classes.item}
-						style={{ gridGap: 5 }}
 						arrows={false}
 						ref={(ref) => (this.slide = ref)}
 						adaptiveHeight={true}
 					>
 						{_.uniqBy(this.props.data.results, 'title').map((item, key) => (
-							<CardHorizontal item={item} key={key} isMiddle={this.isOddMidle(key)} />
+							<CardHorizontal item={item} key={key} />
 						))}
 					</Slider>
 
@@ -82,35 +80,28 @@ class NewReleases extends React.Component {
 						color='secondary'
 						onClick={() => this.slide.slickNext()}
 					>
-						<Icon style={{ fontSize: 100, color: 'white' }}>arrow_right</Icon>
+						<Icon className={classes.arrowIcon}>arrow_right</Icon>
 					</Fab>
 				</div>
 			);
 	}
 
 	componentDidMount() {
-		if (this.props.type === 'ALL_POPULARS') {
-			this.props.dispatch(ALL_POPULARS());
-		}
-
 		if (this.props.type === 'ALL_TRENDINGS') {
 			this.props.dispatch(ALL_TRENDINGS());
+		}
+		if (this.props.type === 'ALL_POPULARS') {
+			this.props.dispatch(ALL_POPULARS());
 		}
 	}
 
 	static getDerivedStateFromProps(nextProps, prevState) {
-		if (!nextProps.popular.isLoading && !nextProps.popular.isError) {
-			if (prevState > 5) {
+		if (!nextProps.data.isLoading && !nextProps.data.isError) {
+			if (prevState > 3) {
 				return;
 			}
 			return { counter: prevState.counter + 1 };
 		} else return null;
-	}
-
-	componentDidUpdate(prevProps, prevState) {
-		if (!this.props.data.isLoading && !this.props.data.isError && this.state.counter === 3) {
-			this.slide.slickGoTo(3, true);
-		}
 	}
 
 	getSideToShow = () => {
@@ -146,8 +137,6 @@ class NewReleases extends React.Component {
 		);
 	};
 
-	isOddMidle = (key) => this.state.middle !== key;
-
 	getIndexCenter = (val) =>
 		this.setState({
 			middle: val
@@ -170,8 +159,6 @@ class NewReleases extends React.Component {
 const withWidthNewReleases = withWidth()(NewReleases);
 const withStylesNewReleases = withStyles(styles)(withWidthNewReleases);
 
-const mapStateToProps = (state) => ({
-	popular: state.popularReducer
-});
+const mapStateToProps = (state) => ({});
 
 export default connect(mapStateToProps)(withStylesNewReleases);
