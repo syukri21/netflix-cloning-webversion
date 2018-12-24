@@ -25,8 +25,14 @@ class NewReleases extends React.Component {
 		check: false,
 		counter: 0,
 		hover: false,
-		hoverKey: -1
+		hoverKey: -1,
+		hasExpand: true
 	};
+
+	getHasExpand = (e) =>
+		this.setState({
+			hasExpand: e
+		});
 
 	next = () => this.slide.slickNext();
 	prev = () => this.slide.slickPrev();
@@ -53,6 +59,7 @@ class NewReleases extends React.Component {
 					<CircularProgress color='secondary' />;
 				</div>
 			);
+
 		return (
 			<div className={classes.horizontalListContainer}>
 				<Fab size='small' variant='extended' color='secondary' className={classes.arrow} onClick={this.prev}>
@@ -64,7 +71,7 @@ class NewReleases extends React.Component {
 						className={classes.item}
 						arrows={false}
 						ref={this.getSliderRef}
-						adaptiveHeight={true}
+						adaptiveHeight={false}
 					>
 						{_.uniqBy(this.props.data.results, 'title').map((item, key) => (
 							<div onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} key={key}>
@@ -76,6 +83,8 @@ class NewReleases extends React.Component {
 									key={key}
 									hoverKey={this.state.hoverKey}
 									getHoverKey={(key) => this.setState({ hoverKey: key })}
+									getHasExpand={this.getHasExpand}
+									hasExpand={this.state.hasExpand}
 								/>
 							</div>
 						))}

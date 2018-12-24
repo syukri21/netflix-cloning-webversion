@@ -15,6 +15,24 @@ export const styles = (theme) => {
 			// Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
 			'& button': {
 				display: 'flex'
+			},
+			'& .slick-list': {
+				display: 'flex',
+				alignItems: 'center'
+			},
+			'& .slick-slide': {
+				display: 'flex',
+				alignItems: 'center',
+				height: 200
+			},
+			'& .slick-slide > div': {
+				display: 'flex',
+				alignItems: 'center'
+			},
+			'& .slick-list .slick-track': {
+				height: 200,
+				display: 'flex',
+				alignItems: 'center'
 			}
 		},
 		arrow: {
