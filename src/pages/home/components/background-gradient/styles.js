@@ -1,6 +1,7 @@
 export const styles = (theme) => ({
 	gradient: {
-		background: 'linear-gradient( #03010299, #0B0B0A)',
+		background: `linear-gradient( ${theme.palette.secondary.main}66, ${theme.palette.primary.main}66, ${theme
+			.palette.primary.main})`,
 		zIndex: 50,
 		position: 'absolute',
 		top: 0,

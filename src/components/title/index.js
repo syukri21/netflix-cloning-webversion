@@ -9,7 +9,7 @@ const Title = ({ classes, variant, children, noLeft, theme }) => (
 		variant={variant || 'h4'}
 		className={classes.title}
 		style={{
-			borderLeft: noLeft || `10px solid ${theme.palette.secondary.main}`
+			borderLeft: noLeft || `4px solid ${theme.palette.secondary.dark}`
 		}}
 	>
 		{children}

@@ -14,10 +14,10 @@ import App from './app';
 const theme = createMuiTheme({
 	palette: {
 		primary: {
-			main: '#141414'
+			main: '#1E272E'
 		},
 		secondary: {
-			main: '#F44336'
+			main: '#E84393'
 		},
 		text: {
 			primary: '#fff',

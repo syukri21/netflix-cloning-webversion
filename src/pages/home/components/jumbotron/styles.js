@@ -2,12 +2,12 @@ export const styles = (theme) => {
 	return {
 		images: {
 			height: '580px',
-			objectFit: 'fill',
+			objectFit: 'fit',
 			position: 'absolute',
 			top: 0,
 			left: 0,
 			right: 0,
-			filter: 'blur(40px)'
+			filter: 'blur(20px)'
 		},
 		container: {
 			width: '100%',

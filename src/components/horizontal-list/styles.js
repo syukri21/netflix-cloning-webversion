@@ -36,17 +36,21 @@ export const styles = (theme) => {
 			}
 		},
 		arrow: {
-			opacity: 0.1,
-			backgroundColor: theme.palette.secondary.main,
+			opacity: 1,
+			// background: `linear-gradient(to bottom ,${theme.palette.primary.main}, ${theme.palette.secondary
+			// 	.main}5c, ${theme.palette.primary.main})`,
+			background: theme.palette.primary.main,
 			zIndex: 200,
 			width: 50,
 			height: '200px',
 			borderRadius: 0,
 			alignSelf: 'center',
 			transistion: 'all 0.5s ease-in-out',
+			boxShadow: 'none',
 			'&:hover': {
-				opacity: 0.8,
-				transistion: 'all 0.5s ease-in-out'
+				opacity: 1,
+				transistion: 'all 0.5s ease-in-out',
+				background: theme.palette.primary.main
 			}
 		},
 		arrowIcon: {

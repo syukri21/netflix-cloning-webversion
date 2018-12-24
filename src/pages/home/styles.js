@@ -9,7 +9,7 @@ export const styles = (theme) => {
 		categories: {
 			position: 'relative',
 			zIndex: 200,
-			background: '#0A0B0A',
+			background: theme.palette.primary.main,
 			display: 'grid',
 			gridGap: '80px',
 			marginTop: '580px',
