@@ -182,7 +182,7 @@ class Header extends React.Component {
 										<Button
 											color='secondary'
 											style={{ color: isLogin && 'white' }}
-											variant={isLogin || 'contained'}
+											variant={isLogin ? 'outlined' : 'contained'}
 										>
 											{isLogin ? this.props.user.user.username : 'login'}
 										</Button>

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, withTheme } from '@material-ui/core/styles';
 import { findDOMNode } from 'react-dom';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -19,6 +19,10 @@ class CardHorizontal extends React.Component {
 		this.setState((state) => ({ expanded: !state.expanded }));
 	};
 
+	handleButtonArrow = () => {
+		this.props.getFocus(this.props.item);
+	};
+
 	closeExpand = () => {
 		this.props.getHoverKey(-1);
 		this.setState({
@@ -33,9 +37,16 @@ class CardHorizontal extends React.Component {
 			expanded: true
 		});
 		this.props.getHasExpand(true);
+		if (this.props.hasFocus) {
+			this.props.getFocus(this.props.item);
+		}
 	};
 
 	styleWhileHover = () => {
+		if (this.props.hasFocus) {
+			return;
+		}
+
 		// slide  yang di hover
 		if (this.state.expanded) {
 			// ukur jarak dari kiri dan kanan
@@ -107,9 +118,103 @@ class CardHorizontal extends React.Component {
 		/>
 	);
 
-	render() {
-		const { classes, item } = this.props;
+	renderTitle = (title, item) => {
+		return (
+			<Link
+				to={{
+					pathname: `/movie/${title}`,
+					query: {
+						title: item.title,
+						id: item.id
+					}
+				}}
+				style={{
+					position: 'absolute',
+					top: 0,
+					left: 0,
+					right: 0,
+					bottom: 0,
+					zIndex: '10',
+					margin: 'auto',
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+					textAlign: 'center',
+					transition: 'all 0.5s ease',
+					padding: 10
+				}}
+			>
+				<Typography style={{ textAlign: 'center' }} variant='subtitle1'>
+					{item.title}
+				</Typography>
+			</Link>
+		);
+	};
 
+	renderFade = (item, classes, title) => {
+		return (
+			<Fade
+				in={this.state.expanded}
+				timeout={{
+					enter: 1200,
+					exit: 1200
+				}}
+				unmountOnExit
+				mountOnEnter
+				className={classes.item}
+			>
+				<div>
+					<Link
+						to={{
+							pathname: `/movie/${title}`,
+							query: {
+								title: item.title,
+								id: item.id
+							}
+						}}
+						className={classes.absolute}
+						style={{ zIndex: -10 }}
+					/>
+					<div className={classes.info}>
+						<Link
+							to={{
+								pathname: `/movie/${title}`,
+								query: {
+									title: item.title,
+									id: item.id
+								}
+							}}
+							style={{
+								width: 25,
+								height: 25,
+								borderRadius: 25,
+								border: '1px solid #F44336',
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+								marginBottom: 5
+							}}
+						>
+							<Icon color='secondary'>play_arrow</Icon>
+						</Link>
+						<Typography variant='body1'>{item.title}</Typography>
+						<Typography variant='caption' style={{ color: '#46D369' }}>
+							{item.rating}
+						</Typography>
+						<Typography variant='caption'>
+							<span style={{ color: '#46D369' }}>Genre</span> : {item.genre}
+						</Typography>
+						<Button fullWidth style={{ width: 200 }} onClick={this.handleButtonArrow}>
+							<Icon>keyboard_arrow_down</Icon>
+						</Button>
+					</div>
+				</div>
+			</Fade>
+		);
+	};
+
+	render() {
+		const { classes, item, theme } = this.props;
 		const title = item.title.replace(/\s+/g, '').toLowerCase();
 		return (
 			<div
@@ -120,74 +225,20 @@ class CardHorizontal extends React.Component {
 					backgroundPosition: 'fill',
 					display: 'relative',
 					position: 'relative',
-					...this.styleWhileHover()
+					...this.styleWhileHover(),
+					border: this.props.hasFocus === this.props.item && `3px solid white`
 				}}
 				onMouseEnter={this.openExpand}
 				onMouseLeave={this.closeExpand}
 				key={item.id}
 			>
 				<div
-					style={{ position: 'absolute', left: 0, top: 0, bottom: 0, right: 0 }}
+					style={{ position: 'absolute', left: 0, top: 0, bottom: 0, right: 0, display: 'flex' }}
 					ref={(ref) => (this.div = findDOMNode(ref))}
 				>
 					{this.state.expanded && this.renderBackgroundLinear()}
-					<Fade
-						in={this.state.expanded}
-						timeout={{
-							enter: 1200,
-							exit: 1200
-						}}
-						unmountOnExit
-						mountOnEnter
-						className={classes.item}
-					>
-						<div>
-							<Link
-								to={{
-									pathname: `/movie/${title}`,
-									query: {
-										title: item.title,
-										id: item.id
-									}
-								}}
-								className={classes.absolute}
-								style={{ zIndex: -10 }}
-							/>
-							<div className={classes.info}>
-								<Link
-									to={{
-										pathname: `/movie/${title}`,
-										query: {
-											title: item.title,
-											id: item.id
-										}
-									}}
-									style={{
-										width: 25,
-										height: 25,
-										borderRadius: 25,
-										border: '1px solid #F44336',
-										display: 'flex',
-										justifyContent: 'center',
-										alignItems: 'center',
-										marginBottom: 5
-									}}
-								>
-									<Icon color='secondary'>play_arrow</Icon>
-								</Link>
-								<Typography variant='body1'>{item.title}</Typography>
-								<Typography variant='caption' style={{ color: '#46D369' }}>
-									{item.rating}
-								</Typography>
-								<Typography variant='caption'>
-									<span style={{ color: '#46D369' }}>Genre</span> : {item.genre}
-								</Typography>
-								<Button>
-									<Icon>keyboard_arrow_down</Icon>
-								</Button>
-							</div>
-						</div>
-					</Fade>
+					{!this.props.hasFocus && this.renderFade(item, classes, title)}
+					{this.props.hasFocus && this.state.expanded && this.renderTitle(title, item)}
 				</div>
 			</div>
 		);
@@ -198,4 +249,4 @@ CardHorizontal.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(CardHorizontal);
+export default withTheme()(withStyles(styles)(CardHorizontal));

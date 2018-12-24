@@ -62,13 +62,13 @@ export const styles = (theme) => ({
 		top: 0,
 		left: 0,
 		right: 0,
-		bottom: 0,
+		bottom: 0
 	},
-	info : {
-		display: 'flex', 
-		justifyContent: 'center', 
-		alignItems: 'flex-start', 
-		flexDirection: 'column', 
-		transform:'scale(0.7)',
+	info: {
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'flex-start',
+		flexDirection: 'column',
+		transform: 'scale(0.7)'
 	}
 });

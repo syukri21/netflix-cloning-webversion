@@ -48,7 +48,11 @@ class Jumbotorn extends React.Component {
 				<Grid container className={classes.content}>
 					<Typography style={{ fontSize: '4vmax', color: 'white' }}>{item.title}</Typography>
 					<Grid style={{ marginBottom: 12 }} item xs={12}>
-						<Chip variant='outlined' color='secondary' label={item.rating} />
+						<Chip
+							variant='outlined'
+							style={{ color: '#44CD66', borderColor: '#44CD66' }}
+							label={item.rating}
+						/>
 					</Grid>
 					<Typography paragraph variant='body1' style={{ color: 'white', maxWidth: 400 }}>
 						{item.sinopsis}

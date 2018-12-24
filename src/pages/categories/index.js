@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 
 import Main from './components/main/';
-import NewReleases from '../../components/horizontal-list';
+import HorizontalList from '../../components/horizontal-list';
 import Category from './components/category';
 import { styles } from './styles';
 
@@ -24,8 +24,8 @@ class Categories extends React.Component {
 			<div className={classes.root}>
 				<Main getCategory={this.getCategory} />
 				<Category category={this.state.category} />
-				<NewReleases data={this.props.popular} type='ALL_POPULARS' title='Popular' />
-				<NewReleases data={this.props.trending} type='ALL_TRENDINGS' title='New Relases' />
+				<HorizontalList data={this.props.popular} type='ALL_POPULARS' title='Popular' />
+				<HorizontalList data={this.props.trending} type='ALL_TRENDINGS' title='New Relases' />
 			</div>
 		);
 	}

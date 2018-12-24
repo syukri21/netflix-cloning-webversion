@@ -3,7 +3,8 @@ export const styles = (theme) => {
 		root: {
 			display: 'flex',
 			flexDirection: 'column',
-			width: '100%'
+			width: '100%',
+			transistion: 'all 1s ease'
 		},
 		item: {
 			display: 'flex',
