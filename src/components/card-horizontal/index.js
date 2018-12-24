@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import { Link } from 'react-router-dom';
 import Fade from '@material-ui/core/Fade';
-import _ from 'lodash';
 
 import { styles } from './styles';
 class CardHorizontal extends React.Component {
