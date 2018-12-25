@@ -10,6 +10,7 @@ import Icon from '@material-ui/core/Icon';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import CardActions from '@material-ui/core/CardActions';
 
 import BackgroundGradient from '../background-gradient/';
 import { styles } from './styles';
