@@ -9,6 +9,8 @@ import { styles } from './styles';
 
 const Home = (props) => {
 	const { classes, popular, trending } = props;
+	console.log(props);
+
 	return (
 		<div>
 			<div className={classes.jumbotron}>

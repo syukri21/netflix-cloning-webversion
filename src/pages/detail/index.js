@@ -1,10 +1,11 @@
 import React from 'react';
 import { withStyles, withTheme } from '@material-ui/core/styles';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
+
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -22,7 +23,7 @@ class Detail extends React.Component {
 		super(props);
 		this.state = {
 			renderStatus: 0,
-			query: props.location.query || null
+			query: props.location.pathname.substr(7) || null
 		};
 	}
 
@@ -31,17 +32,15 @@ class Detail extends React.Component {
 	};
 
 	static getDerivedStateFromProps(nextProps, prevState) {
-		if (nextProps.location.query !== prevState.query) {
-			if (nextProps.location.query) {
-				nextProps.dispatch(GET_MOVIE(nextProps.location.query.id));
-			}
-			return { query: nextProps.location.query };
+		if (nextProps.location.pathname.substr(7) !== prevState.query) {
+			nextProps.dispatch(GET_MOVIE(nextProps.location.pathname.substr(7)));
+
+			return { query: nextProps.location.pathname.substr(7) };
 		} else return null;
 	}
 
 	componentDidMount() {
-		if (!this.state.query) return;
-		this.props.dispatch(GET_MOVIE(this.state.query.id));
+		this.props.dispatch(GET_MOVIE(this.props.location.pathname.substr(7)));
 	}
 
 	renderCategoryList = (classes, theme) => (
@@ -145,7 +144,6 @@ class Detail extends React.Component {
 
 	render() {
 		const { classes } = this.props;
-		if (!this.state.query) return <Redirect to='/' />;
 		return (
 			<div style={styled.root(this.props.movie.data)}>
 				<div
@@ -177,7 +175,7 @@ const mapStateToProps = (state) => ({
 	movie: state.movieReducer
 });
 
-const withConnect = connect(mapStateToProps)(Detail);
+const withConnect = withRouter(connect(mapStateToProps)(Detail));
 const withThemeDetail = withTheme()(withConnect);
 
 export default withStyles(styles)(withThemeDetail);

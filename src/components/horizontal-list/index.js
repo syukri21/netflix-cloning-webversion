@@ -109,39 +109,60 @@ class NewReleases extends React.Component {
 		}
 
 		return (
-			<div className={classes.horizontalListContainer}>
-				<Fab size='small' variant='extended' color='secondary' className={classes.arrow} onClick={this.prev}>
-					<Icon className={classes.arrowIcon}>arrow_left</Icon>
-				</Fab>
-				<div>
-					<Slider
-						{...settings}
-						className={classes.item}
-						arrows={false}
-						ref={this.getSliderRef}
-						adaptiveHeight={false}
-					>
-						{_.uniqBy(this.props.data.results, 'title').map((item, key) => (
-							<div onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} key={key}>
-								<CardHorizontal
-									hover={this.state.hover}
-									item={item}
-									theKey={key}
-									key={key}
-									hoverKey={this.state.hoverKey}
-									getHoverKey={(key) => this.setState({ hoverKey: key })}
-									getHasExpand={this.getHasExpand}
-									hasExpand={this.state.hasExpand}
-									getFocus={this.getFocus}
-									hasFocus={this.state.onFocus}
-								/>
-							</div>
-						))}
-					</Slider>
+			<div>
+				<div className={classes.flexStart}>
+					<Title>{this.props.title}</Title>
 				</div>
-				<Fab size='small' variant='extended' className={classes.arrow} color='secondary' onClick={this.next}>
-					<Icon className={classes.arrowIcon}>arrow_right</Icon>
-				</Fab>
+				<div className={classes.horizontalListContainer}>
+					<Fab
+						size='small'
+						variant='extended'
+						color='secondary'
+						className={classes.arrow}
+						onClick={this.prev}
+					>
+						<Icon className={classes.arrowIcon}>arrow_left</Icon>
+					</Fab>
+					<div>
+						<Slider
+							{...settings}
+							className={classes.item}
+							arrows={false}
+							ref={this.getSliderRef}
+							adaptiveHeight={false}
+						>
+							{this.props.data.results.map((item, key) => (
+								<div
+									onMouseEnter={this.handleMouseEnter}
+									onMouseLeave={this.handleMouseLeave}
+									key={key}
+								>
+									<CardHorizontal
+										hover={this.state.hover}
+										item={item}
+										theKey={key}
+										key={key}
+										hoverKey={this.state.hoverKey}
+										getHoverKey={(key) => this.setState({ hoverKey: key })}
+										getHasExpand={this.getHasExpand}
+										hasExpand={this.state.hasExpand}
+										getFocus={this.getFocus}
+										hasFocus={this.state.onFocus}
+									/>
+								</div>
+							))}
+						</Slider>
+					</div>
+					<Fab
+						size='small'
+						variant='extended'
+						className={classes.arrow}
+						color='secondary'
+						onClick={this.next}
+					>
+						<Icon className={classes.arrowIcon}>arrow_right</Icon>
+					</Fab>
+				</div>
 			</div>
 		);
 	}
@@ -150,9 +171,6 @@ class NewReleases extends React.Component {
 		const { classes } = this.props;
 		return (
 			<div className={classes.root}>
-				<div className={classes.flexStart}>
-					<Title>{this.props.title}</Title>
-				</div>
 				{this.renderLoading(classes)}
 				<Slide
 					in={this.state.onFocus ? true : false}

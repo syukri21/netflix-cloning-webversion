@@ -128,7 +128,7 @@ class CardHorizontal extends React.Component {
 				to={{
 					pathname: `/movie/${title}`,
 					query: {
-						title: item.title,
+						title: title,
 						id: item.id
 					}
 				}}
@@ -149,7 +149,7 @@ class CardHorizontal extends React.Component {
 				}}
 			>
 				<Typography style={{ textAlign: 'center' }} variant='subtitle1'>
-					{item.title}
+					{title}
 				</Typography>
 			</Link>
 		);
@@ -172,7 +172,7 @@ class CardHorizontal extends React.Component {
 						to={{
 							pathname: `/movie/${title}`,
 							query: {
-								title: item.title,
+								title: title,
 								id: item.id
 							}
 						}}
@@ -184,7 +184,7 @@ class CardHorizontal extends React.Component {
 							to={{
 								pathname: `/movie/${title}`,
 								query: {
-									title: item.title,
+									title: title,
 									id: item.id
 								}
 							}}
@@ -201,7 +201,7 @@ class CardHorizontal extends React.Component {
 							</Button>
 						</Link>
 						<Typography variant='body1' style={{ textAlign: 'center' }}>
-							{item.title}
+							{item.series}
 						</Typography>
 						<Button fullWidth style={{ width: 100 }} onClick={this.handleButtonArrow}>
 							<Icon>keyboard_arrow_down</Icon>
@@ -214,7 +214,7 @@ class CardHorizontal extends React.Component {
 
 	render() {
 		const { classes, item, theme } = this.props;
-		const title = item.title.replace(/\s+/g, '').toLowerCase();
+		const title = item.series.replace(/\s+/g, '-').toLowerCase() + '-episode-1';
 		return (
 			<div
 				className={classes.card}
