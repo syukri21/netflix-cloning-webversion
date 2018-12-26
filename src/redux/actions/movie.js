@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { ip } from '../../configip';
-export function ALL_MOVIES() {
+export function ALL_MOVIES(offset, limit) {
 	return {
 		type: 'ALL_MOVIES',
-		payload: axios.get(`${ip}videos`)
+		payload: axios.get(`${ip}videos/${offset}/${limit}`)
 	};
 }
 

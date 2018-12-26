@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, withTheme } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -34,70 +34,46 @@ class CardList extends React.Component {
 			expanded: true
 		});
 
+	getSlug = (item) => item.replace(/\s+/g, '-').toLowerCase() + '-episode-1';
+
 	render() {
-		const { classes, item, key } = this.props;
-		const title = item.title.replace(/\s+/g, '').toLowerCase();
+		const { classes, item, key, theme } = this.props;
+		console.log(this.props);
 		return (
-			<Card
-				className={classes.card}
-				style={{
-					backgroundImage: `url(${item.image_url})`,
-					backgroundSize: 'cover',
-					backgroundPosition: 'center',
-					position: 'relative',
-					...this.props.styles
-				}}
-				key={key}
-				onMouseEnter={this.openExpand}
-				onMouseLeave={this.closeExpand}
-			>
+			<div>
+				<Card
+					className={classes.card}
+					style={{
+						backgroundImage: `url(${item.image_url})`,
+						backgroundSize: 'cover',
+						backgroundPosition: 'center',
+						position: 'relative',
+						...this.props.styles
+					}}
+					key={key}
+					onMouseEnter={this.openExpand}
+					onMouseLeave={this.closeExpand}
+				>
+					<Collapse in={this.state.expanded} timeout='auto' unmountOnExit className={classes.collapse}>
+						<div className={classes.collapsRoot}>
+							<Link to={`/movie/${item.slug}`}>
+								<Button color='secondary' variant='contained'>
+									<Icon>play_arrow</Icon>
+								</Button>
+							</Link>
+						</div>
+					</Collapse>
+				</Card>
 				<CardHeader
 					color='secondary'
 					title={
-						<Typography variant='caption' color='textPrimary'>
+						<Typography variant='subtitle2' color='textPrimary' style={{ textAlign: 'center' }}>
 							{item.title}
 						</Typography>
 					}
 					className={classes.header}
 				/>
-
-				<CardActions className={classes.actions} disableActionSpacing>
-					<IconButton aria-label='Add to favorites' color='secondary'>
-						<FavoriteIcon />
-					</IconButton>
-					<IconButton aria-label='Share' color='secondary'>
-						<ShareIcon />
-					</IconButton>
-					<IconButton
-						className={classnames(classes.expand, {
-							[classes.expandOpen]: this.state.expanded
-						})}
-						onClick={this.handleExpandClick}
-						aria-expanded={this.state.expanded}
-						aria-label='Show more'
-						color='secondary'
-					>
-						<ExpandMoreIcon />
-					</IconButton>
-				</CardActions>
-				<Collapse in={this.state.expanded} timeout='auto' unmountOnExit className={classes.collapse}>
-					<div className={classes.collapsRoot}>
-						<Link
-							to={{
-								pathname: `/movie/${title}`,
-								query: {
-									title: item.title,
-									id: item.id
-								}
-							}}
-						>
-							<Button color='secondary' variant='contained'>
-								<Icon>play_arrow</Icon>
-							</Button>
-						</Link>
-					</div>
-				</Collapse>
-			</Card>
+			</div>
 		);
 	}
 }
@@ -106,4 +82,4 @@ CardList.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(CardList);
+export default withTheme()(withStyles(styles)(CardList));

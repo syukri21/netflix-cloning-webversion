@@ -16,7 +16,8 @@ export const styles = (theme) => {
 			overflowX: 'hidden'
 		},
 		categoryList: {
-			width: '100%'
+			width: '100%',
+			marginTop: 20
 		},
 		containerHomeContent: {
 			display: 'flex',

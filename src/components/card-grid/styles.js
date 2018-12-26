@@ -4,7 +4,8 @@ export const styles = (theme) => ({
 	card: {
 		borderRadius: 0,
 		display: 'flex',
-		flexDirection: 'column'
+		flexDirection: 'column',
+		height: 200
 	},
 
 	actions: {
@@ -30,11 +31,15 @@ export const styles = (theme) => ({
 		backgroundColor: red[500]
 	},
 	header: {
-		height: '150px',
-		background: 'linear-gradient(to top	, #0A0B0A00, #0A0B0A)',
+		height: 100,
 		width: '100%',
 		color: 'white',
-		alignItems: 'baseline'
+		background: theme.palette.secondary.dark,
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		padding: 2,
+		overflow: 'hidden'
 	},
 	collapsRoot: {
 		background: '#0A0B0A88',
@@ -42,9 +47,9 @@ export const styles = (theme) => ({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-		height: '100px',
 		minWidth: '100%',
 		bottom: 0,
+		top: 0,
 		position: 'absolute'
 	},
 	collaps: {

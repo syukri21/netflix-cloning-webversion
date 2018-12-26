@@ -22,14 +22,11 @@ const props = {
 
 class CategoryContent extends React.Component {
 	render() {
-		const { data, classes, categories } = this.props;
+		const { data, classes } = this.props;
 		const valiData = data.length ? data : [];
 
 		return (
 			<CardContent>
-				<Title variant='subtitle1' noLeft={true}>
-					{categories.name}
-				</Title>
 				<div className={classes.item} style={{ gridGap: 6 }}>
 					{valiData.map((item, key) => (
 						<Animate

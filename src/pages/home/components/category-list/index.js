@@ -7,6 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import { ALL_CATEGORIES, GET_CATEGORY } from '../../../../redux/actions/category';
+import { ALL_MOVIES } from '../../../../redux/actions/movie';
 import { findDOMNode } from 'react-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -39,58 +40,23 @@ class CategoryList extends React.Component {
 	};
 
 	componentDidMount() {
-		this.props.dispatch(ALL_CATEGORIES());
-		this.props.dispatch(GET_CATEGORY('Action', 30));
+		this.props.dispatch(ALL_MOVIES(0, 30));
 	}
-
-	scrollToTop = (element) => {
-		const offsetTop = findDOMNode(element) && findDOMNode(element).getBoundingClientRect().top;
-		const windowY = window.scrollY;
-		window.scrollTo({
-			top: windowY + offsetTop - 100,
-			left: 0,
-			behavior: 'smooth'
-		});
-	};
-
-	renderListCategories = (classes) =>
-		this.props.categories.results.map((item, key) => (
-			<List className={classes.root} key={key}>
-				<ListItem
-					button
-					onClick={this.handleClick(item.category)}
-					style={{
-						background: this.isActive(item.category)
-							? `linear-gradient(to right , #F44336, #F4433655,  #0A0B0A)`
-							: '#0A0B0A00'
-					}}
-				>
-					<ListItemText color='red'>
-						<Typography color='textPrimary'>{item.category}</Typography>
-					</ListItemText>
-				</ListItem>
-			</List>
-		));
-
-	renderLoadingListCategories = (classes) => {
-		if (this.props.categories.results.length === 0) return <CircularProgress />;
-		return this.renderListCategories(classes);
-	};
 
 	getRef = (ref) => (this.element = ref);
 
 	render() {
 		const { classes } = this.props;
-		const { categories } = this.state;
+		const { movies } = this.state;
+
 		return (
 			<div>
 				<Grid container>
-					<Grid item xs={12} sm={2}>
-						<Title ref={this.getRef}>Categories</Title>
-						{this.renderLoadingListCategories(classes)}
+					<Grid item xs={12}>
+						<Title ref={this.getRef}>New Releases</Title>
 					</Grid>
-					<Grid item xs={12} sm={10}>
-						<GridList data={this.props.categories.data} categories={categories} />
+					<Grid item xs={12}>
+						<GridList data={this.props.movies.results} />
 					</Grid>
 				</Grid>
 			</div>
@@ -99,7 +65,7 @@ class CategoryList extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	categories: state.categoryReducer
+	movies: state.movieReducer
 });
 
 const withConnect = withStyles(styles)(CategoryList);
