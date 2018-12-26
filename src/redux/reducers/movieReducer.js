@@ -16,7 +16,7 @@ export default function movieReducer(state = initialState, action) {
 		case 'ALL_MOVIES_PENDING':
 			return { ...state, isLoading: true };
 		case 'ALL_MOVIES_FULFILLED':
-			return { ...state, isLoading: false, results: action.payload.data };
+			return { ...state, isLoading: false, results: [ ...state.results, ...action.payload.data ] };
 		case 'ALL_MOVIES_REJECTED':
 			return { ...state, isLoading: false, isError: true };
 		default:

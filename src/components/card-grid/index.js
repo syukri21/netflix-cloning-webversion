@@ -38,7 +38,6 @@ class CardList extends React.Component {
 
 	render() {
 		const { classes, item, key, theme } = this.props;
-		console.log(this.props);
 		return (
 			<div>
 				<Card
