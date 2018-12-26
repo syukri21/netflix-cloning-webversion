@@ -6,6 +6,8 @@ const initialState = {
 };
 
 export default function movieReducer(state = initialState, action) {
+	console.log('​movieReducer -> action.mode', action);
+
 	switch (action.type) {
 		case 'GET_MOVIE_PENDING':
 			return { ...state, isLoading: true };
@@ -19,6 +21,8 @@ export default function movieReducer(state = initialState, action) {
 			return { ...state, isLoading: false, results: [ ...state.results, ...action.payload.data ] };
 		case 'ALL_MOVIES_REJECTED':
 			return { ...state, isLoading: false, isError: true };
+		case 'RESET_MOVIE':
+			return { ...state, results: [] };
 		default:
 			return state;
 	}

@@ -7,6 +7,12 @@ export function ALL_MOVIES(offset, limit) {
 	};
 }
 
+export function RESET_MOVIE() {
+	return {
+		type: 'RESET_MOVIE'
+	};
+}
+
 export function GET_MOVIE(id) {
 	return {
 		type: 'GET_MOVIE',

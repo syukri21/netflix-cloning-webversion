@@ -7,9 +7,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import { ALL_CATEGORIES, GET_CATEGORY } from '../../../../redux/actions/category';
-import { ALL_MOVIES } from '../../../../redux/actions/movie';
+import { ALL_MOVIES, RESET_MOVIE } from '../../../../redux/actions/movie';
 import { findDOMNode } from 'react-dom';
 import Button from '@material-ui/core/Button';
+import _ from 'lodash';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -18,8 +19,15 @@ import Title from '../../../../components/title';
 import GridList from '../../../../components/grid-list';
 
 class CategoryList extends React.Component {
+	constructor() {
+		super();
+
+		this.handleInfiniteScroll = _.debounce(this.handleInfiniteScroll, 1000);
+	}
+
 	state = {
-		offset: 18
+		offset: 20,
+		count: 0
 	};
 
 	isActive = (id) => {
@@ -27,9 +35,24 @@ class CategoryList extends React.Component {
 	};
 
 	handleInfiniteScroll = () => {
-		this.props.dispatch(ALL_MOVIES(this.state.offset, 18));
+		this.props.dispatch(ALL_MOVIES(this.state.offset, 20));
 		this.setState({
-			offset: this.state.offset + 18
+			offset: this.state.offset + 20,
+			count: this.state.count + 1
+		});
+	};
+
+	handleSeeMore = () => {
+		this.props.dispatch(RESET_MOVIE());
+		this.props.dispatch(ALL_MOVIES(this.state.offset, 20));
+		this.setState({
+			offset: this.state.offset + 20,
+			count: 0
+		});
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'smooth'
 		});
 	};
 
@@ -37,7 +60,7 @@ class CategoryList extends React.Component {
 		const button = findDOMNode(this.element);
 		window.addEventListener('scroll', () => {
 			const top = button.getBoundingClientRect().top;
-			if (top <= 400) {
+			if (top <= 400 && this.state.count < 5) {
 				this.handleInfiniteScroll();
 			}
 		});
@@ -61,8 +84,8 @@ class CategoryList extends React.Component {
 						<GridList data={this.props.movies.results} />
 					</Grid>
 					<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-						<Button variant='contained' color='secondary' ref={this.getRef}>
-							Loading ...
+						<Button variant='contained' color='secondary' ref={this.getRef} onClick={this.handleSeeMore}>
+							{this.state.count > 4 ? 'See More' : 'Loading ...'}
 						</Button>
 					</div>
 				</Grid>
