@@ -125,13 +125,7 @@ class CardHorizontal extends React.Component {
 	renderTitle = (title, item) => {
 		return (
 			<Link
-				to={{
-					pathname: `/movie/${title}`,
-					query: {
-						title: title,
-						id: item.id
-					}
-				}}
+				to={`/movie/${title}`}
 				style={{
 					position: 'absolute',
 					top: 0,
@@ -149,7 +143,7 @@ class CardHorizontal extends React.Component {
 				}}
 			>
 				<Typography style={{ textAlign: 'center' }} variant='subtitle1'>
-					{title}
+					{item.series}
 				</Typography>
 			</Link>
 		);
@@ -168,26 +162,10 @@ class CardHorizontal extends React.Component {
 				className={classes.item}
 			>
 				<div>
-					<Link
-						to={{
-							pathname: `/movie/${title}`,
-							query: {
-								title: title,
-								id: item.id
-							}
-						}}
-						className={classes.absolute}
-						style={{ zIndex: -10 }}
-					/>
+					<Link to={`/movie/${title}`} className={classes.absolute} style={{ zIndex: -10 }} />
 					<div className={classes.info}>
 						<Link
-							to={{
-								pathname: `/movie/${title}`,
-								query: {
-									title: title,
-									id: item.id
-								}
-							}}
+							to={`/movie/${title}`}
 							style={{
 								marginBottom: 4
 							}}
@@ -231,10 +209,7 @@ class CardHorizontal extends React.Component {
 				onMouseLeave={this.closeExpand}
 				key={item.id}
 			>
-				<div
-					style={{ position: 'absolute', left: 0, top: 0, bottom: 0, right: 0, display: 'flex' }}
-					ref={(ref) => (this.div = findDOMNode(ref))}
-				>
+				<div className={classes.absolute} ref={(ref) => (this.div = findDOMNode(ref))}>
 					{this.state.expanded && this.renderBackgroundLinear()}
 					{!this.props.hasFocus && this.renderFade(item, classes, title, theme)}
 					{this.props.hasFocus && this.state.expanded && this.renderTitle(title, item)}

@@ -59,9 +59,9 @@ class HorizontalDetail extends React.Component {
 		if (!result) {
 			return;
 		}
-		// result = result.split(' ');
-		// result = result.slice(0, 25);
-		// result = result.join(' ');
+		result = result.split(' ');
+		result = result.slice(0, 30);
+		result = result.join(' ');
 		return result;
 	};
 
@@ -102,14 +102,15 @@ class HorizontalDetail extends React.Component {
 					easeType='cubic-bezier(0.445, 0.05, 0.55, 0.95)'
 				>
 					<Typography color='textPrimary' variant='h3' gutterBottom>
-						{item.title}
+						{item.series}
 					</Typography>
 					<Typography gutterBottom style={{ color: '#44CD66' }}>
 						Rating : {item.rating === '0' ? 'N/A' : item.rating}
 					</Typography>
 					<Typography gutterBottom color='secondary'>
-						{item.series}
+						{item.category}
 					</Typography>
+
 					<Typography gutterBottom color='textPrimary' variant='body2' style={{ maxWidth: '50%' }}>
 						{this.getSynopsis(item.description)}
 					</Typography>

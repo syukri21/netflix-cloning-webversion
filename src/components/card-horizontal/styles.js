@@ -9,6 +9,7 @@ export const styles = (theme) => ({
 		marginLeft: 10,
 		display: 'flex',
 		flexDirection: 'column',
+		justifyContent: 'center',
 		cursor: 'pointer',
 		transition: ' 300ms ease-in-out',
 		transitionDelay: '0.4s'
@@ -62,7 +63,9 @@ export const styles = (theme) => ({
 		top: 0,
 		left: 0,
 		right: 0,
-		bottom: 0
+		bottom: 0,
+		display: 'flex',
+		justifyContent: 'center'
 	},
 	info: {
 		display: 'flex',
