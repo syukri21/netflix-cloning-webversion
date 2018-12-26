@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Fab from '@material-ui/core/Fab';
 import CardMedia from '@material-ui/core/CardMedia';
+import { findDOMNode } from 'react-dom';
 import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -58,10 +59,24 @@ class HorizontalDetail extends React.Component {
 		if (!result) {
 			return;
 		}
-		result = result.split(' ');
-		result = result.slice(0, 25);
-		result = result.join(' ');
-		return result + '  ...';
+		// result = result.split(' ');
+		// result = result.slice(0, 25);
+		// result = result.join(' ');
+		return result;
+	};
+
+	promise = () =>
+		new Promise((resolve, reject) => {
+			const root = findDOMNode(this.root);
+			root.style.transition = 'all 500ms ease-in-out';
+			root.style.opacity = 0;
+			root.style.transform = 'translateX(100vh)';
+			setTimeout(() => resolve(this), 500);
+		});
+
+	handleClose = async () => {
+		await this.promise();
+		this.props.getFocus(false);
 	};
 
 	getColor = (theme, navigation) => {
@@ -69,6 +84,10 @@ class HorizontalDetail extends React.Component {
 			return theme.palette.text.secondary;
 		}
 		return theme.palette.text.primary;
+	};
+
+	getRefRoot = (ref) => {
+		this.root = ref;
 	};
 
 	renderContent = (item) => {
@@ -138,7 +157,7 @@ class HorizontalDetail extends React.Component {
 	render() {
 		const { item, classes, theme } = this.props;
 		return (
-			<div style={{ position: 'relative' }}>
+			<div style={{ position: 'relative' }} ref={this.getRefRoot}>
 				<Card className={classes.root}>
 					{this.renderContent(item)}
 					<div className={classes.imageContainer}>
@@ -150,7 +169,13 @@ class HorizontalDetail extends React.Component {
 							reverseDurationSeconds={0.3}
 							easeType='cubic-bezier(0.445, 0.05, 0.55, 0.95)'
 						>
-							<CardMedia image={item.image_url} src={item.image_url} alt='#' className={classes.image} />
+							<img
+								image={item.image_url}
+								src={item.image_url}
+								alt='#'
+								component='img'
+								className={classes.image}
+							/>
 						</Animate>
 					</div>
 					<CardActions className={classes.cardActions}>
@@ -180,7 +205,7 @@ class HorizontalDetail extends React.Component {
 						right: 10
 					}}
 					color='default'
-					onClick={() => this.props.getFocus(false)}
+					onClick={this.handleClose}
 					size='small'
 				>
 					<Icon>close</Icon>

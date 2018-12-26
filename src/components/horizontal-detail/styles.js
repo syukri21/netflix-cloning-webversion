@@ -1,11 +1,13 @@
 const styles = (theme) => ({
 	root: {
-		background: theme.palette.primary.dark,
+		// background: theme.palette.primary.dark,,
+		background: 'rgba(51, 51, 51, 0.2)',
+		marginTop: 10,
 		display: 'flex',
 		minHeight: '70vh',
 		justifyContent: 'space-evenly',
 		alignItems: 'center',
-		padding: '0px 60px 40px ',
+		padding: '0px 60px 40px 60px',
 		position: 'relative'
 	},
 	image: {
