@@ -55,7 +55,7 @@ class CardList extends React.Component {
 				>
 					<Collapse in={this.state.expanded} timeout='auto' unmountOnExit className={classes.collapse}>
 						<div className={classes.collapsRoot}>
-							<Link to={`/movie/${item.slug}`}>
+							<Link to={`/movie/${this.props.needSlug ? this.getSlug(item.series) : item.slug}`}>
 								<Button color='secondary' variant='contained'>
 									<Icon>play_arrow</Icon>
 								</Button>
@@ -67,7 +67,7 @@ class CardList extends React.Component {
 					color='secondary'
 					title={
 						<Typography variant='subtitle2' color='textPrimary' style={{ textAlign: 'center' }}>
-							{item.title}
+							{this.props.needSlug ? item.series : item.title}
 						</Typography>
 					}
 					className={classes.header}

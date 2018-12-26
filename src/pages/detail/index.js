@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
+import SingleLineGridList from '../../components/common-horizontal-list';
 
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
@@ -13,11 +14,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 import BottomTab from './components/bottom-tab';
 import Video from './components/video';
 import Related from './components/bottom-list';
-import { GET_MOVIE } from '../../redux/actions/movie';
+import { GET_MOVIE, GET_EPISODE } from '../../redux/actions/movie';
 import { styles, styled } from './style';
 import { ALL_POPULARS } from '../../redux/actions/popular';
 import { GET_CATEGORY } from '../../redux/actions/category';
-
+import axios from 'axios';
+import { ip } from '../../configip';
 class Detail extends React.Component {
 	constructor(props) {
 		super(props);
@@ -34,13 +36,17 @@ class Detail extends React.Component {
 	static getDerivedStateFromProps(nextProps, prevState) {
 		if (nextProps.location.pathname.substr(7) !== prevState.query) {
 			nextProps.dispatch(GET_MOVIE(nextProps.location.pathname.substr(7)));
+			axios.get(`${ip}video/${nextProps.location.pathname.substr(7)}`).then((res) => {
+				nextProps.dispatch(GET_EPISODE(res.data.series));
+			});
 
 			return { query: nextProps.location.pathname.substr(7) };
 		} else return null;
 	}
 
-	componentDidMount() {
-		this.props.dispatch(GET_MOVIE(this.props.location.pathname.substr(7)));
+	async componentDidMount() {
+		await this.props.dispatch(GET_MOVIE(this.props.location.pathname.substr(7)));
+		this.props.dispatch(GET_EPISODE(this.props.movie.data.series));
 	}
 
 	renderCategoryList = (classes, theme) => (
@@ -128,17 +134,11 @@ class Detail extends React.Component {
 
 	renderSlide = () => {
 		if (this.state.renderStatus === 0) {
-			return <Related type='Popular' action={ALL_POPULARS} />;
+			// return <Related type='Episode' data={this.props.movie.episode} limit={10} action={GET_CATEGORY} />;
+			return <SingleLineGridList data={this.props.movie.episode} />;
 		}
 		if (this.state.renderStatus === 1) {
-			return (
-				<Related
-					type='Related'
-					data={this.props.movie.data && this.props.movie.data.category}
-					limit={10}
-					action={GET_CATEGORY}
-				/>
-			);
+			return <Related type='Popular' action={ALL_POPULARS} limit={10} />;
 		}
 	};
 
@@ -161,7 +161,7 @@ class Detail extends React.Component {
 					}}
 				/>
 				<div className={classes.backgroundLinear} />
-				<div>{this.renderMovie(classes)}</div>
+				<div style={{ position: 'relative', zIndex: 100 }}>{this.renderMovie(classes)}</div>
 				<div className={classes.roots}>{this.renderSlide()}</div>
 				<Grid container style={{ display: 'flex', position: 'relative', zIndex: 200 }}>
 					<BottomTab getRenderState={this.getRenderState} />
@@ -172,7 +172,8 @@ class Detail extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	movie: state.movieReducer
+	movie: state.movieReducer,
+	popular: state.popularReducer
 });
 
 const withConnect = withRouter(connect(mapStateToProps)(Detail));

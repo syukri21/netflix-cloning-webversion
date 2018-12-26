@@ -11,6 +11,24 @@ import { ALL_CATEGORIES, GET_CATEGORY } from '../../../../redux/actions/category
 
 import { styles } from './styles';
 
+const listCategory = [
+	{
+		name: 'Action'
+	},
+	{
+		name: 'Adventure'
+	},
+	{
+		name: 'Romance'
+	},
+	{
+		name: 'Fantasy'
+	},
+	{
+		name: 'Horror'
+	}
+];
+
 class SelectCategories extends React.Component {
 	state = {
 		category: '',
@@ -20,11 +38,8 @@ class SelectCategories extends React.Component {
 	handleChange = (event) => {
 		this.setState({ [event.target.name]: event.target.value });
 		this.props.getCategory(event.target.value);
-		this.props.dispatch(GET_CATEGORY(event.target.value, 30));
+		this.props.dispatch(GET_CATEGORY(event.target.value, 20));
 	};
-	componentDidMount() {
-		this.props.dispatch(ALL_CATEGORIES());
-	}
 
 	handleClose = () => {
 		this.setState({ open: false });
@@ -62,11 +77,9 @@ class SelectCategories extends React.Component {
 							}
 						}}
 					>
-						{validCat.map((item, key) => (
-							<MenuItem value={item.category} key={key} color='secondary'>
-								<Typography color={this.state.open ? 'primary' : 'textPrimary'}>
-									{item.category}
-								</Typography>
+						{listCategory.map((item, key) => (
+							<MenuItem value={item.name || 'Action'} key={key} color='secondary'>
+								<Typography color={this.state.open ? 'primary' : 'textPrimary'}>{item.name}</Typography>
 							</MenuItem>
 						))}
 					</Select>

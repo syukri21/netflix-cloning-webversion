@@ -11,6 +11,6 @@ export function ALL_CATEGORIES() {
 export function GET_CATEGORY(category, limit) {
 	return {
 		type: 'GET_CATEGORY',
-		payload: axios.get(`${ip}videos/${category}/${limit}`)
+		payload: axios.get(`${ip}video/${category}/${limit}`)
 	};
 }

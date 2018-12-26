@@ -37,7 +37,7 @@ class Category extends React.Component {
 						{...props}
 						key={key}
 						render={({ style }) => {
-							return <CardGrid item={item} styles={style} />;
+							return <CardGrid item={item} styles={style} needSlug />;
 						}}
 					/>
 				))}

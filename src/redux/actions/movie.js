@@ -13,6 +13,13 @@ export function RESET_MOVIE() {
 	};
 }
 
+export function GET_EPISODE(series) {
+	return {
+		type: 'GET_EPISODE',
+		payload: axios.get(`${ip}video/series/${series}/null`)
+	};
+}
+
 export function GET_MOVIE(id) {
 	return {
 		type: 'GET_MOVIE',

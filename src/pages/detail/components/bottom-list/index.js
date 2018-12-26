@@ -9,15 +9,14 @@ import HorizontalList from '../../../../components/horizontal-list';
 
 class Related extends React.Component {
 	componentDidMount() {
-		const { data, action = null, limit = null } = this.props;
-		this.props.dispatch(action(data, limit));
+		const { data, action = null, limit = 10 } = this.props;
 	}
 
 	getData() {
 		if (this.props.type === 'Popular') {
 			return this.props.popular.results;
-		} else if (this.props.type === 'Related') {
-			return this.props.categories;
+		} else if (this.props.type === 'Episode') {
+			return this.props.movie.episode;
 		}
 	}
 
@@ -38,7 +37,8 @@ class Related extends React.Component {
 
 const mapStateToProps = (state) => ({
 	categories: state.categoryReducer.data,
-	popular: state.popularReducer
+	popular: state.popularReducer,
+	movie: state.movieReducer
 });
 
 const withStylesConnect = withStyles(styles)(Related);

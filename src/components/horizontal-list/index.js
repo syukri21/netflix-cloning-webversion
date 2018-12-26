@@ -126,7 +126,6 @@ class NewReleases extends React.Component {
 							arrows={false}
 							ref={this.getSliderRef}
 							adaptiveHeight={false}
-							infinite='true'
 						>
 							{this.props.data.results.map((item, key) => (
 								<div
