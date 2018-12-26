@@ -134,7 +134,6 @@ class Detail extends React.Component {
 
 	renderSlide = () => {
 		if (this.state.renderStatus === 0) {
-			// return <Related type='Episode' data={this.props.movie.episode} limit={10} action={GET_CATEGORY} />;
 			return <SingleLineGridList data={this.props.movie.episode} />;
 		}
 		if (this.state.renderStatus === 1) {
