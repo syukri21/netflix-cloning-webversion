@@ -7,7 +7,6 @@ import Slider from 'react-slick';
 import Icon from '@material-ui/core/Icon';
 import { connect } from 'react-redux';
 import { ALL_POPULARS } from '../../redux/actions/popular';
-import { ALL_TRENDINGS } from '../../redux/actions/trending';
 import _ from 'lodash';
 
 import Title from '../title';
@@ -71,11 +70,8 @@ class NewReleases extends React.Component {
 
 	// life cycle
 	componentDidMount() {
-		if (this.props.type === 'ALL_TRENDINGS') {
-			this.props.dispatch(ALL_TRENDINGS());
-		}
 		if (this.props.type === 'ALL_POPULARS') {
-			this.props.dispatch(ALL_POPULARS());
+			this.props.dispatch(ALL_POPULARS(10));
 		}
 	}
 

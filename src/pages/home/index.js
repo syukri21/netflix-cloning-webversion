@@ -8,8 +8,7 @@ import Footer from '../../components/footer';
 import { styles } from './styles';
 
 const Home = (props) => {
-	const { classes, popular, trending } = props;
-	console.log(props);
+	const { classes, popular } = props;
 
 	return (
 		<div>
@@ -19,7 +18,6 @@ const Home = (props) => {
 			<div className={classes.categories}>
 				<div className={classes.containerHomeContent}>
 					<HorizontalList title='Popular' data={popular} type='ALL_POPULARS' />
-					<HorizontalList title='New Relases' data={trending} type='ALL_TRENDINGS' />
 					<div className={classes.categoryList}>
 						<CategoryList />
 					</div>

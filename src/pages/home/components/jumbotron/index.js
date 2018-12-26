@@ -14,12 +14,9 @@ import { Link } from 'react-router-dom';
 import BackgroundGradient from '../background-gradient/';
 import { styles } from './styles';
 import { GET_FEATURED } from '../../../../redux/actions/featured';
+import _ from 'lodash';
 
-const dummyData = [
-	{
-		image: '/assets/1.jpg'
-	}
-];
+import { ALL_POPULARS } from '../../../../redux/actions/popular';
 
 class Jumbotorn extends React.Component {
 	renderChip = (item, classes) => (
@@ -40,22 +37,33 @@ class Jumbotorn extends React.Component {
 		</div>
 	);
 
+	getDescription = (string) => {
+		let result = string;
+		if (!result) {
+			return;
+		}
+		result = result.split(' ');
+		result = result.slice(0, 30);
+		result = result.join(' ');
+		return result;
+	};
+
 	renderFeatured = (item, key, classes) => {
 		return (
 			<div className={classes.container} key={key}>
 				<BackgroundGradient />
-				<img src={item.image_url} className={classNames(classes.images, 'image')} alt='#' />
+				<img src={'assets/jmbtorn.jpg'} className={classNames(classes.images, 'image')} alt='#' />
 				<Grid container className={classes.content}>
-					<Typography style={{ fontSize: '4vmax', color: 'white' }}>{item.title}</Typography>
+					<Typography style={{ fontSize: '4vmax', color: 'white' }}>{item.series}</Typography>
 					<Grid style={{ marginBottom: 12 }} item xs={12}>
 						<Chip
 							variant='outlined'
 							style={{ color: '#44CD66', borderColor: '#44CD66' }}
-							label={item.rating}
+							label={`Rating : ${item.rating}`}
 						/>
 					</Grid>
 					<Typography paragraph variant='body1' style={{ color: 'white', maxWidth: 400 }}>
-						{item.description}
+						{this.getDescription(item.description)}
 					</Typography>
 					<Grid container className={classes.content}>
 						{this.renderChip(item.category, classes)}
@@ -65,6 +73,8 @@ class Jumbotorn extends React.Component {
 			</div>
 		);
 	};
+
+	getSlug = (item) => item.replace(/\s+/g, '-').toLowerCase() + '-episode-1';
 
 	renderButtonActions = (item, classes) => (
 		<div className={classes.buttonWraper}>
@@ -80,15 +90,7 @@ class Jumbotorn extends React.Component {
 			</div>
 
 			<div>
-				<Link
-					to={{
-						pathname: `/movie/${item.title}`,
-						query: {
-							title: item.title,
-							id: item.id
-						}
-					}}
-				>
+				<Link to={`/movie/${this.getSlug(item.series)}`}>
 					<Button variant='contained' color='secondary' size='large' className={classes.button}>
 						<Icon className={classes.leftIcon}>play_arrow</Icon>
 						Play
@@ -109,9 +111,7 @@ class Jumbotorn extends React.Component {
 		</div>
 	);
 
-	componentDidMount() {
-		this.props.dispatch(GET_FEATURED());
-	}
+	componentDidMount() {}
 
 	render() {
 		const { classes } = this.props;
@@ -128,18 +128,15 @@ class Jumbotorn extends React.Component {
 				interval={5000}
 				infiniteLoop
 			>
-				{this.props.featured.data.length ? (
-					this.props.featured.data.map((item, key) => this.renderFeatured(item, key, classes))
-				) : (
-					dummyData.map((item, key) => this.renderAltFeatured(item, key, classes))
-				)}
+				{this.props.popular.results.length !== 0 &&
+					_.take(this.props.popular.results, 3).map((item, key) => this.renderFeatured(item, key, classes))}
 			</Carousel>
 		);
 	}
 }
 
 const mapStateToProps = (state) => ({
-	featured: state.featuredReducer
+	popular: state.popularReducer
 });
 
 const withConnectJumbotron = connect(mapStateToProps)(Jumbotorn);
