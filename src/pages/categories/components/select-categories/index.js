@@ -63,9 +63,9 @@ class SelectCategories extends React.Component {
 						}}
 					>
 						{validCat.map((item, key) => (
-							<MenuItem value={item.genre} key={key} color='secondary'>
+							<MenuItem value={item.category} key={key} color='secondary'>
 								<Typography color={this.state.open ? 'primary' : 'textPrimary'}>
-									{item.genre}
+									{item.category}
 								</Typography>
 							</MenuItem>
 						))}

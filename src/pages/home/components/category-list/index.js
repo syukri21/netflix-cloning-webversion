@@ -58,15 +58,15 @@ class CategoryList extends React.Component {
 			<List className={classes.root} key={key}>
 				<ListItem
 					button
-					onClick={this.handleClick(item.genre)}
+					onClick={this.handleClick(item.category)}
 					style={{
-						background: this.isActive(item.genre)
+						background: this.isActive(item.category)
 							? `linear-gradient(to right , #F44336, #F4433655,  #0A0B0A)`
 							: '#0A0B0A00'
 					}}
 				>
 					<ListItemText color='red'>
-						<Typography color='textPrimary'>{item.genre}</Typography>
+						<Typography color='textPrimary'>{item.category}</Typography>
 					</ListItemText>
 				</ListItem>
 			</List>

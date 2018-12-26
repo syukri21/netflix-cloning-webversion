@@ -2,8 +2,8 @@ import red from '@material-ui/core/colors/red';
 
 export const styles = (theme) => ({
 	card: {
-		width: 250,
-		height: 180,
+		width: 155,
+		height: 200,
 		borderRadius: 0,
 		position: 'relative',
 		marginLeft: 10,
@@ -67,7 +67,7 @@ export const styles = (theme) => ({
 	info: {
 		display: 'flex',
 		justifyContent: 'center',
-		alignItems: 'flex-start',
+		alignItems: 'center',
 		flexDirection: 'column',
 		transform: 'scale(0.7)'
 	}

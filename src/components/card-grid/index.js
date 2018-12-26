@@ -41,7 +41,7 @@ class CardList extends React.Component {
 			<Card
 				className={classes.card}
 				style={{
-					backgroundImage: `url(${item.image})`,
+					backgroundImage: `url(${item.image_url})`,
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
 					position: 'relative',

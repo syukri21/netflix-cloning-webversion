@@ -1,11 +1,12 @@
 import React from 'react';
+import { withTheme } from '@material-ui/core/styles';
 
-const Video = ({ video }) => (
+const Video = ({ video, theme }) => (
 	<iframe
 		style={{
 			borderRadius: '10px',
 			overflow: 'hidden',
-			border: '10px solid #F44336'
+			border: `10px solid ${theme.palette.secondary.dark}`
 		}}
 		title='video'
 		width='100%'
@@ -17,4 +18,4 @@ const Video = ({ video }) => (
 	/>
 );
 
-export default Video;
+export default withTheme()(Video);

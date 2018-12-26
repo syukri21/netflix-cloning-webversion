@@ -62,7 +62,8 @@ export const styles = (theme) => {
 			alignSelf: 'flex-start'
 		},
 		center: {
-			alignSelf: 'center'
+			alignSelf: 'center',
+			width: '100%'
 		},
 		showAllButton: {
 			width: '100px',

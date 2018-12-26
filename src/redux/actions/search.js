@@ -14,6 +14,6 @@ export function SAVE_KEYWORD(query, offset = 1) {
 export const GET_SEARCH = (payload, off) => {
 	return {
 		type: 'GET_SEARCH',
-		payload: axios.get(`${ip}movies/search?q=${payload}&o=${off}`)
+		payload: axios.get(`${ip}videos/search?q=${payload}&o=${off}`)
 	};
 };

@@ -10,7 +10,6 @@ import Icon from '@material-ui/core/Icon';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import CardActions from '@material-ui/core/CardActions';
 
 import BackgroundGradient from '../background-gradient/';
 import { styles } from './styles';
@@ -33,7 +32,7 @@ class Jumbotorn extends React.Component {
 		<div className={classes.container} key={key}>
 			<BackgroundGradient />
 			<img
-				src={item.image}
+				src={item.image_url}
 				style={{ filter: 'blur(0)' }}
 				className={classNames(classes.images, 'image')}
 				alt='#'
@@ -45,7 +44,7 @@ class Jumbotorn extends React.Component {
 		return (
 			<div className={classes.container} key={key}>
 				<BackgroundGradient />
-				<img src={item.image} className={classNames(classes.images, 'image')} alt='#' />
+				<img src={item.image_url} className={classNames(classes.images, 'image')} alt='#' />
 				<Grid container className={classes.content}>
 					<Typography style={{ fontSize: '4vmax', color: 'white' }}>{item.title}</Typography>
 					<Grid style={{ marginBottom: 12 }} item xs={12}>
@@ -56,10 +55,10 @@ class Jumbotorn extends React.Component {
 						/>
 					</Grid>
 					<Typography paragraph variant='body1' style={{ color: 'white', maxWidth: 400 }}>
-						{item.sinopsis}
+						{item.description}
 					</Typography>
 					<Grid container className={classes.content}>
-						{this.renderChip(item.genre, classes)}
+						{this.renderChip(item.category, classes)}
 					</Grid>
 					{this.renderButtonActions(item, classes)}
 				</Grid>

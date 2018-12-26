@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles, withTheme } from '@material-ui/core/styles';
-import { Animate, AnimateKeyframes, AnimateGroup } from 'react-simple-animate';
+import { Animate } from 'react-simple-animate';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -12,24 +12,17 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import CardActions from '@material-ui/core/CardActions';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import RestoreIcon from '@material-ui/icons/Restore';
 import MovieIcon from '@material-ui/icons/Movie';
 import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 
-import { connect } from 'react-redux';
 import { styles } from './styles';
-
-const props = {
-	startStyle: { opacity: 0 },
-	endStyle: { opacity: 1 }
-};
 
 class HorizontalDetail extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			id: props.item && props.item.id,
-			play: true,
+			play: false,
 			navigation: 0
 		};
 	}
@@ -51,7 +44,7 @@ class HorizontalDetail extends React.Component {
 	};
 
 	componentDidUpdate(prevProps, prevState) {
-		if (this.state.play) {
+		if (prevState.play === false && this.state.play === true) {
 			setTimeout(() => {
 				this.setState({
 					play: false
@@ -93,13 +86,13 @@ class HorizontalDetail extends React.Component {
 						{item.title}
 					</Typography>
 					<Typography gutterBottom style={{ color: '#44CD66' }}>
-						{item.rating}
+						Rating : {item.rating === '0' ? 'N/A' : item.rating}
 					</Typography>
 					<Typography gutterBottom color='secondary'>
-						{item.stars}
+						{item.series}
 					</Typography>
 					<Typography gutterBottom color='textPrimary' variant='body2' style={{ maxWidth: '50%' }}>
-						{this.getSynopsis(item.sinopsis)}
+						{this.getSynopsis(item.description)}
 					</Typography>
 					<div
 						style={{
@@ -144,7 +137,6 @@ class HorizontalDetail extends React.Component {
 
 	render() {
 		const { item, classes, theme } = this.props;
-		console.log('​HorizontalDetail -> render -> this.props.theme', this.props.theme);
 		return (
 			<div style={{ position: 'relative' }}>
 				<Card className={classes.root}>
@@ -158,7 +150,7 @@ class HorizontalDetail extends React.Component {
 							reverseDurationSeconds={0.3}
 							easeType='cubic-bezier(0.445, 0.05, 0.55, 0.95)'
 						>
-							<CardMedia image={item.image} className={classes.image} />
+							<CardMedia image={item.image_url} src={item.image_url} alt='#' className={classes.image} />
 						</Animate>
 					</div>
 					<CardActions className={classes.cardActions}>

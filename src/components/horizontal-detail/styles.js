@@ -1,10 +1,9 @@
 const styles = (theme) => ({
 	root: {
 		background: theme.palette.primary.dark,
-		display: 'grid',
-		gridTemplateColumns: '1fr 1fr',
+		display: 'flex',
 		minHeight: '70vh',
-		justifyContent: 'center',
+		justifyContent: 'space-evenly',
 		alignItems: 'center',
 		padding: '0px 60px 40px ',
 		position: 'relative'

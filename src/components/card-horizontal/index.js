@@ -54,14 +54,14 @@ class CardHorizontal extends React.Component {
 			const right = this.div.getBoundingClientRect().right;
 
 			// slide paling kanan
-			if (right < 350) {
+			if (right < 150) {
 				return {
 					transform: 'translate3d(30px, 0, 0) scaleX(1.3) scaleY(1.5) '
 				};
 			}
 
 			// slide paling kiri
-			if (left < 350) {
+			if (left < 150) {
 				return {
 					transform: `translate3d(-${135}px, 0, 0) scaleX(1.3) scaleY(1.5)`
 				};
@@ -75,8 +75,11 @@ class CardHorizontal extends React.Component {
 
 		// slide kalau sedang ada yang di hover
 		if (this.props.hover && this.props.hasExpand) {
+			const lefti = window.innerWidth - this.div.getBoundingClientRect().left;
+			const righti = this.div.getBoundingClientRect().right;
 			// slide paling kiri
-			if (this.props.hoverKey === 0 || this.props.hoverKey % 5 === 0) {
+			// if (this.props.hoverKey === 0 || this.props.hoverKey % 5 === 0) {
+			if (righti < 150) {
 				if (this.props.hoverKey < this.props.theKey)
 					return {
 						transform: 'translate3d(65px, 0, 0) scaleY(1) '
@@ -84,7 +87,8 @@ class CardHorizontal extends React.Component {
 			}
 
 			// slide paling kanan
-			if ((this.props.hoverKey + 1) % 5 === 0) {
+			// if ((this.props.hoverKey + 1) % 5 === 0) {
+			if (lefti < 150) {
 				if (this.props.hoverKey > this.props.theKey)
 					return {
 						transform: 'translate3d(-170px, 0, 0) scaleY(1) '
@@ -151,7 +155,7 @@ class CardHorizontal extends React.Component {
 		);
 	};
 
-	renderFade = (item, classes, title) => {
+	renderFade = (item, classes, title, theme) => {
 		return (
 			<Fade
 				in={this.state.expanded}
@@ -185,26 +189,21 @@ class CardHorizontal extends React.Component {
 								}
 							}}
 							style={{
-								width: 25,
-								height: 25,
-								borderRadius: 25,
-								border: '1px solid #F44336',
-								display: 'flex',
-								justifyContent: 'center',
-								alignItems: 'center',
-								marginBottom: 5
+								marginBottom: 4
 							}}
 						>
-							<Icon color='secondary'>play_arrow</Icon>
+							<Button
+								size='small'
+								variant='outlined'
+								style={{ borderColor: theme.palette.secondary.main }}
+							>
+								<Icon color='secondary'>play_arrow</Icon>
+							</Button>
 						</Link>
-						<Typography variant='body1'>{item.title}</Typography>
-						<Typography variant='caption' style={{ color: '#46D369' }}>
-							{item.rating}
+						<Typography variant='body1' style={{ textAlign: 'center' }}>
+							{item.title}
 						</Typography>
-						<Typography variant='caption'>
-							<span style={{ color: '#46D369' }}>Genre</span> : {item.genre}
-						</Typography>
-						<Button fullWidth style={{ width: 200 }} onClick={this.handleButtonArrow}>
+						<Button fullWidth style={{ width: 100 }} onClick={this.handleButtonArrow}>
 							<Icon>keyboard_arrow_down</Icon>
 						</Button>
 					</div>
@@ -220,9 +219,9 @@ class CardHorizontal extends React.Component {
 			<div
 				className={classes.card}
 				style={{
-					backgroundImage: `url(${item.image})`,
-					backgroundSize: 'cover',
-					backgroundPosition: 'fill',
+					backgroundImage: `url(${item.image_url})`,
+					backgroundSize: 'fill',
+					backgroundPosition: 'center',
 					display: 'relative',
 					position: 'relative',
 					...this.styleWhileHover(),
@@ -237,7 +236,7 @@ class CardHorizontal extends React.Component {
 					ref={(ref) => (this.div = findDOMNode(ref))}
 				>
 					{this.state.expanded && this.renderBackgroundLinear()}
-					{!this.props.hasFocus && this.renderFade(item, classes, title)}
+					{!this.props.hasFocus && this.renderFade(item, classes, title, theme)}
 					{this.props.hasFocus && this.state.expanded && this.renderTitle(title, item)}
 				</div>
 			</div>

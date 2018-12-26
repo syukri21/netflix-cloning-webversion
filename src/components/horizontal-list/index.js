@@ -1,15 +1,11 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Slider from 'react-slick';
 import Icon from '@material-ui/core/Icon';
 import { connect } from 'react-redux';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Fade from '@material-ui/core/Fade';
-import Grow from '@material-ui/core/Grow';
 import { ALL_POPULARS } from '../../redux/actions/popular';
 import { ALL_TRENDINGS } from '../../redux/actions/trending';
 import _ from 'lodash';
@@ -17,6 +13,7 @@ import _ from 'lodash';
 import Title from '../title';
 import CardHorizontal from '../card-horizontal';
 import HorizontalDetail from '../horizontal-detail.js';
+import ShimmerHorizontalList from '../shimmer-horizontal-list';
 
 import { styles } from './styles';
 import { Slide } from '@material-ui/core';
@@ -106,7 +103,7 @@ class NewReleases extends React.Component {
 		if (this.state.counter < 2) {
 			return (
 				<div className={classes.center}>
-					<CircularProgress color='secondary' />;
+					<ShimmerHorizontalList />;
 				</div>
 			);
 		}
