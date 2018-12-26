@@ -9,7 +9,8 @@ export const USER_REGISTER = (name, username, email, password) => ({
 			name,
 			username,
 			email,
-			password
+			password,
+			app_id: null
 		},
 		{
 			'Content-Type': 'application/json'

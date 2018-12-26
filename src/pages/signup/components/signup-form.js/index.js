@@ -62,6 +62,7 @@ class LoginTab extends React.Component {
 								fullWidth
 								autoFocus
 								required
+								color='primary'
 							/>
 						</Grid>
 					</Grid>
@@ -77,6 +78,7 @@ class LoginTab extends React.Component {
 								fullWidth
 								autoFocus
 								required
+								color='primary'
 							/>
 						</Grid>
 					</Grid>
@@ -91,6 +93,7 @@ class LoginTab extends React.Component {
 								onChange={this.handleChangeText('password')}
 								fullWidth
 								required
+								color='primary'
 							/>
 						</Grid>
 					</Grid>
@@ -105,6 +108,7 @@ class LoginTab extends React.Component {
 								onChange={this.handleChangeText('confirmPassword')}
 								fullWidth
 								required
+								color='primary'
 							/>
 						</Grid>
 					</Grid>

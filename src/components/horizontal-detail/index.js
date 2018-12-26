@@ -85,7 +85,7 @@ class HorizontalDetail extends React.Component {
 		this.root = ref;
 	};
 
-	getSlug = (item) => item.replace(/\s+/g, '-').toLowerCase() + '-episode-1';
+	getSlug = (item) => item && item.replace(/\s+/g, '-').toLowerCase() + '-episode-1';
 
 	renderContent = (item) => {
 		return (

@@ -11,6 +11,7 @@ import { ALL_MOVIES, RESET_MOVIE } from '../../../../redux/actions/movie';
 import { findDOMNode } from 'react-dom';
 import Button from '@material-ui/core/Button';
 import _ from 'lodash';
+import ShimmerGridlList from '../../../../components/shimmer-grid-list';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -59,8 +60,8 @@ class CategoryList extends React.Component {
 	infiniteScroll = () => {
 		const button = findDOMNode(this.element);
 		window.addEventListener('scroll', () => {
-			const top = button.getBoundingClientRect().top;
-			if (top <= 400 && this.state.count < 5) {
+			const top = button && button.getBoundingClientRect().top;
+			if (top <= 400 && this.state.count < 3) {
 				this.handleInfiniteScroll();
 			}
 		});
@@ -68,29 +69,37 @@ class CategoryList extends React.Component {
 
 	componentDidMount() {
 		this.props.dispatch(ALL_MOVIES(0, this.state.offset));
-		this.infiniteScroll();
 	}
 
-	getRef = (ref) => (this.element = ref);
+	getRef = async (ref) => {
+		await (this.element = ref);
+		this.infiniteScroll();
+	};
+
+	renderLoading = () => {
+		if (this.props.movies.results.length <= 0) {
+			return <ShimmerGridlList />;
+		}
+
+		return (
+			<Grid container>
+				<Grid item xs={12}>
+					<Title ref={this.getRef}>New Releases</Title>
+				</Grid>
+				<Grid item xs={12}>
+					<GridList data={this.props.movies.results} />
+				</Grid>
+				<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+					<Button variant='contained' color='secondary' ref={this.getRef} onClick={this.handleSeeMore}>
+						{this.state.count > 2 ? 'See More' : 'Loading ...'}
+					</Button>
+				</div>
+			</Grid>
+		);
+	};
 
 	render() {
-		return (
-			<div>
-				<Grid container>
-					<Grid item xs={12}>
-						<Title ref={this.getRef}>New Releases</Title>
-					</Grid>
-					<Grid item xs={12}>
-						<GridList data={this.props.movies.results} />
-					</Grid>
-					<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-						<Button variant='contained' color='secondary' ref={this.getRef} onClick={this.handleSeeMore}>
-							{this.state.count > 4 ? 'See More' : 'Loading ...'}
-						</Button>
-					</div>
-				</Grid>
-			</div>
-		);
+		return <div style={{ width: '100%', minHeight: '100vh' }}>{this.renderLoading()}</div>;
 	}
 }
 

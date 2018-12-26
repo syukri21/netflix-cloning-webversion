@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import Chip from '@material-ui/core/Chip';
@@ -16,6 +16,7 @@ function SearchList(props) {
 	const { classes, item } = props;
 	const title = item.title.replace(/\s+/g, '').toLowerCase();
 
+	// const getSlug = (item) => item.replace(/\s+/g, '-').toLowerCase() + '-episode-1';
 	return (
 		<Card className={classes.card}>
 			<div className={classes.details}>
@@ -23,37 +24,35 @@ function SearchList(props) {
 					<Typography gutterBottom={true} component='h5' style={{ color: 'white' }} variant='h5'>
 						{item.title}
 					</Typography>
-					<Chip label={item.rating} style={{ marginRight: 10 }} />
-					<Chip label={item.genre} />
+					<div style={{ marginBottom: 10 }}>
+						<Chip label={item.category} className={classes.chip} color='default' />
+					</div>
+					<div>
+						<Chip
+							variant='outlined'
+							style={{ color: '#44CD66', borderColor: '#44CD66' }}
+							label={`Rating : ${item.rating}`}
+						/>
+					</div>
 				</CardContent>
 				<div className={classes.controls}>
-					<Link
-						to={{
-							pathname: `/movie/${title}`,
-							query: {
-								title: item.title,
-								id: item.id
-							}
-						}}
-					>
-						<IconButton
+					<Link to={`/movie/${item.slug}`}>
+						<Button
 							color='secondary'
 							style={{
-								width: 50,
-								height: 50,
-								border: '1px solid #F44336',
 								display: 'flex',
 								justifyContent: 'center',
 								alignItems: 'center'
 							}}
 							aria-label='Play/pause'
+							variant='contained'
 						>
 							<PlayArrowIcon className={classes.playIcon} />
-						</IconButton>
+						</Button>
 					</Link>
 				</div>
 			</div>
-			<CardMedia className={classes.cover} image={item.image} title={item.title} />
+			<CardMedia className={classes.cover} image={item.image_url} title={item.title} />
 		</Card>
 	);
 }
