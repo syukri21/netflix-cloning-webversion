@@ -9,11 +9,7 @@ import { findDOMNode } from 'react-dom';
 import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import CardActions from '@material-ui/core/CardActions';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import MovieIcon from '@material-ui/icons/Movie';
-import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
+import { Link } from 'react-router-dom';
 
 import { styles } from './styles';
 
@@ -89,6 +85,8 @@ class HorizontalDetail extends React.Component {
 		this.root = ref;
 	};
 
+	getSlug = (item) => item.replace(/\s+/g, '-').toLowerCase() + '-episode-1';
+
 	renderContent = (item) => {
 		return (
 			<CardContent>
@@ -128,10 +126,12 @@ class HorizontalDetail extends React.Component {
 								marginRight: 10
 							}}
 						>
-							<Button variant='contained' color='secondary'>
-								<Icon style={{ marginRight: 10 }}>play_arrow</Icon>
-								<Typography>Play</Typography>
-							</Button>
+							<Link to={`/movie/${this.getSlug(item.series)}`}>
+								<Button variant='contained' color='secondary'>
+									<Icon style={{ marginRight: 10 }}>play_arrow</Icon>
+									<Typography>Play</Typography>
+								</Button>
+							</Link>
 						</div>
 						<div>
 							<Button color='secondary'>
@@ -178,25 +178,6 @@ class HorizontalDetail extends React.Component {
 							/>
 						</Animate>
 					</div>
-					<CardActions className={classes.cardActions}>
-						<BottomNavigation
-							className={classes.navigation}
-							value={this.state.navigation}
-							onChange={this.handleChange}
-							showLabels
-						>
-							<BottomNavigationAction
-								style={{ color: this.getColor(theme, 0) }}
-								label='Detail'
-								icon={<FeaturedPlayListIcon />}
-							/>
-							<BottomNavigationAction
-								style={{ color: this.getColor(theme, 1) }}
-								label='Episode'
-								icon={<MovieIcon />}
-							/>
-						</BottomNavigation>
-					</CardActions>
 				</Card>
 				<Fab
 					style={{

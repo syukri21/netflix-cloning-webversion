@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
 import SingleLineGridList from '../../components/common-horizontal-list';
+import ShimmerHorizontalList from '../../components/shimmer-horizontal-list';
 
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
@@ -134,9 +135,21 @@ class Detail extends React.Component {
 
 	renderSlide = () => {
 		if (this.state.renderStatus === 0) {
+			if (this.props.movie.episode.length === 0)
+				return (
+					<div style={{ width: '100%', height: 300 }}>
+						<ShimmerHorizontalList />;
+					</div>
+				);
 			return <SingleLineGridList data={this.props.movie.episode} />;
 		}
 		if (this.state.renderStatus === 1) {
+			if (this.props.movie.episode.length === 0)
+				return (
+					<div style={{ width: '100%', height: 300 }}>
+						<ShimmerHorizontalList />;
+					</div>
+				);
 			return <Related type='Popular' action={ALL_POPULARS} limit={10} />;
 		}
 	};
