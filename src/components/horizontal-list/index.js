@@ -12,7 +12,7 @@ import _ from 'lodash';
 
 import Title from '../title';
 import CardHorizontal from '../card-horizontal';
-import HorizontalDetail from '../horizontal-detail.js';
+import HorizontalDetail from '../horizontal-detail/';
 import ShimmerHorizontalList from '../shimmer-horizontal-list';
 
 import { styles } from './styles';
