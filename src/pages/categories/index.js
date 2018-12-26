@@ -25,7 +25,6 @@ class Categories extends React.Component {
 				<Main getCategory={this.getCategory} />
 				<Category category={this.state.category} />
 				<HorizontalList data={this.props.popular} type='ALL_POPULARS' title='Popular' />
-				<HorizontalList data={this.props.trending} type='ALL_TRENDINGS' title='New Relases' />
 			</div>
 		);
 	}

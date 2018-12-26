@@ -22,7 +22,7 @@ class CategoryList extends React.Component {
 	constructor() {
 		super();
 
-		this.handleInfiniteScroll = _.debounce(this.handleInfiniteScroll, 1000);
+		this.handleInfiniteScroll = _.debounce(this.handleInfiniteScroll, 500);
 	}
 
 	state = {
@@ -43,16 +43,16 @@ class CategoryList extends React.Component {
 	};
 
 	handleSeeMore = () => {
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'smooth'
+		});
 		this.props.dispatch(RESET_MOVIE());
 		this.props.dispatch(ALL_MOVIES(this.state.offset, 20));
 		this.setState({
 			offset: this.state.offset + 20,
 			count: 0
-		});
-		window.scrollTo({
-			top: 0,
-			left: 0,
-			behavior: 'smooth'
 		});
 	};
 
