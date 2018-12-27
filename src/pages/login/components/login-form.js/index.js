@@ -64,6 +64,7 @@ class LoginTab extends React.Component {
 							/>
 						</Grid>
 					</Grid>
+
 					<Grid container alignItems='center' justify='space-between'>
 						<Grid item>
 							<FormControlLabel control={<Checkbox color='primary' />} label='Remember me' />
@@ -80,6 +81,7 @@ class LoginTab extends React.Component {
 							</Button>
 						</Grid>
 					</Grid>
+
 					<Grid container justify='center' style={{ marginTop: '10px' }}>
 						<Button
 							variant='outlined'
@@ -90,12 +92,22 @@ class LoginTab extends React.Component {
 							Login
 						</Button>
 					</Grid>
-					<Grid container justify='flex-start' style={{ marginTop: '10px' }}>
+
+					<Grid container alignItems='center' justify='space-between' style={{ marginTop: '10px' }}>
+					<Grid item >
+						<Link to='/'>
+							<Button color='primary' style={{ textTransform: 'none' }}>
+								Back to Homepage
+							</Button>
+						</Link>
+					</Grid>
+					<Grid item >
 						<Link to='/signup'>
 							<Button color='primary' style={{ textTransform: 'none' }}>
 								Sign Up
 							</Button>
 						</Link>
+					</Grid>
 					</Grid>
 				</div>
 			</Paper>
