@@ -23,7 +23,7 @@ class Footer extends React.Component {
 					<div style={{ marginBottom: 10 }}>
 						<img src='/assets/notflix.png' className={classes.image} alt='#' />
 					</div>
-					<Typography className={classes.logo}>Netflox Inc &copy; 2018</Typography>
+					<Typography className={classes.logo}>Animeflix.id Inc &copy; 2018</Typography>
 				</Grid>
 				<Grid item xs={12} sm={9} className={classes.footerRight}>
 					<Grid container style={{ height: '100%' }}>
