@@ -10,7 +10,7 @@ export const USER_REGISTER = (name, username, email, password) => ({
 			username,
 			email,
 			password,
-			app_id: null
+			app_id: 'website'
 		},
 		{
 			'Content-Type': 'application/json'
@@ -32,7 +32,9 @@ export const USER_LOGIN = (email, password) => ({
 	)
 });
 
-export const GET_USER = (token) => ({
-	type: 'GET_USER',
-	payload: axios.get(`${ip}profile`, { headers: { Authorization: `Bearer ${token}` } })
-});
+export const GET_USER = (token) => {
+	return {
+		type: 'GET_USER',
+		payload: axios.get(`${ip}user/profile`, { headers: { Authorization: `Bearer ${token}` } })
+	};
+};

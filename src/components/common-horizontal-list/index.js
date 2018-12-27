@@ -54,6 +54,7 @@ const styles = (theme) => ({
 		justifyContent: 'center',
 		alignItems: 'center',
 		cursor: 'pointer',
+		padding: 10,
 		'&:hover': {
 			background: 'linear-gradient(to top, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0.7) 70%)'
 		}
@@ -73,7 +74,7 @@ function SingleLineGridList(props) {
 					<div key={key} style={{ height: 360, position: 'relative' }}>
 						<img src={item.image_url} alt={item.title} style={{ height: 350 }} />
 						<Link to={`/movie/${item.slug}`} className={classes.bungkus}>
-							<Typography variant='title' color='textPrimary' style={{ textAlign: 'center' }}>
+							<Typography variant='h6' color='textPrimary' style={{ textAlign: 'center' }}>
 								{item.title}
 							</Typography>
 						</Link>

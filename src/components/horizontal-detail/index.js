@@ -155,7 +155,7 @@ class HorizontalDetail extends React.Component {
 	};
 
 	render() {
-		const { item, classes, theme } = this.props;
+		const { item, classes } = this.props;
 		return (
 			<div style={{ position: 'relative' }} ref={this.getRefRoot}>
 				<Card className={classes.root}>

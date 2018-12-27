@@ -13,10 +13,7 @@ import { Link } from 'react-router-dom';
 
 import BackgroundGradient from '../background-gradient/';
 import { styles } from './styles';
-import { GET_FEATURED } from '../../../../redux/actions/featured';
 import _ from 'lodash';
-
-import { ALL_POPULARS } from '../../../../redux/actions/popular';
 
 class Jumbotorn extends React.Component {
 	renderChip = (item, classes) => (
@@ -79,17 +76,6 @@ class Jumbotorn extends React.Component {
 	renderButtonActions = (item, classes) => (
 		<div className={classes.buttonWraper}>
 			<div>
-				<Button
-					color='primary'
-					size='small'
-					className={classNames(classes.button, classes.leftIcon, classes.BottomIcon)}
-				>
-					<Icon className={classes.middleIcon}>remove_red_eye</Icon>
-					<Typography style={{ color: 'white' }}>{item.views}</Typography>
-				</Button>
-			</div>
-
-			<div>
 				<Link to={`/movie/${this.getSlug(item.series)}`}>
 					<Button variant='contained' color='secondary' size='large' className={classes.button}>
 						<Icon className={classes.leftIcon}>play_arrow</Icon>
@@ -104,8 +90,8 @@ class Jumbotorn extends React.Component {
 					size='small'
 					className={classNames(classes.button, classes.leftIcon, classes.BottomIcon)}
 				>
-					<Icon className={classes.middleIcon}>bookmark</Icon>
-					<Typography style={{ color: 'white' }}>bookmark</Typography>
+					<Icon className={classes.middleIcon}>favorite</Icon>
+					<Typography style={{ color: 'white' }}>Favorites</Typography>
 				</Button>
 			</div>
 		</div>

@@ -45,7 +45,7 @@ class Header extends React.Component {
 
 	handleLogOut = async () => {
 		if (sessionStorage.getItem('token')) {
-			await axios.post(`${ip}logout`, null, {
+			await axios.get(`${ip}logout`, {
 				headers: { Authorization: `Bearer ${sessionStorage.getItem('token')}` }
 			});
 			sessionStorage.setItem('token', null);

@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
 import SingleLineGridList from '../../components/common-horizontal-list';
 import ShimmerHorizontalList from '../../components/shimmer-horizontal-list';
+import Paper from '@material-ui/core/Paper';
+import { FacebookProvider, CommentsCount } from 'react-facebook';
 
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
@@ -18,7 +20,6 @@ import Related from './components/bottom-list';
 import { GET_MOVIE, GET_EPISODE } from '../../redux/actions/movie';
 import { styles, styled } from './style';
 import { ALL_POPULARS } from '../../redux/actions/popular';
-import { GET_CATEGORY } from '../../redux/actions/category';
 import axios from 'axios';
 import { ip } from '../../configip';
 class Detail extends React.Component {
@@ -26,7 +27,8 @@ class Detail extends React.Component {
 		super(props);
 		this.state = {
 			renderStatus: 0,
-			query: props.location.pathname.substr(7) || null
+			query: props.location.pathname.substr(7) || null,
+			url: `http://animeflix.id${this.props.location.pathname}`
 		};
 	}
 
@@ -41,7 +43,10 @@ class Detail extends React.Component {
 				nextProps.dispatch(GET_EPISODE(res.data.series));
 			});
 
-			return { query: nextProps.location.pathname.substr(7) };
+			return {
+				query: nextProps.location.pathname.substr(7),
+				url: `http://animeflix.id${nextProps.location.pathname}`
+			};
 		} else return null;
 	}
 
@@ -60,6 +65,7 @@ class Detail extends React.Component {
 
 	renderMovie = (classes) => {
 		const { theme } = this.props;
+		console.log(this.state.url);
 		return (
 			<Grid container className={classes.movieRoot} spacing={24}>
 				<Grid
@@ -154,8 +160,23 @@ class Detail extends React.Component {
 		}
 	};
 
+	getComment = (url) => (
+		<FacebookProvider appId='1167820306704872' style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+			<CommentsCount href={url} />
+			<div
+				className='fb-comments'
+				data-href={url}
+				data-numposts='5'
+				style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+				width='900'
+				data-colorscheme='dark'
+				fb-iframe-plugin-query={`app_id=1167820306704872&color_scheme=dark&container_width=1249&height=100&href=${url}&locale=id_ID&numposts=5&sdk=joey&version=v3.2&width=900`}
+			/>
+		</FacebookProvider>
+	);
 	render() {
 		const { classes } = this.props;
+
 		return (
 			<div style={styled.root(this.props.movie.data)}>
 				<div
@@ -178,6 +199,9 @@ class Detail extends React.Component {
 				<Grid container style={{ display: 'flex', position: 'relative', zIndex: 200 }}>
 					<BottomTab getRenderState={this.getRenderState} />
 				</Grid>
+				<Paper className={classes.paper} style={{ backgroundColor: 'transparent' }}>
+					{this.getComment(this.state.url)}
+				</Paper>
 			</div>
 		);
 	}

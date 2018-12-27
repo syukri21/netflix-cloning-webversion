@@ -43,7 +43,9 @@ export const styles = (theme) => ({
 		height: '300px',
 		margin: 'auto',
 		alignItems: 'center'
-	}
+	},
+	 paper : { position: 'relative', zIndex: 100, padding: 10, margin: 40, 
+	 display: 'flex', justifyContent: 'center' }
 });
 
 export const styled = {

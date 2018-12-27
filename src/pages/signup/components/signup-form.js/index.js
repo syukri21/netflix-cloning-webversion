@@ -4,6 +4,8 @@ import { Face, Mail, Lock } from '@material-ui/icons';
 import { Link, withRouter } from 'react-router-dom';
 import validator from 'validator';
 import { connect } from 'react-redux';
+import Typography from '@material-ui/core/Typography';
+import Modal from '@material-ui/core/Modal';
 
 import { USER_REGISTER } from '../../../../redux/actions/user';
 import { styles } from './styles';
@@ -14,7 +16,9 @@ class LoginTab extends React.Component {
 		username: null,
 		password: null,
 		confirmPassword: null,
-		agreement: false
+		agreement: false,
+		open: false,
+		error: null
 	};
 
 	handleChangeText = (target) => (e) => {
@@ -28,16 +32,52 @@ class LoginTab extends React.Component {
 			agreement: !this.state.agreement
 		});
 
+	handleOpen = () => {
+		this.setState({ open: true });
+	};
+
+	handleClose = () => {
+		this.setState({ open: false });
+	};
+
 	handleSignUp = async () => {
 		const { mail, password, confirmPassword, username, agreement } = this.state;
 		if (password !== confirmPassword) {
-			return alert('password not equal !');
+			this.setState({
+				error: 'password not equal !'
+			});
+			this.handleOpen();
+			return;
 		}
 		if (!validator.isEmail(mail || 'gakvalid')) {
-			return alert(`${mail} is not a valid email.`);
+			this.setState({
+				error: `${mail} is not a valid email.`
+			});
+			this.handleOpen();
+			return;
 		}
 		if (!agreement) {
-			return alert(`check agreement first`);
+			this.setState({
+				error: `check agreement first`
+			});
+			this.handleOpen();
+			return;
+		}
+
+		if (!password) {
+			this.setState({
+				error: `isi password terlebih dahulu`
+			});
+			this.handleOpen();
+			return;
+		}
+
+		if (!password) {
+			this.setState({
+				error: `isi username terlebih dahulu`
+			});
+			this.handleOpen();
+			return;
 		}
 		await this.props.dispatch(USER_REGISTER(username, username, mail, password));
 		alert(this.props.user.regist && this.props.user.regist.message);
@@ -46,7 +86,6 @@ class LoginTab extends React.Component {
 
 	render() {
 		const { classes } = this.props;
-		console.log('​LoginTab -> render -> this.props', this.props);
 		return (
 			<Paper className={classes.padding}>
 				<div className={classes.margin}>
@@ -122,7 +161,11 @@ class LoginTab extends React.Component {
 										onClick={this.handleAgreement}
 									/>
 								}
-								label='agreement terms'
+								label={
+									<Typography variant='subtitle2' style={{ color: 'black' }}>
+										agreement terms
+									</Typography>
+								}
 							/>
 						</Grid>
 					</Grid>
@@ -144,6 +187,18 @@ class LoginTab extends React.Component {
 						</Link>
 					</Grid>
 				</div>
+				<Modal
+					aria-labelledby='simple-modal-title'
+					aria-describedby='simple-modal-description'
+					open={this.state.open}
+					onClose={this.handleClose}
+				>
+					<div className={classes.paper}>
+						<Typography variant='subtitle1' id='simple-modal-description' style={{ color: 'black' }}>
+							{this.state.error}
+						</Typography>
+					</div>
+				</Modal>
 			</Paper>
 		);
 	}
