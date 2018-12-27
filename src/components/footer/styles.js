@@ -1,7 +1,7 @@
 export const styles = (theme) => ({
 	image: {
-		height: 150,
-		width: 100
+		height: 120,
+		width: 150
 	},
 	footerLeft: {
 		display: 'flex',

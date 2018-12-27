@@ -21,9 +21,11 @@ class Footer extends React.Component {
 			<Grid container>
 				<Grid item xs={12} sm={3} className={classes.footerLeft}>
 					<div style={{ marginBottom: 10 }}>
-						<img src='/assets/logo.png' className={classes.image} alt='#' />
+						<img src='/assets/logoAnimeflix.png' className={classes.image} alt='#' />
 					</div>
+					<div style={{ marginTop: 20 }}>
 					<Typography className={classes.logo}>Animeflix.id Inc &copy; 2018</Typography>
+					</div>
 				</Grid>
 				<Grid item xs={12} sm={9} className={classes.footerRight}>
 					<Grid container style={{ height: '100%' }}>
