@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import classnames from 'classnames';
-
+import { Link, withRouter } from 'react-router-dom';
 import { styles } from './styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -33,8 +33,8 @@ class Footer extends React.Component {
 							<Button variant='contained' color='primary'>
 								Menu
 							</Button>
-							<Button className={classes.button}>Home</Button>
-							<Button className={classes.button}>Categories</Button>
+							<Button className={classes.button}><Link to='/' style={{color: `white`}}>Home</Link></Button>
+							<Button className={classes.button}><Link to='/categories' style={{color: `white`}}>Categories</Link></Button>
 						</Grid>
 						<Grid item xs={12} sm={3} className={classes.footerRightContent}>
 							<Button variant='contained' color='primary'>
