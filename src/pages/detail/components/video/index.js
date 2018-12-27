@@ -5,8 +5,7 @@ const Video = ({ video, theme }) => (
 	<iframe
 		style={{
 			borderRadius: '10px',
-			overflow: 'hidden',
-			border: `10px solid ${theme.palette.secondary.dark}`
+			overflow: 'hidden'
 		}}
 		title='video'
 		width='100%'

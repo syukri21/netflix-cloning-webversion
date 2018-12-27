@@ -145,7 +145,7 @@ class Header extends React.Component {
 						<Toolbar>
 							<Link to='/'>
 								<Button variant='contained' color='primary' className={classNames(classes.left)}>
-									NOTFLIX
+									Animeflix
 								</Button>
 							</Link>
 							<Link to='/categories'>
