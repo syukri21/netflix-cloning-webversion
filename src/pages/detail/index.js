@@ -156,7 +156,7 @@ class Detail extends React.Component {
 						<ShimmerHorizontalList />;
 					</div>
 				);
-			return <Related type='Popular' action={ALL_POPULARS} limit={10} />;
+			return <Related type='Related' action={ALL_POPULARS} limit={10} />;
 		}
 	};
 

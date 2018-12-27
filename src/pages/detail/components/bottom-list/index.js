@@ -13,7 +13,7 @@ class Related extends React.Component {
 	}
 
 	getData() {
-		if (this.props.type === 'Popular') {
+		if (this.props.type === 'Related') {
 			return this.props.popular.results;
 		} else if (this.props.type === 'Episode') {
 			return this.props.movie.episode;
@@ -24,6 +24,7 @@ class Related extends React.Component {
 		const data = this.getData();
 		if (!data) return <CircularProgress className={classes.progress} color='secondary' />;
 		return <HorizontalList title={this.props.type} data={{ results: data }} type='ALL_POPULARS' />;
+		
 	}
 	render() {
 		const { classes } = this.props;

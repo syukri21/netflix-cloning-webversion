@@ -18,9 +18,9 @@ class BottomTab extends React.Component {
 	};
 
 	changeColor = (value) => {
-		let color = 'white';
+		let color = '#E84393';
 		if (this.state.value !== value) {
-			color = '#AC2F25';
+			color = 'white';
 		}
 		return { color };
 	};
@@ -40,7 +40,7 @@ class BottomTab extends React.Component {
 				<BottomNavigationAction
 					style={this.changeColor(1)}
 					className={classes.navigation}
-					label='Popular'
+					label='Related'
 					icon={<FavoriteIcon />}
 				/>
 			</BottomNavigation>
