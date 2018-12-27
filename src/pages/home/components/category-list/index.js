@@ -1,19 +1,12 @@
 import React from 'react';
 import { withStyles, withTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import ListItem from '@material-ui/core/ListItem';
-import List from '@material-ui/core/List';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
-import { ALL_CATEGORIES, GET_CATEGORY } from '../../../../redux/actions/category';
 import { ALL_MOVIES, RESET_MOVIE } from '../../../../redux/actions/movie';
 import { findDOMNode } from 'react-dom';
 import Button from '@material-ui/core/Button';
 import _ from 'lodash';
 import ShimmerGridlList from '../../../../components/shimmer-grid-list';
-
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { styles } from './styles';
 import Title from '../../../../components/title';

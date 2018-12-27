@@ -5,7 +5,6 @@ import { Animate } from 'react-simple-animate';
 
 import { styles } from './styles';
 import CardGrid from '../card-grid';
-import Title from '../title';
 
 const props = {
 	startStyle: {

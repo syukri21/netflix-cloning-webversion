@@ -14,7 +14,6 @@ import { styles } from './styles';
 
 function SearchList(props) {
 	const { classes, item } = props;
-	const title = item.title.replace(/\s+/g, '').toLowerCase();
 
 	// const getSlug = (item) => item.replace(/\s+/g, '-').toLowerCase() + '-episode-1';
 	return (

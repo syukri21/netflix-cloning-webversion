@@ -7,7 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
 import { connect } from 'react-redux';
-import { ALL_CATEGORIES, GET_CATEGORY } from '../../../../redux/actions/category';
+import { GET_CATEGORY } from '../../../../redux/actions/category';
 
 import { styles } from './styles';
 
@@ -51,8 +51,6 @@ class SelectCategories extends React.Component {
 
 	render() {
 		const { classes } = this.props;
-		const { results } = this.props.categories;
-		const validCat = results.length ? results : [];
 		return (
 			<form autoComplete='off' className={classes.form}>
 				<FormControl className={classes.formControl} color='secondary'>

@@ -8,9 +8,7 @@ import { styles } from './styles';
 import HorizontalList from '../../../../components/horizontal-list';
 
 class Related extends React.Component {
-	componentDidMount() {
-		const { data, action = null, limit = 10 } = this.props;
-	}
+	componentDidMount() {}
 
 	getData() {
 		if (this.props.type === 'Related') {

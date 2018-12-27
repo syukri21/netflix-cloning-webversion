@@ -7,7 +7,6 @@ import Slider from 'react-slick';
 import Icon from '@material-ui/core/Icon';
 import { connect } from 'react-redux';
 import { ALL_POPULARS } from '../../redux/actions/popular';
-import _ from 'lodash';
 
 import Title from '../title';
 import CardHorizontal from '../card-horizontal';
