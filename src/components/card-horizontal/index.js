@@ -78,7 +78,7 @@ class CardHorizontal extends React.Component {
 			const lefti = window.innerWidth - this.div.getBoundingClientRect().left;
 			const righti = this.div.getBoundingClientRect().right;
 			// slide paling kiri
-			if (this.props.hoverKey === 0 || this.props.hoverKey % 8 === 0) {
+			if (this.props.hoverKey === 0 || this.props.hoverKey % 7 === 0) {
 				// if (righti < 300) {
 				if (this.props.hoverKey < this.props.theKey)
 					return {
