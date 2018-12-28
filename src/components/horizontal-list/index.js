@@ -7,7 +7,9 @@ import Slider from 'react-slick';
 import Icon from '@material-ui/core/Icon';
 import { connect } from 'react-redux';
 import { ALL_POPULARS } from '../../redux/actions/popular';
+import { ALL_MOVIES } from '../../redux/actions/movie';
 import CardHorizontalEpisode from '../card-horizontal-episode';
+import classnames from 'classnames';
 
 import Title from '../title';
 import CardHorizontal from '../card-horizontal';
@@ -73,6 +75,8 @@ class NewReleases extends React.Component {
 	componentDidMount() {
 		if (this.props.type === 'ALL_POPULARS') {
 			this.props.dispatch(ALL_POPULARS(14));
+		} else if (this.props.type === 'ALL_MOVIES') {
+			this.props.dispatch(ALL_MOVIES(0, 20));
 		}
 	}
 
@@ -85,6 +89,14 @@ class NewReleases extends React.Component {
 		} else return null;
 	}
 
+	renderGetSlide = (settings, classes) => {
+		if (this.props.title === 'Episode') {
+			return this.renderSliderEpisode(settings, classes);
+		} else if (this.props.title === 'New Releases') {
+			return this.renderSliderNewrelases(settings, classes);
+		}
+		return this.renderSlider(settings, classes);
+	};
 	//render
 	renderLoading(classes) {
 		var settings = {
@@ -93,7 +105,7 @@ class NewReleases extends React.Component {
 			speed: 300,
 			afterChange: this.getIndexCenter,
 			variableWidth: true,
-			slidesToShow: 7,
+			slidesToShow: this.props.data.results.length < 7 ? this.props.data.results.length : 7,
 			slidesToScroll: 7
 		};
 
@@ -117,11 +129,8 @@ class NewReleases extends React.Component {
 					>
 						<Icon className={classes.arrowIcon}>arrow_left</Icon>
 					</Fab>
-					{this.props.title === 'Episode' ? (
-						this.renderSliderEpisode(settings, classes)
-					) : (
-						this.renderSlider(settings, classes)
-					)}
+					{this.renderGetSlide(settings, classes)}
+
 					<Fab
 						size='small'
 						variant='extended'
@@ -136,34 +145,36 @@ class NewReleases extends React.Component {
 		);
 	}
 
-	renderSlider = (settings, classes) => (
-		<div>
-			<Slider
-				{...settings}
-				className={classes.item}
-				arrows={false}
-				ref={this.getSliderRef}
-				adaptiveHeight={false}
-			>
-				{this.props.data.results.map((item, key) => (
-					<div onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} key={key}>
-						<CardHorizontal
-							hover={this.state.hover}
-							item={item}
-							theKey={key}
-							key={key}
-							hoverKey={this.state.hoverKey}
-							getHoverKey={(key) => this.setState({ hoverKey: key })}
-							getHasExpand={this.getHasExpand}
-							hasExpand={this.state.hasExpand}
-							getFocus={this.getFocus}
-							hasFocus={this.state.onFocus}
-						/>
-					</div>
-				))}
-			</Slider>
-		</div>
-	);
+	renderSlider = (settings, classes) => {
+		return (
+			<div>
+				<Slider
+					{...settings}
+					className={classnames(classes.item, { [classes.middleCard]: this.props.data.results.length < 7 })}
+					arrows={false}
+					ref={this.getSliderRef}
+					adaptiveHeight={false}
+				>
+					{this.props.data.results.map((item, key) => (
+						<div onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} key={key}>
+							<CardHorizontal
+								hover={this.state.hover}
+								item={item}
+								theKey={key}
+								key={key}
+								hoverKey={this.state.hoverKey}
+								getHoverKey={(key) => this.setState({ hoverKey: key })}
+								getHasExpand={this.getHasExpand}
+								hasExpand={this.state.hasExpand}
+								getFocus={this.getFocus}
+								hasFocus={this.state.onFocus}
+							/>
+						</div>
+					))}
+				</Slider>
+			</div>
+		);
+	};
 
 	renderSliderEpisode = (settings, classes) => (
 		<div>
@@ -194,11 +205,40 @@ class NewReleases extends React.Component {
 		</div>
 	);
 
+	renderSliderNewrelases = (settings, classes) => (
+		<div>
+			<Slider
+				{...settings}
+				className={classes.item}
+				arrows={false}
+				ref={this.getSliderRef}
+				adaptiveHeight={false}
+			>
+				{this.props.data.results.map((item, key) => (
+					<div onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} key={key}>
+						<CardHorizontalEpisode
+							hover={this.state.hover}
+							item={item}
+							theKey={key}
+							key={key}
+							hoverKey={this.state.hoverKey}
+							getHoverKey={(key) => this.setState({ hoverKey: key })}
+							getHasExpand={this.getHasExpand}
+							hasExpand={this.state.hasExpand}
+							getFocus={this.getFocus}
+							hasFocus={this.state.onFocus}
+						/>
+					</div>
+				))}
+			</Slider>
+		</div>
+	);
+
 	render() {
 		const { classes } = this.props;
 		return (
 			<div className={classes.root}>
-				{this.props.title !== 'Episode' && (
+				{(this.props.title !== 'Episode' || this.props.title !== 'New Releases') && (
 					<Slide
 						in={this.state.onFocus ? true : false}
 						timeout={{ enter: 500, exit: 500 }}
@@ -209,6 +249,7 @@ class NewReleases extends React.Component {
 						<HorizontalDetail item={this.state.onFocus} getFocus={this.getFocus} />
 					</Slide>
 				)}
+
 				{this.renderLoading(classes)}
 			</div>
 		);

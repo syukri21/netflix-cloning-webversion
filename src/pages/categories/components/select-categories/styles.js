@@ -37,7 +37,7 @@ export const styles = (theme) => {
 		selectForm: {
 			padding: 10,
 			color: 'white !important',
-			borderBottom: '3px solid #F44336',
+			borderBottom: `3px solid ${theme.palette.secondary.main}`,
 			'& svg': {
 				color: 'white'
 			}

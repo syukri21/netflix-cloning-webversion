@@ -9,8 +9,8 @@ const styles = (theme) => ({
 		position: 'relative'
 	},
 	image: {
-		width: 200,
-		height: 300
+		width: '100%',
+		height: '100%'
 	},
 	imageContainer: {
 		display: 'flex',

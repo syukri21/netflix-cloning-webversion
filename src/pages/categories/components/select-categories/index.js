@@ -27,8 +27,15 @@ const listCategory = [
 	{
 		name: 'Horror'
 	},
-	,
-	{}
+	{
+		name: 'Comedy'
+	},
+	{
+		name: 'Ecchi'
+	},
+	{
+		name: 'Seinen'
+	}
 ];
 
 class SelectCategories extends React.Component {
@@ -56,14 +63,13 @@ class SelectCategories extends React.Component {
 		return (
 			<form autoComplete='off' className={classes.form}>
 				<FormControl className={classes.formControl} color='secondary'>
-					<InputLabel htmlFor='demo-controlled-open-select' className={classes.label} focused={false}>
+					<InputLabel shrink htmlFor='demo-controlled-open-select' className={classes.label} focused={false}>
 						category
 					</InputLabel>
 					<Select
 						open={this.state.open}
 						onClose={this.handleClose}
 						onOpen={this.handleOpen}
-						placeholder='Action'
 						value={this.state.category}
 						onChange={this.handleChange}
 						inputProps={{
@@ -76,7 +82,15 @@ class SelectCategories extends React.Component {
 								paper: classes.dropdownStyle
 							}
 						}}
+						displayEmpty
 					>
+						{this.state.open || (
+							<MenuItem value='' color='secondary'>
+								<Typography color={this.state.open ? 'primary' : 'textPrimary'}>
+									Choose Category !
+								</Typography>
+							</MenuItem>
+						)}
 						{listCategory.map((item, key) => (
 							<MenuItem value={item.name || 'Action'} key={key} color='secondary'>
 								<Typography color={this.state.open ? 'primary' : 'textPrimary'}>{item.name}</Typography>

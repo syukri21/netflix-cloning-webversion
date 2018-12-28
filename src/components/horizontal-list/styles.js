@@ -37,6 +37,11 @@ export const styles = (theme) => {
 				alignItems: 'center'
 			}
 		},
+		middleCard: {
+			'& .slick-track': {
+				justifyContent: 'center'
+			}
+		},
 		arrow: {
 			opacity: 1,
 			// background: `linear-gradient(to bottom ,${theme.palette.primary.main}, ${theme.palette.secondary
