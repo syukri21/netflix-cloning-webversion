@@ -39,7 +39,6 @@ class App extends React.Component {
 				<div style={{ width: '100%', overflowX: 'hidden' }}>
 					{this.props.location.pathname !== '/login' &&
 					this.props.location.pathname !== '/signup' && <Header />}
-
 					<Switch>
 						<Route
 							exact
