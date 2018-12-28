@@ -54,22 +54,22 @@ class CardHorizontal extends React.Component {
 			const right = this.div.getBoundingClientRect().right;
 
 			// slide paling kanan
-			if (right < 150) {
+			if (right < 300) {
 				return {
-					transform: 'translate3d(30px, 0, 0) scaleX(1.3) scaleY(1.5) '
+					transform: 'translate3d(40px, 0, 0) scaleX(1.5) scaleY(1.5) '
 				};
 			}
 
 			// slide paling kiri
-			if (left < 150) {
+			if (left < 300) {
 				return {
-					transform: `translate3d(-${135}px, 0, 0) scaleX(1.3) scaleY(1.5)`
+					transform: `translate3d(-${80}px, 0, 0) scaleX(1.5) scaleY(1.5)`
 				};
 			}
 
 			// slide yang di tengah
 			return {
-				transform: 'scaleX(1.3) scaleY(1.5)'
+				transform: 'scaleX(1.5) scaleY(1.5)'
 			};
 		}
 
@@ -78,33 +78,33 @@ class CardHorizontal extends React.Component {
 			const lefti = window.innerWidth - this.div.getBoundingClientRect().left;
 			const righti = this.div.getBoundingClientRect().right;
 			// slide paling kiri
-			// if (this.props.hoverKey === 0 || this.props.hoverKey % 5 === 0) {
-			if (righti < 150) {
+			if (this.props.hoverKey === 0 || this.props.hoverKey % 7 === 0) {
+				// if (righti < 300) {
 				if (this.props.hoverKey < this.props.theKey)
 					return {
-						transform: 'translate3d(65px, 0, 0) scaleY(1) '
+						transform: 'translate3d(80px, 0, 0) scaleY(1) '
 					};
 			}
 
 			// slide paling kanan
-			// if ((this.props.hoverKey + 1) % 5 === 0) {
-			if (lefti < 150) {
+			if ((this.props.hoverKey + 1) % 7 === 0) {
+				// if (lefti < 300) {
 				if (this.props.hoverKey > this.props.theKey)
 					return {
-						transform: 'translate3d(-170px, 0, 0) scaleY(1) '
+						transform: 'translate3d(-120px, 0, 0) scaleY(1) '
 					};
 			}
 
 			//slide ebelah kanan yang di hover
 			if (this.props.hoverKey < this.props.theKey) {
 				return {
-					transform: 'translate3d(35px, 0, 0) scaleY(1) '
+					transform: 'translate3d(40px, 0, 0) scaleY(1) '
 				};
 			}
 
 			//default untuk semua slide
 			return {
-				transform: 'translate3d(-35px, 0, 0)  scaleY(1)'
+				transform: 'translate3d(-40px, 0, 0)  scaleY(1)'
 			};
 		}
 	};
@@ -113,7 +113,7 @@ class CardHorizontal extends React.Component {
 		<div
 			style={{
 				position: 'absolute',
-				background: 'linear-gradient(to right, rgba(0,0,0,1),  rgba(0,0,0,1), rgba(0,0,0,0.3))',
+				background: 'linear-gradient(to top, rgba(0,0,0,1),  rgba(0,0,0,0.6), rgba(0,0,0,0.3))',
 				top: 0,
 				left: 0,
 				bottom: 0,

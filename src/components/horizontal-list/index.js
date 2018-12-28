@@ -105,9 +105,6 @@ class NewReleases extends React.Component {
 
 		return (
 			<div>
-				<div className={classes.flexStart}>
-					<Title>{this.props.title}</Title>
-				</div>
 				<div className={classes.horizontalListContainer}>
 					<Fab
 						size='small'

@@ -8,6 +8,7 @@
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "fg-loadcss": "^2.1.0",
+    "jquery": "^3.3.1",
     "lodash": "^4.17.11",
     "react": "^16.6.3",
     "react-circle": "^1.1.1",

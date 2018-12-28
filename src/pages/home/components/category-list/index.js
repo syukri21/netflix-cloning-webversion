@@ -92,7 +92,6 @@ class CategoryList extends React.Component {
 	};
 
 	render() {
-		console.log('​CategoryList -> render -> this.props.movies', this.props.movies);
 		return <div style={{ width: '100%', minHeight: '100vh' }}>{this.renderLoading()}</div>;
 	}
 }

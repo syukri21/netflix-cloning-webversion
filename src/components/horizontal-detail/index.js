@@ -159,7 +159,7 @@ class HorizontalDetail extends React.Component {
 		return (
 			<div style={{ position: 'relative' }} ref={this.getRefRoot}>
 				<Card className={classes.root}>
-					{this.renderContent(item)}
+					<div>{this.renderContent(item)}</div>
 					<div className={classes.imageContainer}>
 						<Animate
 							play={this.state.play} // set play true to start the animation

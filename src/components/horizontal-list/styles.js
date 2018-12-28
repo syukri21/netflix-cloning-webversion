@@ -19,7 +19,8 @@ export const styles = (theme) => {
 			},
 			'& .slick-list': {
 				display: 'flex',
-				alignItems: 'center'
+				alignItems: 'center',
+				height: 300
 			},
 			'& .slick-slide': {
 				display: 'flex',

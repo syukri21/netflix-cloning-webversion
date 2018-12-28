@@ -6,7 +6,7 @@ export const styles = (theme) => ({
 		height: 200,
 		borderRadius: 0,
 		position: 'relative',
-		marginLeft: 10,
+		marginLeft: 5,
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'center',

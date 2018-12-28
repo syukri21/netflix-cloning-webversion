@@ -30,12 +30,12 @@ export const styles = (theme) => ({
 	cardDetail: {
 		backgroundColor: theme.palette.primary.main,
 		display: 'grid',
-		gridTemplateColumns: '1fr 2fr',
+		gridTemplateColumns: '1fr auto',
 		justifyContent: 'center',
 		gridGap: '5px',
 		alignItems: 'center',
 		padding: '0px 10px 0 40px',
-		[theme.breakpoints.down('md')]: {
+		[theme.breakpoints.down('sm')]: {
 			gridTemplateColumns: '1fr'
 		}
 	},

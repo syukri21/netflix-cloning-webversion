@@ -25,6 +25,9 @@ export const styles = (theme) => {
 			justifyContent: 'center',
 			alignItems: 'center',
 			flexDirection: 'column'
+		},
+		flexStart: {
+			alignSelf: 'flex-start'
 		}
 	};
 };

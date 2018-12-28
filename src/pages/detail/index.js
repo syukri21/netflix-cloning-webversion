@@ -122,7 +122,8 @@ class Detail extends React.Component {
 									style={{
 										color: theme.palette.text.primary,
 										paddingBottom: '10px',
-										marginBottom: '20px'
+										marginBottom: '20px',
+										textAlign: 'end'
 									}}
 								>
 									{this.props.movie.data && this.props.movie.data.title}
