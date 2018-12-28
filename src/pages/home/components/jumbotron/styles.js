@@ -26,15 +26,17 @@ export const styles = (theme) => {
 			width: '100%',
 			position: 'relative',
 			zIndex: 100,
-			justifyContent: 'center',
-			alignItems: 'center',
+			alignItems: 'flex-start',
 			marginBottom: theme.spacing.unit,
-			margin: 'auto'
+			margin: 'auto',
+			marginTop: 10,
+			justifyContent: 'flex-start',
+			marginLeft: 20,
+			flexDirection: 'column'
 		},
 		buttonWraper: {
 			display: 'flex',
 			alignItems: 'center',
-			justifyContent: 'center',
 			'& > div': {
 				marginRight: 10
 			}

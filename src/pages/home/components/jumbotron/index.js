@@ -52,19 +52,15 @@ class Jumbotorn extends React.Component {
 				<img src={'assets/jmbtorn.jpg'} className={classNames(classes.images, 'image')} alt='#' />
 				<Grid container className={classes.content}>
 					<Typography style={{ fontSize: '4vmax', color: 'white' }}>{item.series}</Typography>
-					<Grid style={{ marginBottom: 12 }} item xs={12}>
-						<Chip
-							variant='outlined'
-							style={{ color: '#44CD66', borderColor: '#44CD66' }}
-							label={`Rating : ${item.rating}`}
-						/>
-					</Grid>
-					<Typography paragraph variant='body1' style={{ color: 'white', maxWidth: 400 }}>
+					<Chip
+						variant='outlined'
+						style={{ color: '#44CD66', borderColor: '#44CD66', marginBottom: 15 }}
+						label={`Rating : ${item.rating}`}
+					/>
+					<Typography paragraph variant='body1' style={{ color: 'white', maxWidth: 400, textAlign: 'left' }}>
 						{this.getDescription(item.description)}
 					</Typography>
-					<Grid container className={classes.content}>
-						{this.renderChip(item.category, classes)}
-					</Grid>
+					{this.renderChip(item.category, classes)}
 					{this.renderButtonActions(item, classes)}
 				</Grid>
 			</div>
@@ -113,9 +109,10 @@ class Jumbotorn extends React.Component {
 				autoPlay
 				interval={5000}
 				infiniteLoop
+				showArrows={false}
 			>
 				{this.props.popular.results.length !== 0 &&
-					_.take(this.props.popular.results, 3).map((item, key) => this.renderFeatured(item, key, classes))}
+					_.take(this.props.popular.results, 1).map((item, key) => this.renderFeatured(item, key, classes))}
 			</Carousel>
 		);
 	}
