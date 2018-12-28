@@ -56,7 +56,7 @@ class HorizontalDetail extends React.Component {
 			return;
 		}
 		result = result.split(' ');
-		result = result.slice(0, 30);
+		result = result.slice(0, 100);
 		result = result.join(' ');
 		return result;
 	};
