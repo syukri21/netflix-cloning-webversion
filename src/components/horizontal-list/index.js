@@ -70,7 +70,7 @@ class NewReleases extends React.Component {
 	// life cycle
 	componentDidMount() {
 		if (this.props.type === 'ALL_POPULARS') {
-			this.props.dispatch(ALL_POPULARS(10));
+			this.props.dispatch(ALL_POPULARS(14));
 		}
 	}
 
@@ -91,8 +91,8 @@ class NewReleases extends React.Component {
 			speed: 300,
 			afterChange: this.getIndexCenter,
 			variableWidth: true,
-			slidesToShow: this.getSideToShow(),
-			slidesToScroll: this.getSideToShow()
+			slidesToShow: 7,
+			slidesToScroll: 7
 		};
 
 		if (this.state.counter < 2) {
@@ -166,7 +166,6 @@ class NewReleases extends React.Component {
 		const { classes } = this.props;
 		return (
 			<div className={classes.root}>
-				{this.renderLoading(classes)}
 				<Slide
 					in={this.state.onFocus ? true : false}
 					timeout={{ enter: 500, exit: 500 }}
@@ -176,6 +175,7 @@ class NewReleases extends React.Component {
 				>
 					<HorizontalDetail item={this.state.onFocus} getFocus={this.getFocus} />
 				</Slide>
+				{this.renderLoading(classes)}
 			</div>
 		);
 	}

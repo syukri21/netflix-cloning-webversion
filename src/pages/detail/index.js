@@ -9,6 +9,7 @@ import SingleLineGridList from '../../components/common-horizontal-list';
 import ShimmerHorizontalList from '../../components/shimmer-horizontal-list';
 import Paper from '@material-ui/core/Paper';
 import { FacebookProvider, CommentsCount } from 'react-facebook';
+import Icon from '@material-ui/core/Icon';
 
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
@@ -55,13 +56,22 @@ class Detail extends React.Component {
 		this.props.dispatch(GET_EPISODE(this.props.movie.data.series));
 	}
 
-	renderCategoryList = (classes, theme) => (
-		<Button variant='outlined' className={classes.categoriesRoot}>
-			<Typography variant='caption' style={{ color: '#44CD66' }}>
-				{this.props.movie.data.category}
-			</Typography>
-		</Button>
-	);
+	renderCategoryList = (classes, theme) => {
+		console.log(this.props);
+
+		return (
+			this.props.movie.data.category &&
+			this.props.movie.data.category.split(',').map((data, key) => (
+				<div key={key}>
+					<Button variant='outlined' className={classes.categoriesRoot}>
+						<Typography variant='caption' style={{ color: '#44CD66' }}>
+							{data}
+						</Typography>
+					</Button>
+				</div>
+			))
+		);
+	};
 
 	renderMovie = (classes) => {
 		const { theme } = this.props;
@@ -91,47 +101,74 @@ class Detail extends React.Component {
 							className={classes.cardImage}
 							component='img'
 						/>
-						<CardContent>
-							<Typography
-								gutterBottom
-								variant='h4'
+						<CardContent
+							style={{
+								display: 'flex',
+								alignItems: 'flex-end',
+								flexDirection: 'column'
+							}}
+						>
+							<div
 								style={{
-									color: theme.palette.text.primary,
-									borderBottom: '2px solid white',
-									paddingBottom: '10px',
-									marginBottom: '20px'
+									display: 'flex',
+									justifyContent: 'flex-end',
+									alignItems: 'flex-end',
+									flexDirection: 'column'
 								}}
 							>
-								{this.props.movie.data && this.props.movie.data.title}
-							</Typography>
-							<Chip
-								style={{ marginBottom: 10 }}
-								label={`Rating : ${this.props.movie.data.rating === '0'
-									? 'N/A'
-									: this.props.movie.data.rating}`}
-								color='secondary'
-							/>
-							<Typography
-								gutterBottom
-								variant='subtitle1'
-								style={{
-									color: theme.palette.text.primary,
-									borderBottom: '2px solid white',
-									paddingBottom: '10px',
-									marginBottom: '20px'
-								}}
-							>
-								Series : {this.props.movie.data && this.props.movie.data.series}
-							</Typography>
-							<Typography
-								gutterBottom
-								paragraph
-								variant='caption'
-								style={{ color: theme.palette.text.primary, maxWidth: 500 }}
-							>
-								{this.props.movie.data && this.props.movie.data.description}
-							</Typography>
-							{this.props.movie.data && this.renderCategoryList(classes, theme)}
+								<Typography
+									gutterBottom
+									variant='h4'
+									style={{
+										color: theme.palette.text.primary,
+										paddingBottom: '10px',
+										marginBottom: '20px'
+									}}
+								>
+									{this.props.movie.data && this.props.movie.data.title}
+								</Typography>
+								<Chip
+									style={{ marginBottom: 20 }}
+									label={`Rating : ${this.props.movie.data.rating === '0'
+										? 'N/A'
+										: this.props.movie.data.rating}`}
+									color='secondary'
+								/>
+								<Typography
+									gutterBottom
+									variant='subtitle1'
+									style={{
+										color: theme.palette.text.primary,
+										paddingBottom: '10px'
+									}}
+								>
+									Series : {this.props.movie.data && this.props.movie.data.series}
+								</Typography>
+								<Typography
+									gutterBottom
+									paragraph
+									variant='caption'
+									style={{ color: theme.palette.text.primary, textAlign: 'end' }}
+								>
+									{this.props.movie.data && this.props.movie.data.description}
+								</Typography>
+								<div
+									style={{
+										display: 'flex',
+										flexWrap: 'wrap',
+										maxWidth: '350px',
+										justifyContent: 'flex-end'
+									}}
+								>
+									{this.props.movie.data && this.renderCategoryList(classes, theme)}
+								</div>
+								<Button style={{ marginTop: 20 }} variant='contained' color='secondary'>
+									<div style={{ display: 'flex' }}>
+										<Icon style={{ marginRight: 5 }}>favorite</Icon>
+										<Typography>Favorite</Typography>
+									</div>
+								</Button>
+							</div>
 						</CardContent>
 					</Card>
 				</Grid>

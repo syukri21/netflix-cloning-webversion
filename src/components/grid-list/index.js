@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
 import { Animate } from 'react-simple-animate';
-
+import _ from 'lodash';
 import { styles } from './styles';
 import CardGrid from '../card-grid';
 

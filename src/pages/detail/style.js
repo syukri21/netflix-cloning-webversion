@@ -19,9 +19,10 @@ export const styles = (theme) => ({
 		padding: '70px 10px 10px 10px'
 	},
 	categoriesRoot: {
-		marginRight: 20,
+		marginRight: 5,
+		marginTop: 5,
 		borderRadius: 10,
-		border: '2px solid #44CD66'
+		border: '1px solid #44CD66'
 	},
 	black: {
 		color: 'black	'
@@ -31,21 +32,25 @@ export const styles = (theme) => ({
 		display: 'grid',
 		gridTemplateColumns: '1fr 2fr',
 		justifyContent: 'center',
-		alignItems: 'center',
 		gridGap: '5px',
-		minHeight: 400,
+		alignItems: 'center',
+		padding: '0px 10px 0 40px',
 		[theme.breakpoints.down('md')]: {
 			gridTemplateColumns: '1fr'
 		}
 	},
 	cardImage: {
-		width: '200px',
-		height: '300px',
-		margin: 'auto',
-		alignItems: 'center'
+		width: '300px',
+		height: '400px'
 	},
-	 paper : { position: 'relative', zIndex: 100, padding: 10, margin: 40, 
-	 display: 'flex', justifyContent: 'center' }
+	paper: {
+		position: 'relative',
+		zIndex: 100,
+		padding: 10,
+		margin: 40,
+		display: 'flex',
+		justifyContent: 'center'
+	}
 });
 
 export const styled = {

@@ -54,7 +54,7 @@ class CategoryList extends React.Component {
 		const button = findDOMNode(this.element);
 		window.addEventListener('scroll', () => {
 			const top = button && button.getBoundingClientRect().top;
-			if (top <= 400 && this.state.count < 3) {
+			if (top <= 400 && this.state.count < 3 && window.scrollY < 4500) {
 				this.handleInfiniteScroll();
 			}
 		});
@@ -92,6 +92,7 @@ class CategoryList extends React.Component {
 	};
 
 	render() {
+		console.log('​CategoryList -> render -> this.props.movies', this.props.movies);
 		return <div style={{ width: '100%', minHeight: '100vh' }}>{this.renderLoading()}</div>;
 	}
 }

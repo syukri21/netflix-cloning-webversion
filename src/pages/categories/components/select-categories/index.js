@@ -26,7 +26,9 @@ const listCategory = [
 	},
 	{
 		name: 'Horror'
-	}
+	},
+	,
+	{}
 ];
 
 class SelectCategories extends React.Component {
