@@ -7,11 +7,13 @@ import Slider from 'react-slick';
 import Icon from '@material-ui/core/Icon';
 import { connect } from 'react-redux';
 import { ALL_POPULARS } from '../../redux/actions/popular';
+import CardHorizontalEpisode from '../card-horizontal-episode';
 
 import Title from '../title';
 import CardHorizontal from '../card-horizontal';
 import HorizontalDetail from '../horizontal-detail/';
 import ShimmerHorizontalList from '../shimmer-horizontal-list';
+import _ from 'lodash';
 
 import { styles } from './styles';
 import { Slide } from '@material-ui/core';
@@ -115,36 +117,11 @@ class NewReleases extends React.Component {
 					>
 						<Icon className={classes.arrowIcon}>arrow_left</Icon>
 					</Fab>
-					<div>
-						<Slider
-							{...settings}
-							className={classes.item}
-							arrows={false}
-							ref={this.getSliderRef}
-							adaptiveHeight={false}
-						>
-							{this.props.data.results.map((item, key) => (
-								<div
-									onMouseEnter={this.handleMouseEnter}
-									onMouseLeave={this.handleMouseLeave}
-									key={key}
-								>
-									<CardHorizontal
-										hover={this.state.hover}
-										item={item}
-										theKey={key}
-										key={key}
-										hoverKey={this.state.hoverKey}
-										getHoverKey={(key) => this.setState({ hoverKey: key })}
-										getHasExpand={this.getHasExpand}
-										hasExpand={this.state.hasExpand}
-										getFocus={this.getFocus}
-										hasFocus={this.state.onFocus}
-									/>
-								</div>
-							))}
-						</Slider>
-					</div>
+					{this.props.title === 'Episode' ? (
+						this.renderSliderEpisode(settings, classes)
+					) : (
+						this.renderSlider(settings, classes)
+					)}
 					<Fab
 						size='small'
 						variant='extended'
@@ -159,19 +136,79 @@ class NewReleases extends React.Component {
 		);
 	}
 
+	renderSlider = (settings, classes) => (
+		<div>
+			<Slider
+				{...settings}
+				className={classes.item}
+				arrows={false}
+				ref={this.getSliderRef}
+				adaptiveHeight={false}
+			>
+				{this.props.data.results.map((item, key) => (
+					<div onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} key={key}>
+						<CardHorizontal
+							hover={this.state.hover}
+							item={item}
+							theKey={key}
+							key={key}
+							hoverKey={this.state.hoverKey}
+							getHoverKey={(key) => this.setState({ hoverKey: key })}
+							getHasExpand={this.getHasExpand}
+							hasExpand={this.state.hasExpand}
+							getFocus={this.getFocus}
+							hasFocus={this.state.onFocus}
+						/>
+					</div>
+				))}
+			</Slider>
+		</div>
+	);
+
+	renderSliderEpisode = (settings, classes) => (
+		<div>
+			<Slider
+				{...settings}
+				className={classes.item}
+				arrows={false}
+				ref={this.getSliderRef}
+				adaptiveHeight={false}
+			>
+				{_.orderBy(this.props.data.results, [ (e) => parseInt(e.episode) ], [ 'desc' ]).map((item, key) => (
+					<div onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} key={key}>
+						<CardHorizontalEpisode
+							hover={this.state.hover}
+							item={item}
+							theKey={key}
+							key={key}
+							hoverKey={this.state.hoverKey}
+							getHoverKey={(key) => this.setState({ hoverKey: key })}
+							getHasExpand={this.getHasExpand}
+							hasExpand={this.state.hasExpand}
+							getFocus={this.getFocus}
+							hasFocus={this.state.onFocus}
+						/>
+					</div>
+				))}
+			</Slider>
+		</div>
+	);
+
 	render() {
 		const { classes } = this.props;
 		return (
 			<div className={classes.root}>
-				<Slide
-					in={this.state.onFocus ? true : false}
-					timeout={{ enter: 500, exit: 500 }}
-					mountOnEnter
-					unmountOnExit
-					direction='right'
-				>
-					<HorizontalDetail item={this.state.onFocus} getFocus={this.getFocus} />
-				</Slide>
+				{this.props.title !== 'Episode' && (
+					<Slide
+						in={this.state.onFocus ? true : false}
+						timeout={{ enter: 500, exit: 500 }}
+						mountOnEnter
+						unmountOnExit
+						direction='right'
+					>
+						<HorizontalDetail item={this.state.onFocus} getFocus={this.getFocus} />
+					</Slide>
+				)}
 				{this.renderLoading(classes)}
 			</div>
 		);
