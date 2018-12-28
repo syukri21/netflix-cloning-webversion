@@ -37,35 +37,21 @@ class ButtonFavourite extends React.Component {
 	render() {
 		console.log(this.props);
 		const { series, classes, theme } = this.props;
+		const isExist = _.find(this.props.favorite.results, (e) => e.name_series === series) ? true : false;
 		return (
 			<Button
 				color={_.find(this.props.favorite.results, (e) => e.name_series === series) ? 'secondary' : 'primary'}
 				size='small'
-				className={classNames(classes.button, classes.leftIcon, classes.BottomIcon)}
+				// className={classNames(classes.button, classes.leftIcon, classes.BottomIcon)}
 				onClick={this.handleFavorite(series)}
+				style={{ marginTop: theme.spacing.unit }}
 			>
-				<div
-					style={{
-						position: 'relative',
-						display: 'grid',
-						gridTemplateColumns: !_.find(this.props.favorite.results, (e) => e.name_series === series)
-							? '1fr 1fr'
-							: '1fr',
-						width: 100
-					}}
-				>
-					<Grow
-						in={!_.find(this.props.favorite.results, (e) => e.name_series === series) ? true : false}
-						timeout={{ enter: 1000, exit: 100 }}
-					>
-						<Typography style={{ color: 'white' }}> Favorites</Typography>
-					</Grow>
+				<div>
+					<Typography style={{ color: 'white' }} variant={'caption'}>
+						Favorites
+					</Typography>
 					<div style={{ position: 'relative', minHeight: 25 }}>
-						<Grow
-							in={!_.find(this.props.favorite.results, (e) => e.name_series === series) ? true : false}
-							timeout={{ enter: 1000, exit: 100 }}
-							style={{ position: 'absolute' }}
-						>
+						<Grow in={!isExist} timeout={{ enter: 1000, exit: 100 }} style={{ position: 'absolute' }}>
 							<Icon
 								className={classes.middleIcon}
 								style={{
@@ -75,18 +61,12 @@ class ButtonFavourite extends React.Component {
 								favorite
 							</Icon>
 						</Grow>
-					</div>
-					<div style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
-						<Grow
-							in={_.find(this.props.favorite.results, (e) => e.name_series === series) ? true : false}
-							timeout={{ enter: 1000, exit: 100 }}
-							style={{ position: 'absolute' }}
-						>
+						<Grow in={isExist} timeout={{ enter: 1000, exit: 100 }} style={{ position: 'absolute' }}>
 							<Icon
 								className={classes.middleIcon}
 								style={{
 									color: theme.palette.secondary.light,
-									fontSize: 40
+									fontSize: 35
 								}}
 							>
 								favorite

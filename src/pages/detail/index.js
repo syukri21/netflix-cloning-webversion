@@ -158,20 +158,12 @@ class Detail extends React.Component {
 									style={{
 										display: 'flex',
 										flexWrap: 'wrap',
-										maxWidth: '350px',
 										justifyContent: 'flex-start'
 									}}
 								>
 									{this.props.movie.data && this.renderCategoryList(classes, theme)}
 								</div>
 								<ButtonFavorite series={this.props.movie.data && this.props.movie.data.series} />
-
-								{/* <Button style={{ marginTop: 20 }} variant='contained' color='secondary'>
-									<div style={{ display: 'flex' }}>
-										<Icon style={{ marginRight: 5 }}>favorite</Icon>
-										<Typography>Favorite</Typography>
-									</div>
-								</Button> */}
 							</div>
 						</CardContent>
 					</Card>
