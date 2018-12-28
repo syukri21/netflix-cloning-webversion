@@ -16,11 +16,9 @@ import { styles } from './styles';
 import _ from 'lodash';
 
 class Jumbotorn extends React.Component {
-	renderChip = (item, classes) => (
-		<Grid item>
-			<Chip label={item} className={classes.chip} color='default' />
-		</Grid>
-	);
+	renderChip = (item, classes) => {
+		return item.split(',').map((e, key) => <Chip label={e} className={classes.chip} color='default' />);
+	};
 
 	renderAltFeatured = (item, key, classes) => (
 		<div className={classes.container} key={key}>
@@ -60,7 +58,7 @@ class Jumbotorn extends React.Component {
 					<Typography paragraph variant='body1' style={{ color: 'white', maxWidth: 400, textAlign: 'left' }}>
 						{this.getDescription(item.description)}
 					</Typography>
-					{this.renderChip(item.category, classes)}
+					<div style={{ display: 'flex' }}>{this.renderChip(item.category, classes)}</div>
 					{this.renderButtonActions(item, classes)}
 				</Grid>
 			</div>

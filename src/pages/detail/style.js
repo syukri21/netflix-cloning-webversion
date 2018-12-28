@@ -16,8 +16,8 @@ export const styles = (theme) => ({
 	chip: {
 		marginRight: theme.spacing.unit,
 		marginTop: theme.spacing.unit,
-		color: '#44CD66',
-		borderColor: '#44CD66'
+		backgroundColor: '#E0E0E022',
+		color: 'white'
 	},
 	roots: {
 		display: 'flex',

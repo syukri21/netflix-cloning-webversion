@@ -66,7 +66,7 @@ class Detail extends React.Component {
 							{data}
 						</Typography>
 					</Button> */}
-					<Chip label={data} variant='outlined' color='secondary' className={classes.chip} />
+					<Chip label={data} className={classes.chip} />
 				</div>
 			))
 		);
@@ -127,7 +127,7 @@ class Detail extends React.Component {
 									{this.props.movie.data && this.props.movie.data.title}
 								</Typography>
 								<Chip
-									style={{ marginBottom: 20 }}
+									style={{ color: '#44CD66', borderColor: '#44CD66', marginBottom: 15 }}
 									label={`Rating : ${this.props.movie.data.rating === '0'
 										? 'N/A'
 										: this.props.movie.data.rating}`}

@@ -49,7 +49,7 @@ export const styles = (theme) => {
 			marginRight: 20
 		},
 		chip: {
-			margin: theme.spacing.unit,
+			marginRight: theme.spacing.unit,
 			backgroundColor: '#E0E0E022',
 			color: 'white'
 		},
