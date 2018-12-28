@@ -60,12 +60,13 @@ class Detail extends React.Component {
 		return (
 			this.props.movie.data.category &&
 			this.props.movie.data.category.split(',').map((data, key) => (
-				<div key={key}>
-					<Button variant='outlined' className={classes.categoriesRoot}>
+				<div key={key} className={classes.rootChip}>
+					{/* <Button variant='outlined' className={classes.categoriesRoot}>
 						<Typography variant='caption' style={{ color: '#44CD66' }}>
 							{data}
 						</Typography>
-					</Button>
+					</Button> */}
+					<Chip label={data} variant='outlined' color='secondary' className={classes.chip} />
 				</div>
 			))
 		);
@@ -101,15 +102,15 @@ class Detail extends React.Component {
 						<CardContent
 							style={{
 								display: 'flex',
-								alignItems: 'flex-end',
+								alignItems: 'flex-start',
 								flexDirection: 'column'
 							}}
 						>
 							<div
 								style={{
 									display: 'flex',
-									justifyContent: 'flex-end',
-									alignItems: 'flex-end',
+									justifyContent: 'flex-start',
+									alignItems: 'flex-start',
 									flexDirection: 'column'
 								}}
 							>
@@ -120,7 +121,7 @@ class Detail extends React.Component {
 										color: theme.palette.text.primary,
 										paddingBottom: '10px',
 										marginBottom: '20px',
-										textAlign: 'end'
+										textAlign: 'left'
 									}}
 								>
 									{this.props.movie.data && this.props.movie.data.title}
@@ -136,8 +137,7 @@ class Detail extends React.Component {
 									gutterBottom
 									variant='subtitle1'
 									style={{
-										color: theme.palette.text.primary,
-										paddingBottom: '10px'
+										color: theme.palette.text.primary
 									}}
 								>
 									Series : {this.props.movie.data && this.props.movie.data.series}
@@ -146,7 +146,7 @@ class Detail extends React.Component {
 									gutterBottom
 									paragraph
 									variant='caption'
-									style={{ color: theme.palette.text.primary, textAlign: 'end' }}
+									style={{ color: theme.palette.text.primary, textAlign: 'left' }}
 								>
 									{this.props.movie.data && this.props.movie.data.description}
 								</Typography>
@@ -155,7 +155,7 @@ class Detail extends React.Component {
 										display: 'flex',
 										flexWrap: 'wrap',
 										maxWidth: '350px',
-										justifyContent: 'flex-end'
+										justifyContent: 'flex-start'
 									}}
 								>
 									{this.props.movie.data && this.renderCategoryList(classes, theme)}

@@ -8,6 +8,17 @@ export const styles = (theme) => ({
 		zIndex: '2',
 		backgroundImage: 'linear-gradient(to top, rgba(0,0,0, 1),  rgba(0,0,0, 0.7), rgba(0,0,0, 0.1))'
 	},
+	rootChip: {
+		display: 'flex',
+		justifyContent: 'center',
+		flexWrap: 'wrap'
+	},
+	chip: {
+		marginRight: theme.spacing.unit,
+		marginTop: theme.spacing.unit,
+		color: '#44CD66',
+		borderColor: '#44CD66'
+	},
 	roots: {
 		display: 'flex',
 		justifyContent: 'center'
@@ -30,7 +41,7 @@ export const styles = (theme) => ({
 	cardDetail: {
 		backgroundColor: theme.palette.primary.main,
 		display: 'grid',
-		gridTemplateColumns: '1fr auto',
+		gridTemplateColumns: ' auto 1fr',
 		justifyContent: 'center',
 		gridGap: '5px',
 		alignItems: 'center',
