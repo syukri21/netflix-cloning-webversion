@@ -10,6 +10,7 @@ import ShimmerHorizontalList from '../../components/shimmer-horizontal-list';
 import Paper from '@material-ui/core/Paper';
 import { FacebookProvider, CommentsCount } from 'react-facebook';
 import Icon from '@material-ui/core/Icon';
+import ButtonFavorite from '../../components/button-favourite';
 
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
@@ -119,15 +120,18 @@ class Detail extends React.Component {
 									variant='h4'
 									style={{
 										color: theme.palette.text.primary,
-										paddingBottom: '10px',
-										marginBottom: '20px',
+										marginBottom: theme.spacing.unit,
 										textAlign: 'left'
 									}}
 								>
 									{this.props.movie.data && this.props.movie.data.title}
 								</Typography>
 								<Chip
-									style={{ color: '#44CD66', borderColor: '#44CD66', marginBottom: 15 }}
+									style={{
+										color: '#44CD66',
+										borderColor: '#44CD66',
+										marginBottom: theme.spacing.unit
+									}}
 									label={`Rating : ${this.props.movie.data.rating === '0'
 										? 'N/A'
 										: this.props.movie.data.rating}`}
@@ -160,12 +164,14 @@ class Detail extends React.Component {
 								>
 									{this.props.movie.data && this.renderCategoryList(classes, theme)}
 								</div>
-								<Button style={{ marginTop: 20 }} variant='contained' color='secondary'>
+								<ButtonFavorite series={this.props.movie.data && this.props.movie.data.series} />
+
+								{/* <Button style={{ marginTop: 20 }} variant='contained' color='secondary'>
 									<div style={{ display: 'flex' }}>
 										<Icon style={{ marginRight: 5 }}>favorite</Icon>
 										<Typography>Favorite</Typography>
 									</div>
-								</Button>
+								</Button> */}
 							</div>
 						</CardContent>
 					</Card>

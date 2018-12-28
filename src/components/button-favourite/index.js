@@ -44,37 +44,56 @@ class ButtonFavourite extends React.Component {
 				className={classNames(classes.button, classes.leftIcon, classes.BottomIcon)}
 				onClick={this.handleFavorite(series)}
 			>
-				<div style={{ position: 'relative', minHeight: 25 }}>
+				<div
+					style={{
+						position: 'relative',
+						display: 'grid',
+						gridTemplateColumns: !_.find(this.props.favorite.results, (e) => e.name_series === series)
+							? '1fr 1fr'
+							: '1fr',
+						width: 100
+					}}
+				>
 					<Grow
 						in={!_.find(this.props.favorite.results, (e) => e.name_series === series) ? true : false}
 						timeout={{ enter: 1000, exit: 100 }}
-						style={{ position: 'absolute' }}
 					>
-						<Icon
-							className={classes.middleIcon}
-							style={{
-								color: 'white'
-							}}
-						>
-							favorite
-						</Icon>
+						<Typography style={{ color: 'white' }}> Favorites</Typography>
 					</Grow>
-					<Grow
-						in={_.find(this.props.favorite.results, (e) => e.name_series === series) ? true : false}
-						timeout={{ enter: 1000, exit: 100 }}
-						style={{ position: 'absolute' }}
-					>
-						<Icon
-							className={classes.middleIcon}
-							style={{
-								color: theme.palette.secondary.light
-							}}
+					<div style={{ position: 'relative', minHeight: 25 }}>
+						<Grow
+							in={!_.find(this.props.favorite.results, (e) => e.name_series === series) ? true : false}
+							timeout={{ enter: 1000, exit: 100 }}
+							style={{ position: 'absolute' }}
 						>
-							favorite
-						</Icon>
-					</Grow>
+							<Icon
+								className={classes.middleIcon}
+								style={{
+									color: 'white'
+								}}
+							>
+								favorite
+							</Icon>
+						</Grow>
+					</div>
+					<div style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
+						<Grow
+							in={_.find(this.props.favorite.results, (e) => e.name_series === series) ? true : false}
+							timeout={{ enter: 1000, exit: 100 }}
+							style={{ position: 'absolute' }}
+						>
+							<Icon
+								className={classes.middleIcon}
+								style={{
+									color: theme.palette.secondary.light,
+									fontSize: 40
+								}}
+							>
+								favorite
+							</Icon>
+						</Grow>
+					</div>
 				</div>
-				<Typography style={{ color: 'white' }}>Favorites</Typography>
 			</Button>
 		);
 	}
