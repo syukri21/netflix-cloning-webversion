@@ -3,7 +3,7 @@ export const styles = (theme) => ({
 		position: 'absolute',
 		height: '100vh',
 		width: '100%',
-		backgroundImage: 'url(/assets/movies.jpg)',
+		backgroundImage: 'url(/assets/bglogin.jpg)',
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center'
