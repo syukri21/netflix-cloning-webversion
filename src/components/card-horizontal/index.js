@@ -175,7 +175,7 @@ class CardHorizontal extends React.Component {
 						>
 							<Button
 								size='small'
-								variant='outlined'
+								variant='contained'
 								style={{ borderColor: theme.palette.secondary.main }}
 							>
 								<Icon color='secondary'>play_arrow</Icon>

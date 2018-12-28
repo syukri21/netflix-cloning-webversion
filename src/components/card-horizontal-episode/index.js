@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import { Link } from 'react-router-dom';
 import Fade from '@material-ui/core/Fade';
+import Chip from '@material-ui/core/Chip';
+import Avatar from '@material-ui/core/Avatar';
 
 import { styles } from './styles';
 class CardHorizontal extends React.Component {
@@ -211,6 +213,12 @@ class CardHorizontal extends React.Component {
 					{!this.props.hasFocus && this.renderFade(item, classes, title, theme)}
 					{this.props.hasFocus && this.state.expanded && this.renderTitle(title, item)}
 				</div>
+				<Chip
+					avatar={<Avatar>{item.episode}</Avatar>}
+					label={'Episode'}
+					style={{ position: 'absolute', top: 5, left: 5 }}
+					color='secondary'
+				/>
 			</div>
 		);
 	}
