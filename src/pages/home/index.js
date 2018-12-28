@@ -17,7 +17,7 @@ const Home = (props) => {
 			</div>
 			<div className={classes.categories}>
 				<div className={classes.containerHomeContent}>
-					<HorizontalList title='Related' data={popular} type='ALL_POPULARS' />
+					<HorizontalList title='Popular' data={popular} type='ALL_POPULARS' />
 					<div className={classes.categoryList}>
 						<CategoryList />
 					</div>
