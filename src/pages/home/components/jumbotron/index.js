@@ -53,8 +53,8 @@ class Jumbotorn extends React.Component {
 
 	handleFavorite = (series) => async () => {
 		const token = await sessionStorage.getItem('token');
-
-		if (token === 'null' || token === '' || token === undefined) {
+		console.log(token === 'undefined', token);
+		if (token === 'null' || token === '' || token === 'undefined') {
 			return this.props.history.push('/login');
 		}
 		return this.props.dispatch(ADD_FAVOURITE(series, token));

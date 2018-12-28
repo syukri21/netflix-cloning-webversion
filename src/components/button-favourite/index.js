@@ -18,8 +18,10 @@ class ButtonFavourite extends React.Component {
 
 	handleFavorite = (series) => async () => {
 		const token = await sessionStorage.getItem('token');
-		if (token === 'null' || token === '' || token === undefined) {
+		console.log('​ButtonFavourite -> handleFavorite -> token', token);
+		if (token === 'null' || token === '' || token === 'undefined' || token === null) {
 			return this.props.history.push('/login');
+			console.log('​ButtonFavourite -> handleFavorite -> token', token);
 		}
 		if (!_.find(this.props.favorite.results, (e) => e.name_series === series)) {
 			await this.props.dispatch(ADD_FAVOURITE(series, token));
