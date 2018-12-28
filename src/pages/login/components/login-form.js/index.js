@@ -1,19 +1,36 @@
 import React from 'react';
 import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
-import { Face, Fingerprint } from '@material-ui/icons';
+import { Face, Fingerprint, ArrowBackIos, Warning} from '@material-ui/icons';
 import { styles } from './styles';
 import { Link, withRouter } from 'react-router-dom';
 import { USER_LOGIN } from '../../../../redux/actions/user';
 import validator from 'validator';
 import { connect } from 'react-redux';
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Divider from '@material-ui/core/Divider';
+
 
 
 class LoginTab extends React.Component {
 	state = {
 		email: '',
-		password: ''
+		password: '',
+		open: false,
 	};
+
+	handleClickOpen = () => {
+		this.setState({ open: true });
+	  };
+	
+	handleClose = () => {
+		this.setState({ open: false });
+	  };
+	
 
 	handleChangeText = (target) => (e) =>
 		this.setState({
@@ -23,7 +40,8 @@ class LoginTab extends React.Component {
 	handleLogin = async () => {
 		const { email, password } = this.state;
 		if (!validator.isEmail(email)) {
-			return alert(`${email} is not a valid email.`);
+			// return alert(`${email} is not a valid email.`);
+			return this.handleClickOpen();
 		}
 		await this.props.dispatch(USER_LOGIN(email, password));
 		sessionStorage.setItem('token', this.props.user.login.token);
@@ -95,25 +113,61 @@ class LoginTab extends React.Component {
 						>
 							Login
 						</Button>
+						
 					</Grid>
-
-					<Grid container alignItems='center' justify='space-between' style={{ marginTop: '10px' }}>
-					<Grid item >
-						<Link to='/'>
+					<Grid container justify='center' style={{ padding: '10px' }}>
+						<Link to='/signup'>
 							<Button color='primary' style={{ textTransform: 'none' }}>
-								Back to Homepage
+								Don't have an account? please &nbsp;<b style={{color:"#e84393"}}> SIGN UP</b>
 							</Button>
 						</Link>
 					</Grid>
+					<Divider />
+
+					<Grid container alignItems='center' justify='space-between' style={{padding: `10px`}}>
 					<Grid item >
+						<Link to='/'>
+							<Button color='primary' style={{ textTransform: 'none' }}>
+								<ArrowBackIos /> Back to Homepage
+							</Button>
+						</Link>
+					</Grid>
+					{/* <Grid item >
 						<Link to='/signup'>
 							<Button color='primary' style={{ textTransform: 'none' }}>
 								Sign Up
 							</Button>
 						</Link>
-					</Grid>
+					</Grid> */}
 					</Grid>
 				</div>
+
+				        <Dialog
+						open={this.state.open}
+						onClose={this.handleClose}
+						aria-labelledby="alert-dialog-title"
+						aria-describedby="alert-dialog-description"
+						>
+						<DialogTitle id="alert-dialog-title" style={{flexDirection:"column"}}>
+						
+							<p style={{color:"#e84393",	}}>
+								INFO
+								&nbsp;
+								<span><b>!</b></span>
+							</p>
+						
+						</DialogTitle>
+						<DialogContent>
+							<DialogContentText id="alert-dialog-description">
+							Wrong email or password, Please try again.
+							</DialogContentText>
+						</DialogContent>
+						<DialogActions>
+							<Button onClick={this.handleClose} color="secondary" autoFocus>
+							Close
+							</Button>
+						</DialogActions>
+						</Dialog>
 			</Paper>
 		);
 	}
