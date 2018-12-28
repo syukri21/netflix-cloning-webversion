@@ -9,12 +9,14 @@ const styles = (theme) => ({
 		position: 'relative'
 	},
 	image: {
-		width: '100%',
+		width: '250px',
 		height: '100%'
 	},
 	imageContainer: {
 		display: 'flex',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		width: '100%',
+		height: '100%'
 	},
 	cardActions: {
 		position: 'absolute',

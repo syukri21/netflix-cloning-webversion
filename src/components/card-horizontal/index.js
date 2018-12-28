@@ -181,11 +181,11 @@ class CardHorizontal extends React.Component {
 								<Icon color='secondary'>play_arrow</Icon>
 							</Button>
 						</Link>
-						<Typography variant='body1' style={{ textAlign: 'center' }}>
+						<Typography variant='h5' style={{ textAlign: 'center', color: '#DEE1E6' }}>
 							{item.series}
 						</Typography>
 						<Button fullWidth style={{ width: 100 }} onClick={this.handleButtonArrow}>
-							<Icon>keyboard_arrow_down</Icon>
+							<Icon style={{ color: theme.palette.secondary.light }}>keyboard_arrow_down</Icon>
 						</Button>
 					</div>
 				</div>
