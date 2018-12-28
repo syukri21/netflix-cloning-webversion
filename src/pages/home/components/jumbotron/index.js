@@ -1,7 +1,7 @@
 import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, withTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Chip from '@material-ui/core/Chip';
@@ -9,15 +9,23 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import ButtonFavorite from '../../../../components/button-favourite';
 
 import BackgroundGradient from '../background-gradient/';
+import { ALL_FAVOURITES, DELETE_FAVOURIT, ADD_FAVOURITE } from '../../../../redux/actions/favourites';
+import fetchFavourites from '../../../../utils/fetchFavourites';
+
 import { styles } from './styles';
 import _ from 'lodash';
 
 class Jumbotorn extends React.Component {
+	state = {
+		openModal: false
+	};
+
 	renderChip = (item, classes) => {
-		return item.split(',').map((e, key) => <Chip label={e} className={classes.chip} color='default' />);
+		return item.split(',').map((e, key) => <Chip key={key} label={e} className={classes.chip} color='default' />);
 	};
 
 	renderAltFeatured = (item, key, classes) => (
@@ -41,6 +49,15 @@ class Jumbotorn extends React.Component {
 		result = result.slice(0, 30);
 		result = result.join(' ');
 		return result;
+	};
+
+	handleFavorite = (series) => async () => {
+		const token = await sessionStorage.getItem('token');
+
+		if (token === 'null' || token === '' || token === undefined) {
+			return this.props.history.push('/login');
+		}
+		return this.props.dispatch(ADD_FAVOURITE(series, token));
 	};
 
 	renderFeatured = (item, key, classes) => {
@@ -67,31 +84,44 @@ class Jumbotorn extends React.Component {
 
 	getSlug = (item) => item.replace(/\s+/g, '-').toLowerCase() + '-episode-1';
 
-	renderButtonActions = (item, classes) => (
-		<div className={classes.buttonWraper}>
-			<div>
-				<Link to={`/movie/${this.getSlug(item.series)}`}>
-					<Button variant='contained' color='secondary' size='large' className={classes.button}>
-						<Icon className={classes.leftIcon}>play_arrow</Icon>
-						Play
-					</Button>
-				</Link>
-			</div>
+	cekFavorites = (series) => {
+		const data = _.find(this.props.favorite.results, (e) => e.name_series === series);
+		return _.find(data);
+	};
 
-			<div>
-				<Button
-					color='primary'
-					size='small'
-					className={classNames(classes.button, classes.leftIcon, classes.BottomIcon)}
-				>
-					<Icon className={classes.middleIcon}>favorite</Icon>
-					<Typography style={{ color: 'white' }}>Favorites</Typography>
-				</Button>
-			</div>
-		</div>
-	);
+	renderButtonActions = (item, classes) => {
+		const { theme } = this.props;
+		return (
+			<div className={classes.buttonWraper}>
+				<div>
+					<Link to={`/movie/${this.getSlug(item.series)}`}>
+						<Button variant='contained' color='secondary' size='large' className={classes.button}>
+							<Icon className={classes.leftIcon}>play_arrow</Icon>
+							Play
+						</Button>
+					</Link>
+				</div>
+				<div>
+					{/* <Button
+						color={this.cekFavorites(item.series) ? 'secondary' : 'primary'}
+						size='small'
+						className={classNames(classes.button, classes.leftIcon, classes.BottomIcon)}
+						onClick={this.handleFavorite(item.series)}
+					>
+						<Icon
+							className={classes.middleIcon}
+							style={{ color: this.cekFavorites(item.series) ? theme.palette.secondary.light : 'white' }}
+						>
+							favorite
+						</Icon>
+						<Typography style={{ color: 'white' }}>Favorites</Typography>
+					</Button> */}
 
-	componentDidMount() {}
+					<ButtonFavorite series={item.series} classes={classes} favorite={this.props.favorite} />
+				</div>
+			</div>
+		);
+	};
 
 	render() {
 		const { classes } = this.props;
@@ -117,9 +147,10 @@ class Jumbotorn extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	popular: state.popularReducer
+	popular: state.popularReducer,
+	favorite: state.favouriteReducer
 });
 
-const withConnectJumbotron = connect(mapStateToProps)(Jumbotorn);
+const withConnectJumbotron = withTheme()(connect(mapStateToProps)(Jumbotorn));
 
-export default withStyles(styles)(withConnectJumbotron);
+export default withRouter(withStyles(styles)(withConnectJumbotron));

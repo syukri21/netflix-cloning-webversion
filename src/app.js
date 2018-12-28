@@ -10,7 +10,14 @@ import Detail from './pages/detail';
 import Search from './pages/search';
 import Login from './pages/login';
 import SignUp from './pages/signup';
+import fetchFavourites from './utils/fetchFavourites';
 class App extends React.Component {
+	async componentDidMount() {
+		const token = await sessionStorage.getItem('token');
+		if (token !== 'null' || token !== '' || token !== undefined) {
+			fetchFavourites(token);
+		}
+	}
 	scrollTop = () =>
 		window.scrollTo({
 			top: 0,

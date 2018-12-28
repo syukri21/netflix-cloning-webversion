@@ -6,7 +6,7 @@ import popularReducer from './popularReducer';
 import featuredReducer from './featuredReducer';
 import searchReducer from './searchReducer';
 import userReducer from './userReducer';
-
+import favouriteReducer from './favouriteReducer';
 const reducers = combineReducers({
 	categoryReducer,
 	movieReducer,
@@ -14,7 +14,8 @@ const reducers = combineReducers({
 	popularReducer,
 	featuredReducer,
 	searchReducer,
-	userReducer
+	userReducer,
+	favouriteReducer
 });
 
 export default reducers;

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ip } from '../../configip';
+import getAllFavourites from '../../utils/fetchFavourites';
 
 export const USER_REGISTER = (name, username, email, password) => ({
 	type: 'USER_REGISTER',
@@ -33,6 +34,7 @@ export const USER_LOGIN = (email, password) => ({
 });
 
 export const GET_USER = (token) => {
+	getAllFavourites(token);
 	return {
 		type: 'GET_USER',
 		payload: axios.get(`${ip}user/profile`, { headers: { Authorization: `Bearer ${token}` } })
