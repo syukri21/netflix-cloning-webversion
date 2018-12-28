@@ -131,7 +131,7 @@ class Detail extends React.Component {
 									label={`Rating : ${this.props.movie.data.rating === '0'
 										? 'N/A'
 										: this.props.movie.data.rating}`}
-									color='secondary'
+									variant='outlined'
 								/>
 								<Typography
 									gutterBottom
