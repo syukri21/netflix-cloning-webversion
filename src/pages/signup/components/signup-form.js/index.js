@@ -91,7 +91,7 @@ class LoginTab extends React.Component {
 				<div className={classes.margin}>
 					<Grid container spacing={8} alignItems='flex-end'>
 						<Grid item>
-							<Mail />
+							<Mail style={{color:"#e84393"}}/>
 						</Grid>
 						<Grid item md={true} sm={true} xs={true}>
 							<TextField
@@ -107,7 +107,7 @@ class LoginTab extends React.Component {
 					</Grid>
 					<Grid container spacing={8} alignItems='flex-end'>
 						<Grid item>
-							<Face />
+							<Face style={{color:"#e84393"}}/>
 						</Grid>
 						<Grid item md={true} sm={true} xs={true}>
 							<TextField
@@ -123,7 +123,7 @@ class LoginTab extends React.Component {
 					</Grid>
 					<Grid container spacing={8} alignItems='flex-end'>
 						<Grid item>
-							<Lock />
+							<Lock style={{color:"#e84393"}}/>
 						</Grid>
 						<Grid item md={true} sm={true} xs={true}>
 							<TextField
@@ -138,7 +138,7 @@ class LoginTab extends React.Component {
 					</Grid>
 					<Grid container spacing={8} alignItems='flex-end'>
 						<Grid item>
-							<Lock />
+							<Lock style={{color:"#e84393"}}/>
 						</Grid>
 						<Grid item md={true} sm={true} xs={true}>
 							<TextField
@@ -171,8 +171,8 @@ class LoginTab extends React.Component {
 					</Grid>
 					<Grid container justify='center' style={{ marginTop: '10px' }}>
 						<Button
-							variant='outlined'
-							color='primary'
+							variant='contained'
+							color='secondary'
 							style={{ textTransform: 'none' }}
 							onClick={this.handleSignUp}
 						>

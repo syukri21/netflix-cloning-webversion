@@ -7,6 +7,8 @@ import { USER_LOGIN } from '../../../../redux/actions/user';
 import validator from 'validator';
 import { connect } from 'react-redux';
 
+
+
 class LoginTab extends React.Component {
 	state = {
 		email: '',
@@ -30,6 +32,8 @@ class LoginTab extends React.Component {
 		return alert(this.props.user.login.message);
 	};
 
+
+
 	render() {
 		const { classes } = this.props;
 		return (
@@ -37,7 +41,7 @@ class LoginTab extends React.Component {
 				<div className={classes.margin}>
 					<Grid container spacing={8} alignItems='flex-end'>
 						<Grid item>
-							<Face />
+							<Face style={{color:"#e84393"}}/>
 						</Grid>
 						<Grid item md={true} sm={true} xs={true}>
 							<TextField
@@ -52,15 +56,15 @@ class LoginTab extends React.Component {
 					</Grid>
 					<Grid container spacing={8} alignItems='flex-end'>
 						<Grid item>
-							<Fingerprint />
+							<Fingerprint style={{color:"#e84393"}}/>
 						</Grid>
-						<Grid item md={true} sm={true} xs={true}>
+						<Grid item md={true} sm={true} xs={true} >
 							<TextField
 								onChange={this.handleChangeText('password')}
 								label='Password'
 								type='password'
 								fullWidth
-								required
+								required	
 							/>
 						</Grid>
 					</Grid>
@@ -84,8 +88,8 @@ class LoginTab extends React.Component {
 
 					<Grid container justify='center' style={{ marginTop: '10px' }}>
 						<Button
-							variant='outlined'
-							color='primary'
+							variant='contained'
+							color='secondary'
 							style={{ textTransform: 'none' }}
 							onClick={this.handleLogin}
 						>
