@@ -17,3 +17,7 @@ export const ALL_FAVOURITES = (token) => ({
 	type: 'ALL_FAVOURITES',
 	payload: axios.get(`${ip}user/favorites`, { headers: { Authorization: `Bearer ${token}` } })
 });
+
+export const RESET_FAVOURITES = (token) => ({
+	type: 'RESET_FAVOURITES'
+});

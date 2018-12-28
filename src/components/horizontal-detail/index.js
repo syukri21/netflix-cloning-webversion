@@ -10,6 +10,7 @@ import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom';
+import ButtonFavourite from '../button-favourite';
 
 import { styles } from './styles';
 
@@ -134,19 +135,7 @@ class HorizontalDetail extends React.Component {
 							</Link>
 						</div>
 						<div>
-							<Button color='secondary'>
-								<div
-									style={{
-										display: 'flex',
-										flexDirection: 'column',
-										justifyContent: 'center',
-										alignItems: 'center'
-									}}
-								>
-									<FavoriteIcon />
-									<Typography>Favorites</Typography>
-								</div>
-							</Button>
+							<ButtonFavourite series={item.series} />
 						</div>
 					</div>
 				</Animate>

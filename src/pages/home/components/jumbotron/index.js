@@ -117,7 +117,7 @@ class Jumbotorn extends React.Component {
 						<Typography style={{ color: 'white' }}>Favorites</Typography>
 					</Button> */}
 
-					<ButtonFavorite series={item.series} classes={classes} favorite={this.props.favorite} />
+					<ButtonFavorite series={item.series} />
 				</div>
 			</div>
 		);

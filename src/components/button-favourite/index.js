@@ -4,12 +4,14 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
-import { withTheme } from '@material-ui/core/styles';
+import { withTheme, withStyles } from '@material-ui/core/styles';
 import { ADD_FAVOURITE, ALL_FAVOURITES } from '../../redux/actions/favourites';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Grow from '@material-ui/core/Grow';
 import fetchFavourites from '../../utils/fetchFavourites';
+import { styles } from './styles';
+
 class ButtonFavourite extends React.Component {
 	cekFavorites = (series) => {
 		const data = _.find(this.props.favorite.results, (e) => e.name_series === series);
@@ -78,4 +80,8 @@ class ButtonFavourite extends React.Component {
 	}
 }
 
-export default withRouter(connect()(withTheme()(ButtonFavourite)));
+const mapStateToProps = (state) => ({
+	favorite: state.favouriteReducer
+});
+
+export default withStyles(styles)(withRouter(connect(mapStateToProps)(withTheme()(ButtonFavourite))));

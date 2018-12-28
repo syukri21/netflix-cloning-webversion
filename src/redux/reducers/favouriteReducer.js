@@ -31,6 +31,8 @@ export default function favouriteReducer(state = initialState, action) {
 			};
 		case 'ALL_FAVOURITES_REJECTED':
 			return { ...state, isLoading: false, isError: true };
+		case 'RESET_FAVOURITES':
+			return { ...state, isLoading: false, isError: false, results: [], data: {} };
 		default:
 			return state;
 	}

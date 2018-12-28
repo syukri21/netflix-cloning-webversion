@@ -19,6 +19,7 @@ import { GET_USER } from '../../redux/actions/user';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { ip } from '../../configip';
+import { RESET_FAVOURITES } from '../../redux/actions/favourites';
 
 import { styles } from './styles';
 import { Typography } from '@material-ui/core';
@@ -49,6 +50,7 @@ class Header extends React.Component {
 				headers: { Authorization: `Bearer ${sessionStorage.getItem('token')}` }
 			});
 			sessionStorage.setItem('token', null);
+			this.props.dispatch(RESET_FAVOURITES());
 			this.setState({
 				isLogin: false
 			});
