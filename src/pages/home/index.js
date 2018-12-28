@@ -6,7 +6,6 @@ import CategoryList from './components/category-list/';
 import HorizontalList from '../../components/horizontal-list';
 import Footer from '../../components/footer';
 import { styles } from './styles';
-import NetflixSlider from '../../components/netflix-slider';
 import Title from '../../components/title';
 const Home = (props) => {
 	const { classes, popular } = props;

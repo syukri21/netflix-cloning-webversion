@@ -5,7 +5,6 @@ export const styles = (theme) => ({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'flex-start',
-		minHeight: 350,
 		width: 'calc(100% - 40px)'
 	},
 	progress: {

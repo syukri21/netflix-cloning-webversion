@@ -172,18 +172,15 @@ class CardHorizontal extends React.Component {
 						>
 							<Button
 								size='small'
-								variant='outlined'
+								variant='contained'
 								style={{ borderColor: theme.palette.secondary.main }}
 							>
 								<Icon color='secondary'>play_arrow</Icon>
 							</Button>
 						</Link>
 						<Typography variant='body1' style={{ textAlign: 'center' }}>
-							{item.series}
+							{item.title}
 						</Typography>
-						<Button fullWidth style={{ width: 100 }} onClick={this.handleButtonArrow}>
-							<Icon>keyboard_arrow_down</Icon>
-						</Button>
 					</div>
 				</div>
 			</Fade>
@@ -192,7 +189,7 @@ class CardHorizontal extends React.Component {
 
 	render() {
 		const { classes, item, theme } = this.props;
-		const title = item.series.replace(/\s+/g, '-').toLowerCase() + '-episode-1';
+		const title = item.slug || item.series.replace(/\s+/g, '-').toLowerCase() + '-episode-1';
 		return (
 			<div
 				className={classes.card}

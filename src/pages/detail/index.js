@@ -17,7 +17,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import BottomTab from './components/bottom-tab';
 import Video from './components/video';
-import Related from './components/bottom-list';
+import BottomList from './components/bottom-list';
 import { GET_MOVIE, GET_EPISODE } from '../../redux/actions/movie';
 import { styles, styled } from './style';
 import { ALL_POPULARS } from '../../redux/actions/popular';
@@ -57,8 +57,6 @@ class Detail extends React.Component {
 	}
 
 	renderCategoryList = (classes, theme) => {
-		console.log(this.props);
-
 		return (
 			this.props.movie.data.category &&
 			this.props.movie.data.category.split(',').map((data, key) => (
@@ -75,7 +73,6 @@ class Detail extends React.Component {
 
 	renderMovie = (classes) => {
 		const { theme } = this.props;
-		console.log(this.state.url);
 		return (
 			<Grid container className={classes.movieRoot} spacing={24}>
 				<Grid
@@ -185,7 +182,14 @@ class Detail extends React.Component {
 						<ShimmerHorizontalList />;
 					</div>
 				);
-			return <SingleLineGridList data={this.props.movie.episode} />;
+			return (
+				<BottomList
+					type='Episode'
+					movie={{ episode: this.props.movie.episode }}
+					action={ALL_POPULARS}
+					limit={10}
+				/>
+			);
 		}
 		if (this.state.renderStatus === 1) {
 			if (this.props.movie.episode.length === 0)
@@ -194,7 +198,7 @@ class Detail extends React.Component {
 						<ShimmerHorizontalList />;
 					</div>
 				);
-			return <Related type='Related' action={ALL_POPULARS} limit={10} />;
+			return <BottomList type='Related' action={ALL_POPULARS} limit={10} />;
 		}
 	};
 
