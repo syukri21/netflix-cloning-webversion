@@ -9,19 +9,22 @@ import { ADD_FAVOURITE, ALL_FAVOURITES } from '../../redux/actions/favourites';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Grow from '@material-ui/core/Grow';
-
+import fetchFavourites from '../../utils/fetchFavourites';
 class ButtonFavourite extends React.Component {
 	cekFavorites = (series) => {
 		const data = _.find(this.props.favorite.results, (e) => e.name_series === series);
 		return data;
 	};
 
+	async componentDidMount() {
+		const token = sessionStorage.getItem('token');
+		fetchFavourites(token);
+	}
+
 	handleFavorite = (series) => async () => {
 		const token = await sessionStorage.getItem('token');
-		console.log('​ButtonFavourite -> handleFavorite -> token', token);
 		if (token === 'null' || token === '' || token === 'undefined' || token === null) {
 			return this.props.history.push('/login');
-			console.log('​ButtonFavourite -> handleFavorite -> token', token);
 		}
 		if (!_.find(this.props.favorite.results, (e) => e.name_series === series)) {
 			await this.props.dispatch(ADD_FAVOURITE(series, token));
@@ -30,6 +33,7 @@ class ButtonFavourite extends React.Component {
 	};
 
 	render() {
+		console.log(this.props);
 		const { series, classes, theme } = this.props;
 		return (
 			<Button
