@@ -77,8 +77,11 @@ class CardHorizontal extends React.Component {
 		if (this.props.hover && this.props.hasExpand) {
 			const lefti = window.innerWidth - this.div.getBoundingClientRect().left;
 			const righti = this.div.getBoundingClientRect().right;
+			const hoverIndex = Math.floor(window.innerWidth / this.div.getBoundingClientRect().width);
+			console.log('​hoverIndex', hoverIndex);
+
 			// slide paling kiri
-			if (this.props.hoverKey === 0 || this.props.hoverKey % 7 === 0) {
+			if (this.props.hoverKey === 0 || this.props.hoverKey % (hoverIndex - 1) === 0) {
 				// if (righti < 300) {
 				if (this.props.hoverKey < this.props.theKey)
 					return {
@@ -87,7 +90,7 @@ class CardHorizontal extends React.Component {
 			}
 
 			// slide paling kanan
-			if ((this.props.hoverKey + 1) % 8 === 0) {
+			if ((this.props.hoverKey + 1) % hoverIndex === 0) {
 				// if (lefti < 300) {
 				if (this.props.hoverKey > this.props.theKey)
 					return {

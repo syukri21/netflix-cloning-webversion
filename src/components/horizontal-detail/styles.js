@@ -1,7 +1,7 @@
 const styles = (theme) => ({
 	root: {
 		// background: theme.palette.primary.dark,,
-		background: 'rgba(51, 51, 51, 0.2)',
+		background: 'rgba(51, 51, 51, 0.6)',
 		marginTop: 10,
 		display: 'grid',
 		gridTemplateColumns: '1fr auto',
