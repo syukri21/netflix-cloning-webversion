@@ -19,15 +19,17 @@ class Footer extends React.Component {
 		const { classes } = this.props;
 		return (
 			<Grid container>
-				<Grid item xs={12} sm={3} className={classes.footerLeft}>
-					<div style={{ marginBottom: 10 }}>
+				<Grid item xs={12} sm={2} className={classes.footerLeft} >
+				<div style={{width:"100%", justifyContent:"center", alignItems:"center", padding:"30%", paddingTop:20, paddingBottom:0, }}>
+					<div style={{ marginBottom: 30}} >
 						<img src='/assets/logoAnimeflix.png' className={classes.image} alt='#' />
 					</div>
 					<div style={{ marginTop: 20 }}>
-					<Typography className={classes.logo}>Animeflix.id Inc &copy; 2018</Typography>
+					<Typography className={classes.logo} style={{textAlign:"center"}}>Animeflix.id Inc &copy; 2018</Typography>
 					</div>
+				</div>
 				</Grid>
-				<Grid item xs={12} sm={9} className={classes.footerRight}>
+				<Grid item xs={12} sm={10} className={classes.footerRight}>
 					<Grid container style={{ height: '100%' }}>
 						<Grid item xs={12} sm={3} className={classes.footerRightContent}>
 							<Button variant='contained' color='primary'>
