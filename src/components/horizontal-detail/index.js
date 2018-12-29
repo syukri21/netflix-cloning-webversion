@@ -111,9 +111,11 @@ class HorizontalDetail extends React.Component {
 					}
 					title={<Typography variant='h6'>{item.series}</Typography>}
 					subheader={
-						<Typography gutterBottom color='secondary'>
-							{item.category.split(',')[1]}, {item.category.split(',')[0]}
-						</Typography>
+						item.category && (
+							<Typography gutterBottom style={{ color: '#44CD66' }}>
+								{item.category.split(',')[1]}, {item.category.split(',')[0]}
+							</Typography>
+						)
 					}
 				/>
 			</Animate>
@@ -175,7 +177,7 @@ class HorizontalDetail extends React.Component {
 					reverseDurationSeconds={0.3}
 					easeType='cubic-bezier(0.445, 0.05, 0.55, 0.95)'
 				>
-					<Typography gutterBottom style={{ color: '#44CD66' }}>
+					<Typography gutterBottom color='secondary'>
 						Description
 					</Typography>
 
