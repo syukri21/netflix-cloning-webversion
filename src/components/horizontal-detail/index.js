@@ -112,7 +112,7 @@ class HorizontalDetail extends React.Component {
 					title={<Typography variant='h6'>{item.series}</Typography>}
 					subheader={
 						<Typography gutterBottom color='secondary'>
-							{item.category}
+							{item.category.split(',')[1]}, {item.category.split(',')[0]}
 						</Typography>
 					}
 				/>
