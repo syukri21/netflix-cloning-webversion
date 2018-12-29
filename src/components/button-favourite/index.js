@@ -35,7 +35,6 @@ class ButtonFavourite extends React.Component {
 	};
 
 	render() {
-		console.log(this.props);
 		const { series, classes, theme } = this.props;
 		const isExist = _.find(this.props.favorite.results, (e) => e.name_series === series) ? true : false;
 		return (

@@ -4,12 +4,11 @@ const styles = (theme) => ({
 		background: 'rgba(51, 51, 51, 0.6)',
 		marginTop: 10,
 		display: 'grid',
-		gridTemplateColumns: '1fr auto',
-		alignItems: 'center',
+		gridTemplateColumns: 'auto 1fr',
 		position: 'relative'
 	},
 	image: {
-		width: '250px',
+		width: '280px',
 		height: '100%'
 	},
 	imageContainer: {

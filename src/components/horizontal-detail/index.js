@@ -4,6 +4,7 @@ import { Animate } from 'react-simple-animate';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
 import Fab from '@material-ui/core/Fab';
 import { findDOMNode } from 'react-dom';
 import Icon from '@material-ui/core/Icon';
@@ -11,6 +12,9 @@ import Button from '@material-ui/core/Button';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom';
 import ButtonFavourite from '../button-favourite';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardHeader from '@material-ui/core/CardHeader';
+import Avatar from '@material-ui/core/Avatar';
 
 import { styles } from './styles';
 
@@ -88,9 +92,38 @@ class HorizontalDetail extends React.Component {
 
 	getSlug = (item) => item && item.replace(/\s+/g, '-').toLowerCase() + '-episode-1';
 
-	renderContent = (item) => {
+	renderTitle = (item) => {
+		const { theme } = this.props;
 		return (
-			<CardContent>
+			<Animate
+				play={this.state.play} // set play true to start the animation
+				durationSeconds={0} // how long is the animation duration
+				startStyle={{ transform: 'translate(0, 0)', opacity: 1 }}
+				endStyle={{ transform: 'translate(100px, 0)', opacity: 0 }}
+				reverseDurationSeconds={0.3}
+				easeType='cubic-bezier(0.445, 0.05, 0.55, 0.95)'
+			>
+				<CardHeader
+					avatar={
+						<Avatar aria-label='Recipe' style={{ background: '#42BE61' }}>
+							{item.rating === '0' ? 'N/A' : item.rating}
+						</Avatar>
+					}
+					title={<Typography variant='h6'>{item.series}</Typography>}
+					subheader={
+						<Typography gutterBottom color='secondary'>
+							{item.category}
+						</Typography>
+					}
+				/>
+			</Animate>
+		);
+	};
+
+	renderAction = (item) => {
+		const { theme } = this.props;
+		return (
+			<CardActions style={{ width: '100%' }}>
 				<Animate
 					play={this.state.play} // set play true to start the animation
 					durationSeconds={0} // how long is the animation duration
@@ -99,19 +132,6 @@ class HorizontalDetail extends React.Component {
 					reverseDurationSeconds={0.3}
 					easeType='cubic-bezier(0.445, 0.05, 0.55, 0.95)'
 				>
-					<Typography color='textPrimary' variant='h3' gutterBottom>
-						{item.series}
-					</Typography>
-					<Typography gutterBottom style={{ color: '#44CD66' }}>
-						Rating : {item.rating === '0' ? 'N/A' : item.rating}
-					</Typography>
-					<Typography gutterBottom color='secondary'>
-						{item.category}
-					</Typography>
-
-					<Typography gutterBottom color='textPrimary' variant='body2' style={{ maxWidth: '50%' }}>
-						{this.getSynopsis(item.description)}
-					</Typography>
 					<div
 						style={{
 							display: 'flex',
@@ -139,17 +159,40 @@ class HorizontalDetail extends React.Component {
 						</div>
 					</div>
 				</Animate>
+			</CardActions>
+		);
+	};
+
+	renderContent = (item) => {
+		return (
+			<CardContent style={{ width: '100%', flex: '1 0 auto' }}>
+				<Animate
+					play={this.state.play} // set play true to start the animation
+					durationSeconds={0} // how long is the animation duration
+					startStyle={{ transform: 'translate(0, 0)', opacity: 1 }}
+					endStyle={{ transform: 'translate(100px, 0)', opacity: 0 }}
+					q
+					reverseDurationSeconds={0.3}
+					easeType='cubic-bezier(0.445, 0.05, 0.55, 0.95)'
+				>
+					<Typography gutterBottom style={{ color: '#44CD66' }}>
+						Description
+					</Typography>
+
+					<Typography gutterBottom color='textPrimary' variant='body2' style={{ maxWidth: '80%' }}>
+						{this.getSynopsis(item.description)}
+					</Typography>
+				</Animate>
 			</CardContent>
 		);
 	};
 
 	render() {
-		const { item, classes } = this.props;
+		const { item, classes, theme } = this.props;
 		return (
-			<div style={{ position: 'relative' }} ref={this.getRefRoot}>
+			<div style={{ position: 'relative', width: '80%', margin: 'auto' }} ref={this.getRefRoot}>
 				<Card className={classes.root}>
-					<div>{this.renderContent(item)}</div>
-					<div className={classes.imageContainer}>
+					<CardMedia className={classes.imageContainer}>
 						<Animate
 							play={this.state.play} // set play true to start the animation
 							durationSeconds={0} // how long is the animation duration
@@ -166,12 +209,25 @@ class HorizontalDetail extends React.Component {
 								className={classes.image}
 							/>
 						</Animate>
-					</div>
+					</CardMedia>
+					<Card
+						style={{
+							backgroundColor: theme.palette.primary.light,
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'space-between'
+						}}
+					>
+						{this.renderTitle(item)}
+
+						{this.renderContent(item)}
+						{this.renderAction(item)}
+					</Card>
 				</Card>
 				<Fab
 					style={{
 						position: 'absolute',
-						top: 10,
+						top: 20,
 						right: 10
 					}}
 					color='default'
